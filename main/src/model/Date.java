@@ -45,12 +45,12 @@ public class Date
 
   public String toString()
   {
-    return "day=" + day + ", month=" + month + ", year=" + year;
+    return "day: " + day + ", month: " + month + ", year: " + year;
   }
 
   public Date copy()
   {
-    return new Date(day,month,year);
+    return new Date(day, month, year);
   }
 
   public boolean equals(Object obj)
@@ -61,5 +61,45 @@ public class Date
       return day == other.day && month == other.month && year == other.year;
     }
     return false;
+  }
+
+  //New method!!! using in getNumberOfNights method in DateInterval
+  public boolean isLeapYear()
+  {
+    return (year % 4 == 0 && year % 100 != 0) || year % 400 == 0;
+  }
+
+  //New method!!! using in getNumberOfNights method in DateInterval
+  public void nextDay()
+  {
+    day++;
+    if ((month == 1 || month == 3 || month == 5 || month == 7 || month == 8
+        || month == 10) && (day >= 32))
+    {
+      ++month;
+      day -= 31;
+    }
+    else if ((month == 2 && !isLeapYear()) && day >= 29)
+    {
+      ++month;
+      day -= 28;
+    }
+    else if ((month == 2 && isLeapYear()) && day >= 30)
+    {
+      ++month;
+      day -= 29;
+    }
+    else if ((month == 4 || month == 6 || month == 9 || month == 11)
+        && day >= 31)
+    {
+      ++month;
+      day -= 30;
+    }
+    else if (month >= 12 && day >= 32)
+    {
+      year += 1;
+      month -= 11;
+      day -= 31;
+    }
   }
 }

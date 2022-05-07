@@ -2,37 +2,44 @@ package model;
 
 public class DateInterval
 {
+  //CREATING FIELDS FOR CLASS DateInterval
   private Date arrivalDate;
   private Date departureDate;
 
+  //2 ARGUMENTS CONSTRUCTOR
   public DateInterval(Date arrivalDate, Date departureDate)
   {
     this.arrivalDate = arrivalDate.copy();
     this.departureDate = departureDate.copy();
   }
 
+  //SETTER FOR ARRIVAL DATE
   public void setArrivalDate(Date arrivalDate)
   {
     this.arrivalDate = arrivalDate.copy();
   }
 
+  //SETTER FOR DEPARTURE DATE
   public void setDepartureDate(Date departureDate)
   {
     this.departureDate = departureDate.copy();
   }
 
+  //GETTER FOR ARRIVAL DATE
   public Date getArrivalDate()
   {
     return arrivalDate.copy();
   }
 
+  //GETTER FOR DEPARTURE DATE
   public Date getDepartureDate()
   {
     return departureDate.copy();
   }
 
-  //New method!!! compare if arrival date is smaller than departed day
-  public boolean compareDateContinuity()
+  //!!!New method!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  //ARRIVAL DATE HAS TO BE BEFORE DEPARTURE DATE
+  public boolean compareDatesContinuity()
   {
     if (arrivalDate.copy().getYear() < departureDate.copy().getYear())
     {
@@ -63,7 +70,7 @@ public class DateInterval
 
   public int getNumberOfNights()
   {
-    if (compareDateContinuity())
+    if (compareDatesContinuity())
     {
       int countDays = 0;
       Date copyArrival = arrivalDate.copy();

@@ -68,31 +68,40 @@ public class DateInterval
     return false;
   }
 
+  //COUNTING NUMBER OF DAYS SINCE ARRIVAL DATE TO DEPARTURE DATE
   public int getNumberOfNights()
   {
+    //IF ARRIVAL DATES IS SOONER THAN DEPARTURE DATE
     if (compareDatesContinuity())
     {
+      //COUNTING VARIABLE
       int countDays = 0;
+      //MAKING COPY OF ARRIVAL DATE SO WE CAN USE IT
       Date copyArrival = arrivalDate.copy();
+      //WHILE COPY OF ARRIVAL DATE IS NOT SAME AS DEPARTURE DATE WE ARE COUNTING UP DAYS
       while (!(copyArrival.equals(departureDate.copy())))
       {
         copyArrival.nextDay();
         countDays++;
       }
+      //RETURN COUNT
       return countDays;
     }
+    //ERROR WHEN ARRIVAL DATE IS AFTER DEPARTURE DATE
     else
     {
       return -1;
     }
   }
 
+  //RETURNING TO STRING METHOD WITH ARRIVAL DATE AND DEPARTURE DATE
   public String toString()
   {
     return "Arrival date: " + arrivalDate.copy() + ", Departure date:"
         + departureDate.copy();
   }
 
+  //CHECKING IF DateInterval CLASS IS SAME/EQUAL AS obj DateInterval CLASS
   public boolean equals(Object obj)
   {
     if (obj instanceof DateInterval)

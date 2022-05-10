@@ -2,7 +2,7 @@ package model;
 
 /**
  * Room class.
- *
+ * Returns the room number, the room type, the room price, and the room status.
  * @author Dragos Cotaga
  * @version 1.1
  * @see Room

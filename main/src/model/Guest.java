@@ -18,7 +18,7 @@ public class Guest
     this.adress=adress;
     this.phoneNumber=phoneNumber;
     this.nationality=nationality;
-    this.birthday=birthday;
+    this.birthday=birthday.copy();
   }
 
   //setter for firstName
@@ -54,7 +54,7 @@ public class Guest
   //setter for birthday
   public void setBirthday(Date birthday)
   {
-    this.birthday=birthday;
+    this.birthday=birthday.copy();
   }
 
   //getter for firstName
@@ -90,7 +90,7 @@ public class Guest
   //getter for birthday
   public Date getBirthday()
   {
-    return birthday;
+    return birthday.copy();
   }
 
   //toString() method used to convert string objects into a string

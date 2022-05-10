@@ -9,7 +9,7 @@ public class Booking
   private DateInterval dates;
 
   //3 arguments constructor
-  public Booking(GuestList guests, RoomList rooms, DateInterval dates)
+  public Booking(GuestList guests, Room room, DateInterval dates)
   {
     this.guests=guests;
     this.room=room;

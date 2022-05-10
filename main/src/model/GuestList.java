@@ -19,10 +19,10 @@ public class GuestList
     guests.add(guest);
   }
 
-  //getAllGuests() method that returns the ArrayList with all the guests
-  public ArrayList getAllGuests()
+  //getFirstGuest() method that returns the first guest in the ArrayList(the person that booked the room)
+  public Guest getFirstGuest()
   {
-    return guests;
+    return guests.get(0);
   }
 
   //getGuestByName() method that returns the guest with the matching name
@@ -36,10 +36,11 @@ public class GuestList
     }
     return null;
   }
-  //getFirstGuest() method that returns the first guest in the ArrayList(the person that booked the room)
-  public Guest getFirstGuest()
+
+  //getAllGuests() method that returns the ArrayList with all the guests
+  public ArrayList getAllGuests()
   {
-    return guests.get(0);
+    return guests;
   }
 
   //toString() method used to convert the ArrayList guests into a string

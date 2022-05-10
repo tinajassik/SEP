@@ -13,6 +13,7 @@ public class BookingList
     this.bookings=new ArrayList<Booking>();
   }
 
+  //getBooking() method that returns a booking from a specific index in the ArrayList
   public Booking getBooking(int index)
   {
     return bookings.get(index);

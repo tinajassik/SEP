@@ -9,7 +9,7 @@ package model;
  * @since 2022-05-10
  */
 
-// Method: getRoomNumber() - returns the room number of the room object being called on in the method call (Room room = new Room(1); room.getRoomNumber();)
+// Room class
 public class Room {
     private String roomNumber, roomType;
     private boolean extraBed, available;

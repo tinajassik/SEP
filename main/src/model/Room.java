@@ -84,6 +84,35 @@ public class Room {
     public String toString() {
         return "Room Number: " + roomNumber + "\nRoom Type: " + roomType + "\nExtra Bed: " + extraBed + "\nPrice: " + price;
     }
+
+    // Method: equals() - returns true if the room number is the same, false if it is not. Used to check if two rooms are the same.
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Room room = (Room) o;
+
+        if (extraBed != room.extraBed) return false;
+        if (available != room.available) return false;
+        if (Double.compare(room.price, price) != 0) return false;
+        if (roomNumber != null ? !roomNumber.equals(room.roomNumber) : room.roomNumber != null) return false;
+        return roomType != null ? roomType.equals(room.roomType) : room.roomType == null;
+    }
+
+    // Method: hashCode() - returns the hashcode of the room. This is used to compare two rooms and determine if they are the same.
+    @Override
+    public int hashCode() {
+        int result;
+        long temp;
+        result = roomNumber != null ? roomNumber.hashCode() : 0;
+        result = 31 * result + (roomType != null ? roomType.hashCode() : 0);
+        result = 31 * result + (extraBed ? 1 : 0);
+        result = 31 * result + (available ? 1 : 0);
+        temp = Double.doubleToLongBits(price);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        return result;
+    }
 }
 
 

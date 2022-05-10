@@ -41,29 +41,9 @@ public class DateInterval
   //ARRIVAL DATE HAS TO BE BEFORE DEPARTURE DATE
   public boolean compareDatesContinuity()
   {
-    if (arrivalDate.copy().getYear() < departureDate.copy().getYear())
+    if (arrivalDate.isBefore(departureDate))
     {
       return true;
-    }
-    else if (arrivalDate.copy().getYear() > departureDate.copy().getYear())
-    {
-      return false;
-    }
-    else if (arrivalDate.copy().getMonth() < departureDate.copy().getMonth())
-    {
-      return true;
-    }
-    else if (arrivalDate.copy().getMonth() > departureDate.copy().getMonth())
-    {
-      return false;
-    }
-    else if (arrivalDate.copy().getDay() < departureDate.copy().getDay())
-    {
-      return true;
-    }
-    else if (arrivalDate.copy().getDay() > departureDate.copy().getDay())
-    {
-      return false;
     }
     return false;
   }
@@ -71,27 +51,18 @@ public class DateInterval
   //COUNTING NUMBER OF DAYS SINCE ARRIVAL DATE TO DEPARTURE DATE
   public int getNumberOfNights()
   {
-    //IF ARRIVAL DATES IS SOONER THAN DEPARTURE DATE
-    if (compareDatesContinuity())
+    //COUNTING VARIABLE
+    int countDays = 0;
+    //MAKING COPY OF ARRIVAL DATE SO WE CAN USE IT
+    Date copyArrival = arrivalDate.copy();
+    //WHILE COPY OF ARRIVAL DATE IS NOT SAME AS DEPARTURE DATE WE ARE COUNTING UP DAYS
+    while (!(copyArrival.equals(departureDate.copy())))
     {
-      //COUNTING VARIABLE
-      int countDays = 0;
-      //MAKING COPY OF ARRIVAL DATE SO WE CAN USE IT
-      Date copyArrival = arrivalDate.copy();
-      //WHILE COPY OF ARRIVAL DATE IS NOT SAME AS DEPARTURE DATE WE ARE COUNTING UP DAYS
-      while (!(copyArrival.equals(departureDate.copy())))
-      {
-        copyArrival.nextDay();
-        countDays++;
-      }
-      //RETURN COUNT
-      return countDays;
+      copyArrival.nextDay();
+      countDays++;
     }
-    //ERROR WHEN ARRIVAL DATE IS AFTER DEPARTURE DATE
-    else
-    {
-      return -1;
-    }
+    //RETURN COUNT
+    return countDays;
   }
 
   //RETURNING TO STRING METHOD WITH ARRIVAL DATE AND DEPARTURE DATE
@@ -109,6 +80,19 @@ public class DateInterval
       DateInterval other = (DateInterval) obj;
       return arrivalDate.copy() == other.arrivalDate.copy()
           && departureDate.copy() == other.departureDate.copy();
+    }
+    return false;
+  }
+
+  public boolean IsAvailableDate(Object obj)
+  {
+    if (obj instanceof DateInterval)
+    {
+      DateInterval other = (DateInterval) obj;
+      //IF ARRIVAL DATE IS AFTER OTHER DEPARTURE DATE
+      //OR DEPARTURE IS BEFORE OTHER ARRIVAL DATE RETURN TRUE
+      return arrivalDate.isAfter(other.departureDate) || departureDate.isBefore(
+          other.arrivalDate);
     }
     return false;
   }

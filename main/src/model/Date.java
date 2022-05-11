@@ -1,6 +1,4 @@
 package model;
-//IMPORT LocalDate STORE VALUE OF LOCAL DATE
-import java.time.LocalDate;
 
 public class Date
 {
@@ -58,9 +56,9 @@ public class Date
   {
     if (dateCheck())
     {
-      return "day: " + day + ", month: " + month + ", year: " + year;
+      return day + "/" + month + "/" + year;
     }
-    return "Not a valid date!";
+    return "Error: Not a valid date!";
   }
 
   //COPY METHOD FOR MAINLY COMPOSITION
@@ -144,34 +142,90 @@ public class Date
   //CHECKING IF WRITTEN DATE IS CORRECT POSSIBLY EXISTING DATE
   public boolean dateCheck()
   {
-    //YEAR CANNOT HAVE MORE THAN 12 MONTHS
-    if (month < 13)
+    //IF YEAR IS MORE THAN 1901
+    if (year > 1901)
     {
-      if (month == 1 || month == 3 || month == 5 || month == 7 || month == 8
-          || month == 10 || month == 12)
+      //YEAR CANNOT HAVE MORE THAN 12 MONTHS
+      if (month < 13)
       {
-        //JANUARY, MARCH, MAY, JULY, AUGUST, OCTOBER, DECEMBER CANNOT HAVE MORE THAN 31 DAYS
-        return day < 32;
-      }
-      else if (month == 4 || month == 6 || month == 9 || month == 11)
-      {
-        //APRIL, JUNE, SEPTEMBER, NOVEMBER CANNOT HAVE MORE THAN 30 DAYS
-        return day < 31;
-      }
-      else if (month == 2)
-      {
-        if (isLeapYear())
+        if (month == 1 || month == 3 || month == 5 || month == 7 || month == 8
+            || month == 10 || month == 12)
         {
-          //FEBRUARY DURING LEAP YEAR CANNOT HAVE MORE THAN 29 DAYS
-          return day < 30;
+          //JANUARY, MARCH, MAY, JULY, AUGUST, OCTOBER, DECEMBER CANNOT HAVE MORE THAN 31 DAYS
+          return day < 32;
         }
-        else
+        else if (month == 4 || month == 6 || month == 9 || month == 11)
         {
-          //FEBRUARY CANNOT HAVE MORE THAN 28 DAYS
-          return day < 29;
+          //APRIL, JUNE, SEPTEMBER, NOVEMBER CANNOT HAVE MORE THAN 30 DAYS
+          return day < 31;
+        }
+        else if (month == 2)
+        {
+          if (isLeapYear())
+          {
+            //FEBRUARY DURING LEAP YEAR CANNOT HAVE MORE THAN 29 DAYS
+            return day < 30;
+          }
+          else
+          {
+            //FEBRUARY CANNOT HAVE MORE THAN 28 DAYS
+            return day < 29;
+          }
         }
       }
     }
     return false;
   }
+
+  //!!!new method!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  //IF DATE IS AFTER OTHER DATE METHOD WILL RETURN TRUE
+  //IF DAY IS BEFORE OR EQUAL METHOD WILL RETURN FALSE
+  public boolean isAfter(Object obj)
+  {
+    if (obj instanceof Date)
+    {
+      Date other = (Date) obj;
+      if (!equals(obj))
+      {
+        if (year >= other.year)
+        {
+          if (year == other.year)
+          {
+            if (month >= other.month)
+            {
+              if (month == other.month)
+              {
+                if (day > other.day)
+                {
+                  return true;
+                }
+              }
+              else
+              {
+                return true;
+              }
+            }
+          }
+          else
+          {
+            return true;
+          }
+        }
+      }
+    }
+    return false;
+  }
+
+  //!!!NEW METHOD!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  //IF DATE IS BEFORE OTHER DATE METHOD RETURN TRUE
+  //IF DATE IS AFTER OR EQUAL TO OTHER DATE METHOD RETURN FALSE
+  public boolean isBefore(Object obj)
+  {
+    if (obj instanceof Date)
+    {
+      return !isAfter(obj) && !equals(obj);
+    }
+    return false;
+  }
 }
+

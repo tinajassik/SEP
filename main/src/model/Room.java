@@ -1,8 +1,12 @@
 package model;
 
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * Room class.
  * Returns the room number, the room type, the room price, and the room status.
+ *
  * @author Dragos Cotaga
  * @version 1.1
  * @see Room
@@ -75,17 +79,12 @@ public class Room {
         this.price = price;
     }
 
-    // Method: GuestList() - returns the list of guests.
-    public GuestList getAllGuest() {
-        return null;
-    }
-
     @Override
     public String toString() {
         return "Room Number: " + roomNumber + "\nRoom Type: " + roomType + "\nExtra Bed: " + extraBed + "\nPrice: " + price;
     }
 
-    // Method: equals() - returns true if the room number is the same, false if it is not. Used to check if two rooms are the same.
+    // Method: toString() - returns the room number, the room type, the room price, and the room status.
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

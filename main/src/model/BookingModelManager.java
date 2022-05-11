@@ -5,6 +5,11 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import utilis.MyFileHandler;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
 public class BookingModelManager
 {
   private String fileName;
@@ -13,6 +18,7 @@ public class BookingModelManager
   {
     this.fileName = fileName;
   }
+
 
   // Use the MyFileHandler class to retrieve a BookingList object with all Bookings
   public BookingList getAllBookings()
@@ -37,6 +43,7 @@ public class BookingModelManager
     }
     return allBookings;
   }
+
 
   // Use the MyFileHandler class to retrieve a GuestList object with all Guests
   public GuestList getAllGuests()

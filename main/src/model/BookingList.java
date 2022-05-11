@@ -8,6 +8,7 @@ public class BookingList implements Serializable
   private ArrayList<Booking> bookings;
 
   //Constructor for initializing the ArrayList
+
   public BookingList()
   {
     bookings=new ArrayList<Booking>();

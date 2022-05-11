@@ -14,8 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="483.0" prefWidth="759.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="483.0" prefWidth="759.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.MainViewController">
    <children>
       <FlowPane prefHeight="83.0" prefWidth="759.0" style="-fx-background-color: #088F8F;">
          <children>
@@ -54,7 +53,7 @@
                               <Image url="@../img/mainview/checkin-removebg-preview.png" />
                            </image>
                         </ImageView>
-                        <Button mnemonicParsing="false" text="Check-In">
+                        <Button fx:id="buttonCheckIn" mnemonicParsing="false" onAction="#handleActions" text="Check-In">
                            <font>
                               <Font name="Britannic Bold" size="13.0" />
                            </font>
@@ -123,7 +122,7 @@
                               <Image url="@../img/mainview/createbooking-removebg-preview.png" />
                            </image>
                         </ImageView>
-                        <Button mnemonicParsing="false" text="New Bookig">
+                        <Button fx:id="buttonNewBooking" mnemonicParsing="false" onAction="#handleActions" text="New Booking">
                            <font>
                               <Font name="Britannic Bold" size="13.0" />
                            </font>

@@ -7,9 +7,6 @@ public class TestBookingSystemGUI
 {
   public static void main(String[] args)
   {
-
     Application.launch(BookingManagementGUI.class);
-
-
   }
 }

@@ -8,9 +8,9 @@ public class GuestList
   private ArrayList<Guest> guests;
 
   //1 argument constructor
-  public GuestList(ArrayList<Guest> guests)
+  public GuestList()
   {
-    this.guests=new ArrayList<Guest>();
+    guests=new ArrayList<Guest>();
   }
 
   //addGuest() method that adds a new guest to the ArrayList

@@ -1,16 +1,16 @@
 package model;
-
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class BookingList
+public class BookingList implements Serializable
 {
-  //creating fields/attributes for class Guest
+  // ArrayList for storing the Booking objects
   private ArrayList<Booking> bookings;
 
-  //1 argument constructor
-  public BookingList(ArrayList<Booking> bookings)
+  //Constructor for initializing the ArrayList
+  public BookingList()
   {
-    this.bookings=new ArrayList<Booking>();
+    bookings=new ArrayList<Booking>();
   }
 
   //getBooking() method that returns a booking from a specific index in the ArrayList
@@ -25,8 +25,13 @@ public class BookingList
     bookings.add(booking);
   }
 
+  //deleteBooking() method that removes a booking from the ArrayList
+  public void deleteBooking(Booking booking)
+  {
+    bookings.remove(booking);
+  }
   //getBookingByFullName() method that returns an ArrayList with bookings made by the same person
-  public ArrayList getBookingByFullName(String firstName, String lastName)
+  public ArrayList getBookingsByFullName(String firstName, String lastName)
   {
      ArrayList bookingsByFullName = new ArrayList<Booking>();
 
@@ -40,6 +45,12 @@ public class BookingList
     return bookingsByFullName;
   }
 
+  // Return how many Booking objects are in the list
+  public int size()
+  {
+    return bookings.size();
+  }
+
   //toString() method used to convert the ArrayList bookings into a string
   public String toString()
   {
@@ -47,7 +58,8 @@ public class BookingList
 
     for (int i = 0; i < bookings.size(); i++)
     {
-      s+=bookings.get(i) + "n/";
+      Booking temp = bookings.get(i);
+      s += temp +"\n";
     }
     return s;
   }

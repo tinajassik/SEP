@@ -32,6 +32,11 @@ public class RoomList {
         return rooms.get(index);
     }
 
+    //Method: returns the size of the ArrayList rooms
+    public int size()
+    {
+        return rooms.size();
+    }
     @Override
     public String toString() {
         return "RoomList{" +

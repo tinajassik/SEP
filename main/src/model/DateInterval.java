@@ -41,7 +41,7 @@ public class DateInterval
   //ARRIVAL DATE HAS TO BE BEFORE DEPARTURE DATE
   public boolean compareDatesContinuity()
   {
-    if (arrivalDate.isBefore(departureDate))
+    if (arrivalDate.copy().isBefore(departureDate.copy()))
     {
       return true;
     }
@@ -95,8 +95,8 @@ public class DateInterval
       DateInterval other = (DateInterval) obj;
       //IF ARRIVAL DATE IS AFTER OTHER DEPARTURE DATE
       //OR DEPARTURE IS BEFORE OTHER ARRIVAL DATE RETURN TRUE
-      return arrivalDate.isAfter(other.departureDate) || departureDate.isBefore(
-          other.arrivalDate);
+      return arrivalDate.copy().isAfter(other.departureDate.copy()) || departureDate.copy().isBefore(
+          other.arrivalDate.copy());
     }
     return false;
   }

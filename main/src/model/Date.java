@@ -58,7 +58,7 @@ public class Date
     {
       return day + "/" + month + "/" + year;
     }
-    return "Not a valid date!";
+    return "Error: Not a valid date!";
   }
 
   //COPY METHOD FOR MAINLY COMPOSITION

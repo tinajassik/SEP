@@ -68,8 +68,12 @@ public class DateInterval
   //RETURNING TO STRING METHOD WITH ARRIVAL DATE AND DEPARTURE DATE
   public String toString()
   {
-    return "Arrival date: " + arrivalDate.copy() + ", Departure date:"
-        + departureDate.copy();
+    if (compareDatesContinuity())
+    {
+      return "Arrival date: " + arrivalDate.copy() + ", Departure date:"
+          + departureDate.copy();
+    }
+    return "Error: Arrival date is not before departure date or they are equal!";
   }
 
   //CHECKING IF DateInterval CLASS IS SAME/EQUAL AS obj DateInterval CLASS

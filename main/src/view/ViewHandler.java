@@ -14,6 +14,7 @@ public class ViewHandler
   private Stage window;
   private MainViewController mainViewController;
   private CreateBookingController createBookingController;
+  private CheckInController checkInController;
 
   private BookingModelManager modelManager;
 
@@ -39,6 +40,9 @@ public class ViewHandler
         break;
       case "CreateBooking":
         root = loadViewCreateBooking();
+        break;
+      case "CheckIn":
+        root = loadViewCheckIn();
         break;
 
     }
@@ -105,6 +109,31 @@ public class ViewHandler
     }
 
     return createBookingController.getRoot();
+  }
+
+  private Region loadViewCheckIn()
+  {
+    if(checkInController == null)
+    {
+      try
+      {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("checkin.fxml"));
+        Region root = loader.load();
+        checkInController = loader.getController();
+        checkInController.init(this, modelManager, root);
+      }
+      catch (IOException e)
+      {
+        e.printStackTrace();
+      }
+    }
+    else
+    {
+      checkInController.reset();
+    }
+
+    return checkInController.getRoot();
   }
 
 

@@ -180,36 +180,32 @@ public class Date
   //!!!new method!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   //IF DATE IS AFTER OTHER DATE METHOD WILL RETURN TRUE
   //IF DAY IS BEFORE OR EQUAL METHOD WILL RETURN FALSE
-  public boolean isAfter(Object obj)
+  public boolean isAfter(Date other)
   {
-    if (obj instanceof Date)
+    if (!equals(other))
     {
-      Date other = (Date) obj;
-      if (!equals(obj))
+      if (year >= other.year)
       {
-        if (year >= other.year)
+        if (year == other.year)
         {
-          if (year == other.year)
+          if (month >= other.month)
           {
-            if (month >= other.month)
+            if (month == other.month)
             {
-              if (month == other.month)
-              {
-                if (day > other.day)
-                {
-                  return true;
-                }
-              }
-              else
+              if (day > other.day)
               {
                 return true;
               }
             }
+            else
+            {
+              return true;
+            }
           }
-          else
-          {
-            return true;
-          }
+        }
+        else
+        {
+          return true;
         }
       }
     }
@@ -219,13 +215,9 @@ public class Date
   //!!!NEW METHOD!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   //IF DATE IS BEFORE OTHER DATE METHOD RETURN TRUE
   //IF DATE IS AFTER OR EQUAL TO OTHER DATE METHOD RETURN FALSE
-  public boolean isBefore(Object obj)
+  public boolean isBefore(Date other)
   {
-    if (obj instanceof Date)
-    {
-      return !isAfter(obj) && !equals(obj);
-    }
-    return false;
+    return !isAfter(other) && !equals(other);
   }
 }
 

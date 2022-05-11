@@ -37,6 +37,29 @@ public class DateInterval
     return departureDate.copy();
   }
 
+  //RETURNING TO STRING METHOD WITH ARRIVAL DATE AND DEPARTURE DATE
+  public String toString()
+  {
+    if (compareDatesContinuity())
+    {
+      return "Arrival date: " + arrivalDate.copy() + ", Departure date:"
+          + departureDate.copy();
+    }
+    return "Error: Arrival date is not before departure date or they are equal!";
+  }
+
+  //CHECKING IF DateInterval CLASS IS SAME/EQUAL AS obj DateInterval CLASS
+  public boolean equals(Object obj)
+  {
+    if (obj instanceof DateInterval)
+    {
+      DateInterval other = (DateInterval) obj;
+      return arrivalDate.copy() == other.arrivalDate.copy()
+          && departureDate.copy() == other.departureDate.copy();
+    }
+    return false;
+  }
+
   //!!!New method!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   //ARRIVAL DATE HAS TO BE BEFORE DEPARTURE DATE
   public boolean compareDatesContinuity()
@@ -65,39 +88,11 @@ public class DateInterval
     return countDays;
   }
 
-  //RETURNING TO STRING METHOD WITH ARRIVAL DATE AND DEPARTURE DATE
-  public String toString()
+  public boolean isAvailableDate(DateInterval other)
   {
-    if (compareDatesContinuity())
-    {
-      return "Arrival date: " + arrivalDate.copy() + ", Departure date:"
-          + departureDate.copy();
-    }
-    return "Error: Arrival date is not before departure date or they are equal!";
-  }
-
-  //CHECKING IF DateInterval CLASS IS SAME/EQUAL AS obj DateInterval CLASS
-  public boolean equals(Object obj)
-  {
-    if (obj instanceof DateInterval)
-    {
-      DateInterval other = (DateInterval) obj;
-      return arrivalDate.copy() == other.arrivalDate.copy()
-          && departureDate.copy() == other.departureDate.copy();
-    }
-    return false;
-  }
-
-  public boolean IsAvailableDate(Object obj)
-  {
-    if (obj instanceof DateInterval)
-    {
-      DateInterval other = (DateInterval) obj;
       //IF ARRIVAL DATE IS AFTER OTHER DEPARTURE DATE
       //OR DEPARTURE IS BEFORE OTHER ARRIVAL DATE RETURN TRUE
-      return arrivalDate.copy().isAfter(other.departureDate.copy()) || departureDate.copy().isBefore(
-          other.arrivalDate.copy());
-    }
-    return false;
+      return arrivalDate.copy().isAfter(other.departureDate.copy())
+          || departureDate.copy().isBefore(other.arrivalDate.copy());
   }
 }

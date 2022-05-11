@@ -53,7 +53,7 @@
                               <Image url="@../img/mainview/checkin-removebg-preview.png" />
                            </image>
                         </ImageView>
-                        <Button fx:id="buttonCheckIn" mnemonicParsing="false" text="Check-In">
+                        <Button fx:id="buttonCheckIn" mnemonicParsing="false" onAction="#handleActions" text="Check-In">
                            <font>
                               <Font name="Britannic Bold" size="13.0" />
                            </font>

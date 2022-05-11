@@ -8,7 +8,7 @@ public class BookingList
   private ArrayList<Booking> bookings;
 
   //1 argument constructor
-  public BookingList(ArrayList<Booking> bookings)
+  public BookingList()
   {
     this.bookings=new ArrayList<Booking>();
   }

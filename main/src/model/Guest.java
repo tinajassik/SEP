@@ -1,6 +1,7 @@
 package model;
+import java.io.Serializable;
 
-public class Guest
+public class Guest implements Serializable
 {
   //creating fields/attributes for class Guest
   private String firstName;

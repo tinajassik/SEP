@@ -1,6 +1,7 @@
 package model;
+import java.io.Serializable;
 
-public class Date
+public class Date implements Serializable
 {
   //CREATING FIELDS/ATTRIBUTES FOR CLASS Date
   private int day;

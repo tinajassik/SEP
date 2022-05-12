@@ -1,7 +1,8 @@
 package model;
 import java.util.ArrayList;
+import java.io.Serializable;
 
-public class Booking
+public class Booking implements Serializable
 {
   //creating fields/attributes for class Booking
   private GuestList guests;

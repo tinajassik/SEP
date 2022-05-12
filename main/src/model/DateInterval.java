@@ -1,6 +1,7 @@
 package model;
+import java.io.Serializable;
 
-public class DateInterval
+public class DateInterval implements Serializable
 {
   //CREATING FIELDS FOR CLASS DateInterval
   private Date arrivalDate;

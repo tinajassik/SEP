@@ -15,11 +15,11 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="366.0" prefWidth="552.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.CheckInController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="355.0" prefWidth="552.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.CheckInController">
    <children>
-      <FlowPane prefHeight="85.0" prefWidth="573.0" style="-fx-background-color: #088F8F;">
+      <FlowPane prefHeight="67.0" prefWidth="552.0" style="-fx-background-color: #088F8F;">
          <children>
-            <ImageView fitHeight="79.0" fitWidth="121.0">
+            <ImageView fitHeight="70.0" fitWidth="109.0">
                <image>
                   <Image url="@../img/mainview/png-transparent-miami-beach-boutique-hotel-discounts-and-allowances-inn-hotel-text-rectangle-logo-removebg-preview.png" />
                </image>
@@ -144,7 +144,7 @@
             <Insets bottom="3.0" left="3.0" right="3.0" />
          </padding>
       </GridPane>
-      <FlowPane alignment="BOTTOM_RIGHT" prefHeight="37.0" prefWidth="573.0" style="-fx-background-color: #088F8F;">
+      <FlowPane alignment="BOTTOM_RIGHT" prefHeight="19.0" prefWidth="552.0" style="-fx-background-color: #088F8F;">
          <children>
             <Button fx:id="buttonBack" mnemonicParsing="false" onAction="#handleActions" text="Back">
                <FlowPane.margin>

@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="483.0" prefWidth="759.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.MainViewController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="482.0" prefWidth="759.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.MainViewController">
    <children>
       <FlowPane prefHeight="83.0" prefWidth="759.0" style="-fx-background-color: #088F8F;">
          <children>
@@ -140,15 +140,21 @@
                         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                      </FlowPane.margin>
                      <children>
-                        <ImageView fitHeight="120.0" fitWidth="97.0">
+                        <ImageView fitHeight="111.0" fitWidth="117.0">
                            <image>
-                              <Image url="@../img/mainview/cancelbooking.png" />
+                              <Image url="@../img/mainview/search-magnifying-glass-icon-search-icon-gray-transparent-png-917227-removebg-preview.png" />
                            </image>
                         </ImageView>
-                        <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="107.0" text="Cancel Booking">
+                        <Button fx:id="buttonSearchBooking" mnemonicParsing="false" onAction="#handleActions" prefHeight="25.0" prefWidth="117.0" text="Search Booking">
                            <font>
                               <Font name="Britannic Bold" size="13.0" />
                            </font>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <VBox.margin>
+                              <Insets top="3.0" />
+                           </VBox.margin>
                         </Button>
                      </children>
                   </VBox>
@@ -168,7 +174,7 @@
                               <Image url="@../img/mainview/rooms.png" />
                            </image>
                         </ImageView>
-                        <Button mnemonicParsing="false" text="Rooms">
+                        <Button fx:id="buttonRooms" mnemonicParsing="false" onAction="#handleActions" text="Rooms">
                            <font>
                               <Font name="Britannic Bold" size="13.0" />
                            </font>

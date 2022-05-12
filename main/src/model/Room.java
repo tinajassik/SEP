@@ -21,10 +21,9 @@ public class Room {
 
 
     // Constructor for the Room class. Initializes the room number, room type, extra bed, available, and price variables.
-    public Room(String roomNumber, String roomType, boolean extraBed, double price) {
+    public Room(String roomNumber, String roomType, double price) {
         this.roomNumber = roomNumber;
         this.roomType = roomType;
-        this.extraBed = extraBed;
         this.price = price;
         this.available = true;
     }

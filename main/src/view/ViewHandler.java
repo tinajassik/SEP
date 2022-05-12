@@ -15,6 +15,9 @@ public class ViewHandler
   private MainViewController mainViewController;
   private CreateBookingController createBookingController;
   private CheckInController checkInController;
+  private SearchBookingController searchBookingController;
+  private RoomsController roomsController;
+  private GuestsController guestsController;
 
   private BookingModelManager modelManager;
 
@@ -44,6 +47,14 @@ public class ViewHandler
       case "CheckIn":
         root = loadViewCheckIn();
         break;
+      case "SearchBooking":
+        root = loadViewSearchBooking();
+        break;
+      case "Rooms":
+        root = loadViewRooms();
+        break;
+      case "Guests":
+        root = loadViewGuests();
 
     }
     scene.setRoot(root);
@@ -134,6 +145,81 @@ public class ViewHandler
     }
 
     return checkInController.getRoot();
+  }
+
+  private Region loadViewSearchBooking()
+  {
+    if(searchBookingController == null)
+    {
+      try
+      {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("searchbooking.fxml"));
+        Region root = loader.load();
+        searchBookingController = loader.getController();
+        searchBookingController.init(this, modelManager, root);
+      }
+      catch (IOException e)
+      {
+        e.printStackTrace();
+      }
+    }
+    else
+    {
+      searchBookingController.reset();
+    }
+
+    return searchBookingController.getRoot();
+  }
+
+  private Region loadViewRooms()
+  {
+    if(roomsController == null)
+    {
+      try
+      {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("roomsview.fxml"));
+        Region root = loader.load();
+        roomsController = loader.getController();
+        roomsController.init(this, modelManager, root);
+      }
+      catch (IOException e)
+      {
+        e.printStackTrace();
+      }
+    }
+    else
+    {
+      roomsController.reset();
+    }
+
+    return roomsController.getRoot();
+  }
+
+  private Region loadViewGuests()
+  {
+    if(guestsController == null)
+    {
+      try
+      {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("guestsview.fxml"));
+        Region root = loader.load();
+        guestsController = loader.getController();
+        guestsController.init(this, modelManager, root);
+      }
+      catch (IOException e)
+      {
+        e.printStackTrace();
+      }
+    }
+    else
+    {
+      guestsController.reset();
+    }
+
+    return guestsController.getRoot();
   }
 
 

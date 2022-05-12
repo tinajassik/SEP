@@ -1,8 +1,8 @@
 package model;
-
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class GuestList
+public class GuestList implements Serializable
 {
   //creating fields/attributes for class GuestList
   private ArrayList<Guest> guests;

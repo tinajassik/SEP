@@ -1,5 +1,5 @@
 package model;
-
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
 
@@ -14,17 +14,17 @@ import java.util.List;
  */
 
 // Room class
-public class Room {
+public class Room implements Serializable
+    {
     private String roomNumber, roomType;
     private boolean extraBed, available;
     private double price;
 
 
     // Constructor for the Room class. Initializes the room number, room type, extra bed, available, and price variables.
-    public Room(String roomNumber, String roomType, boolean extraBed, double price) {
+    public Room(String roomNumber, String roomType, double price) {
         this.roomNumber = roomNumber;
         this.roomType = roomType;
-        this.extraBed = extraBed;
         this.price = price;
         this.available = true;
     }

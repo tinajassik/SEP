@@ -45,7 +45,6 @@ public class BookingList implements Serializable
 
     return bookingsByFullName;
   }
-
   // Return how many Booking objects are in the list
   public int size()
   {

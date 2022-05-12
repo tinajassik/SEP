@@ -1,6 +1,7 @@
 package model;
+import java.io.Serializable;
 
-public class Date
+public class Date implements Serializable
 {
   //CREATING FIELDS/ATTRIBUTES FOR CLASS Date
   private int day;
@@ -84,15 +85,11 @@ public class Date
     return false;
   }
 
-  //!!!New method!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
   //CHECKING IF GIVEN YEAR IS A LEAP YEAR
   public boolean isLeapYear()
   {
     return (year % 4 == 0 && year % 100 != 0) || year % 400 == 0;
   }
-
-  //!!!New method!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
   //METHOD ADDING ONE DAY TO A DAY
   public void nextDay()
@@ -138,7 +135,6 @@ public class Date
     }
   }
 
-  //!!!New method!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   //CHECKING IF WRITTEN DATE IS CORRECT POSSIBLY EXISTING DATE
   public boolean dateCheck()
   {
@@ -177,7 +173,6 @@ public class Date
     return false;
   }
 
-  //!!!new method!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   //IF DATE IS AFTER OTHER DATE METHOD WILL RETURN TRUE
   //IF DAY IS BEFORE OR EQUAL METHOD WILL RETURN FALSE
   public boolean isAfter(Date other)
@@ -212,7 +207,6 @@ public class Date
     return false;
   }
 
-  //!!!NEW METHOD!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   //IF DATE IS BEFORE OTHER DATE METHOD RETURN TRUE
   //IF DATE IS AFTER OR EQUAL TO OTHER DATE METHOD RETURN FALSE
   public boolean isBefore(Date other)

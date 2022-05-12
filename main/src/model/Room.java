@@ -1,5 +1,5 @@
 package model;
-
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
 
@@ -14,7 +14,8 @@ import java.util.List;
  */
 
 // Room class
-public class Room {
+public class Room implements Serializable
+    {
     private String roomNumber, roomType;
     private boolean extraBed, available;
     private double price;

@@ -1,6 +1,7 @@
 package model;
+import java.io.Serializable;
 
-public class DateInterval
+public class DateInterval implements Serializable
 {
   //CREATING FIELDS FOR CLASS DateInterval
   private Date arrivalDate;
@@ -60,7 +61,7 @@ public class DateInterval
     return false;
   }
 
-  //!!!New method!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
   //ARRIVAL DATE HAS TO BE BEFORE DEPARTURE DATE
   public boolean compareDatesContinuity()
   {
@@ -88,11 +89,12 @@ public class DateInterval
     return countDays;
   }
 
+  //CHECKING IF OTHER DateInterval DATE OVERLAPS WITH DateInterval DATE
   public boolean isAvailableDate(DateInterval other)
   {
-      //IF ARRIVAL DATE IS AFTER OTHER DEPARTURE DATE
-      //OR DEPARTURE IS BEFORE OTHER ARRIVAL DATE RETURN TRUE
-      return arrivalDate.copy().isAfter(other.departureDate.copy())
-          || departureDate.copy().isBefore(other.arrivalDate.copy());
+    //IF ARRIVAL DATE IS AFTER OTHER DEPARTURE DATE
+    //OR DEPARTURE IS BEFORE OTHER ARRIVAL DATE RETURN TRUE
+    return arrivalDate.copy().isAfter(other.departureDate.copy())
+        || departureDate.copy().isBefore(other.arrivalDate.copy());
   }
 }

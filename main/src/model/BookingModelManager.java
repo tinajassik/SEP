@@ -4,13 +4,12 @@ import java.time.LocalDate;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
-
+import java.io.Serializable;
 import utilis.MyFileHandler;
-
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-public class BookingModelManager
+public class BookingModelManager implements Serializable
 {
   private String fileName;
 
@@ -131,10 +130,20 @@ public class BookingModelManager
 
   public void createBooking(Guest guest, Room room, Date arrivalDate, Date departureDate)
   {
-    GuestList allGuests = new GuestList();
     DateInterval dates = new DateInterval(arrivalDate, departureDate);
-    Booking booking = new Booking(allGuests, room, dates);
-    allGuests.addGuest(guest);
+
+    RoomList availableRooms = getAvailableRoomsForASpecificPeriod(dates);
+
+    for (int i = 0; i < availableRooms.size(); i++)
+    {
+      if(availableRooms.getRoom(i).equals(room))
+      {
+        GuestList allGuests = new GuestList();
+
+        Booking booking = new Booking(allGuests, room, dates);
+        allGuests.addGuest(guest);
+      }
+    }
   }
 
   public ArrayList searchBooking(String firstName, String lastName)
@@ -159,6 +168,8 @@ public class BookingModelManager
       if (booking.getBookingGuest().getFirstName().equals(firstName)
           && booking.getBookingGuest().getLastName().equals(lastName))
         allBookings.deleteBooking(booking);
+
+      booking.getBookedRoom().setAvailability(false);
     }
   }
 
@@ -178,20 +189,64 @@ public class BookingModelManager
     }
   }
 
-  public RoomList getAvailableRooms()
+  public RoomList getAvailableRoomsForASpecificPeriod(DateInterval dateInterval)
   {
-    RoomList allRooms = getAllRooms();
+    BookingList allBookings = getAllBookings();
     RoomList availableRooms = new RoomList();
 
-    for (int i = 0; i < allRooms.size() ; i++)
+    for (int i = 0; i < allBookings.size() ; i++)
     {
-      Room room = allRooms.getRoom(i);
+      Room room = allBookings.getBooking(i).getBookedRoom();
 
-      if(room.isAvailable())availableRooms.addRoom(room);
+      if(allBookings.getBooking(i).getDateInterval().IsAvailableDate(dateInterval)) availableRooms.addRoom(room);
 
     }
     return availableRooms;
-
   }
+
+  public RoomList getSpecificTypeRoomsForAPeriod(String roomType, DateInterval dateInterval)
+  {
+    RoomList availableRooms = getAvailableRoomsForASpecificPeriod(dateInterval);
+    RoomList rooms = new RoomList();
+
+    for (int i = 0; i < availableRooms.size(); i++)
+    {
+      if(availableRooms.getRoom(i).getRoomType().equals(roomType))rooms.addRoom(availableRooms.getRoom(i));
+    }
+    return rooms;
+  }
+
+  public Double getPrice(Booking booking)
+  {
+    BookingList allBookings = getAllBookings();
+    double price=0;
+
+    for (int i = 0; i < allBookings.size(); i++)
+    {
+      if(allBookings.getBooking(i).equals(booking))
+      {
+        price = allBookings.getBooking(i).getDateInterval().getNumberOfNights()* allBookings.getBooking(i).getBookedRoom().getPrice();
+      }
+    }
+    return price;
+  }
+
+  public Double priceWithDiscount(Booking booking)
+  {
+    BookingList allBookings = getAllBookings();
+
+    double price = 0;
+
+    for (int i = 0; i < allBookings.size(); i++)
+    {
+      if(allBookings.getBooking(i).equals(booking))
+      {
+        price = getPrice(booking);
+        price = price - (0.1*price);
+      }
+    }
+    return price;
+  }
+
 
 }

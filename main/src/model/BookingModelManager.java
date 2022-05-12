@@ -1,10 +1,10 @@
 package model;
 import utilis.MyFileHandler;
+
+import java.io.*;
 import java.time.LocalDate;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.io.Serializable;
+
 import utilis.MyFileHandler;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -198,7 +198,7 @@ public class BookingModelManager implements Serializable
     {
       Room room = allBookings.getBooking(i).getBookedRoom();
 
-      if(allBookings.getBooking(i).getDateInterval().IsAvailableDate(dateInterval)) availableRooms.addRoom(room);
+      if(allBookings.getBooking(i).getDateInterval().isAvailableDate(dateInterval)) availableRooms.addRoom(room);
 
     }
     return availableRooms;
@@ -246,6 +246,25 @@ public class BookingModelManager implements Serializable
       }
     }
     return price;
+  }
+
+  public void updateXML(BookingList bookingList) throws FileNotFoundException
+  {
+    FileOutputStream fileOut = new FileOutputStream("bookingList.xml");
+    PrintWriter write = new PrintWriter(fileOut);
+    write.println("<?xml version=\"1.0\" encoding=\"UTF-8\"?> ");
+    write.println("<bookings>");
+    for(int i=0; i < bookingList.size(); i++)
+    {
+      write.println("<booking>");
+      write.println("<room>" + bookingList.getBooking(i).getBookedRoom().getRoomType() + "</room>");
+      write.println("<arrival>" + bookingList.getBooking(i).getDateInterval().getArrivalDate() + "</arrival>");
+      write.println("<departure>" + bookingList.getBooking(i).getDateInterval().getDepartureDate()+ "</departure>");
+      write.println("</booking>");
+    }
+    write.println("</bookings>");
+    write.close();
+    System.out.println("File is created");
   }
 
 

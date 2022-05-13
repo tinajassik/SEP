@@ -5,7 +5,7 @@ import java.io.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-import utilis.MyFileHandler;
+import java.time.LocalDateTime;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
@@ -264,25 +264,63 @@ public class BookingModelManager implements Serializable
     }
     return price;
   }
-
-  public void updateXML(BookingList bookingList) throws FileNotFoundException
+/* updateXML() method updates the XML file with information about all bookings that is used on the Hotel's webpage */
+  public void updateXML() throws FileNotFoundException
   {
-    FileOutputStream fileOut = new FileOutputStream("bookingList.xml");
+    FileOutputStream fileOut = new FileOutputStream("C:\\Users\\Ola\\WebstormProjects\\SEP1\\Web\\xml\\bookingList.xml");
     PrintWriter write = new PrintWriter(fileOut);
     write.println("<?xml version=\"1.0\" encoding=\"UTF-8\"?> ");
     write.println("<bookings>");
-    for(int i=0; i < bookingList.size(); i++)
+    for(int i=0; i < getAllBookings().size(); i++)
     {
       write.println("<booking>");
-      write.println("<room>" + bookingList.getBooking(i).getBookedRoom().getRoomType() + "</room>");
-      write.println("<arrival>" + bookingList.getBooking(i).getDateInterval().getArrivalDate() + "</arrival>");
-      write.println("<departure>" + bookingList.getBooking(i).getDateInterval().getDepartureDate()+ "</departure>");
+      write.println("<room>" + getAllBookings().getBooking(i).getBookedRoom().getRoomType() + "</room>");
+      write.println("<arrival>" + getAllBookings().getBooking(i).getDateInterval().getArrivalDate() + "</arrival>");
+      write.println("<departure>" + getAllBookings().getBooking(i).getDateInterval().getDepartureDate()+ "</departure>");
       write.println("</booking>");
     }
     write.println("</bookings>");
     write.close();
     System.out.println("File is created");
   }
+
+/* checkIn() adds new guests to the booking if necesarry and changes the booking status to checked in */
+  public void checkIn(Booking booking, Guest newGuest)
+  {
+    booking.getGuests().addGuest(newGuest);
+    booking.checkedIn();
+  }
+
+  /* deleteAfter6() method deletes booking if the guest have not checked in nor notified the hotel about a late check in */
+
+  public void deleteAfter6()
+  {
+    if(LocalDateTime.now().getHour() >= 18)
+    {
+      for (int i = 0; i < getAllBookings().size();i++)
+      {
+        if(!(getAllBookings().getBooking(i).isCheckIn()) && !(getAllBookings().getBooking(i).isLateCheckIn()))
+        {
+          getAllBookings().deleteBooking(getAllBookings().getBooking(i));
+        }
+      }
+    }
+  }
+/* lateCheckIn() method is called when a guest notifies the hotel that they will not check in until after 6 p.m. */
+  public void lateCheckIn(Booking booking)
+  {
+    booking.willCheckInLate();
+  }
+
+/* checkOut() method is called during check out to calculate the price and delete the booking from the system*/
+  public void checkOut(Booking booking)
+  {
+    getPrice(booking);
+    getAllBookings().deleteBooking(booking);
+  }
+
+
+
 
 
 }

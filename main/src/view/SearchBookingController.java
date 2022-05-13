@@ -24,10 +24,12 @@ public class SearchBookingController
     this.modelManager = modelManager;
     this.root = root;
     this.viewHandler = viewHandler;
-
+    reset();
   }
 
-  public void reset() {}
+  public void reset() {
+    updateBookings();
+  }
 
   public Region getRoot()
   {
@@ -45,7 +47,11 @@ public class SearchBookingController
 
   // maybe idk yet if it works
   public void updateBookings() {
+    listView.getItems().clear();
     BookingList bookings = modelManager.getAllBookings();
-    listView.getItems().addAll(bookings);
+    for ( int i = 0; i < bookings.size(); i++) {
+      listView.getItems().add(bookings.getBooking(i));
+    }
+
   }
 }

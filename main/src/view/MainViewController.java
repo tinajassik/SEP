@@ -16,6 +16,7 @@ public class MainViewController
   private BookingModelManager modelManager;
   private ViewHandler viewHandler;
 
+
   @FXML Button buttonCheckIn;
   @FXML Button buttonNewBooking;
   @FXML Button buttonSearchBooking;
@@ -30,6 +31,7 @@ public class MainViewController
     this.modelManager = modelManager;
     this.root = root;
     this.viewHandler = viewHandler;
+
   }
 
   public void reset() {}

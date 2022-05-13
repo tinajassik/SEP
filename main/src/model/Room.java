@@ -81,7 +81,7 @@ public class Room implements Serializable
 
     @Override
     public String toString() {
-        return "Room Number: " + roomNumber + "\nRoom Type: " + roomType + "\nExtra Bed: " + extraBed + "\nPrice: " + price;
+        return "Room Number: " + roomNumber + ", Room Type: " + roomType +  ", Price: " + price;
     }
 
     // Method: toString() - returns the room number, the room type, the room price, and the room status.

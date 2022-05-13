@@ -15,7 +15,7 @@ public class BookingManagementGUI extends Application
 
   public void start(Stage window) throws IOException
   {
-    BookingModelManager modelManager = new BookingModelManager("bookings.bin");
+    BookingModelManager modelManager = new BookingModelManager("data.bin");
     ViewHandler viewHandler = new ViewHandler(modelManager);
     viewHandler.start(window);
   }

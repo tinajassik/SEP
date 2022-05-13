@@ -46,8 +46,10 @@ public class RoomList implements Serializable
     }
     @Override
     public String toString() {
-        return "RoomList{" +
-                "rooms=" + rooms +
-                '}';
+        String str = "";
+        for (int i = 0; i < rooms.size(); i++) {
+            str += rooms.get(i) + "\n";
+        }
+        return str;
     }
 }

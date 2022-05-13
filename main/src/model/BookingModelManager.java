@@ -26,7 +26,14 @@ public class BookingModelManager implements Serializable
 
     try
     {
-      allBookings = (BookingList) MyFileHandler.readFromBinaryFile(fileName);
+      Object[] temp = MyFileHandler.readArrayFromBinaryFile(fileName);
+      for (int i = 0; i < temp.length; i++) {
+        if (temp[i] instanceof BookingList) {
+          for (int j = 0; j < ((BookingList) temp[i]).size(); j++)
+            allBookings.addBooking(((BookingList) temp[i]).getBooking(j));
+        }
+      }
+
     }
     catch (FileNotFoundException e)
     {
@@ -51,7 +58,11 @@ public class BookingModelManager implements Serializable
 
     try
     {
-      allGuests = (GuestList) MyFileHandler.readFromBinaryFile(fileName);
+      Object[] temp = MyFileHandler.readArrayFromBinaryFile(fileName);
+      for (int i = 0; i < temp.length; i++) {
+        if (temp[i] instanceof GuestList)
+          getAllGuests().addGuest((Guest) temp[i]);
+      }
     }
     catch (FileNotFoundException e)
     {
@@ -75,7 +86,13 @@ public class BookingModelManager implements Serializable
 
     try
     {
-      allRooms = (RoomList) MyFileHandler.readFromBinaryFile(fileName);
+      Object[] temp = MyFileHandler.readArrayFromBinaryFile(fileName);
+      for (int i = 0; i < temp.length; i++) {
+        if (temp[i] instanceof RoomList) {
+          for (int j = 0; j < ((RoomList) temp[i]).size(); j++)
+            allRooms.addRoom(((RoomList) temp[i]).getRoom(j));
+        }
+      }
     }
     catch (FileNotFoundException e)
     {

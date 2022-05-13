@@ -1,0 +1,45 @@
+1, Single Room, 129
+2, Single Room, 129
+3, Single Room, 129
+4, Single Room, 129
+5, Single Room, 129
+6, Single Room, 129
+7, Single Room, 129
+8, Single Room, 129
+9, Single Room, 129
+10, Single Room, 129
+11, Double Room - King Size Bed, 169
+12, Double Room - King Size Bed, 169
+13, Double Room - King Size Bed, 169
+14, Double Room - King Size Bed, 169
+15, Double Room - King Size Bed, 169
+16, Double Room - King Size Bed, 169
+17, Double Room - King Size Bed, 169
+18, Double Room - King Size Bed, 169
+19, Double Room - King Size Bed, 169
+20, Double Room - King Size Bed, 169
+21, Double Room - King Size Bed, 169
+22, Double Room - King Size Bed, 169
+23, Double Room - King Size Bed, 169
+24, Double Room - King Size Bed, 169
+25, Double Room - King Size Bed, 169
+26, Double Room - King Size Bed, 169
+27, Double Room - King Size Bed, 169
+28, Double Room - King Size Bed, 169
+29, Double Room - King Size Bed, 169
+30, Double Room - King Size Bed, 169
+31, Double Room - King Size Bed, 169
+32, Double Room - King Size Bed, 169
+33, Double Room - Twin Size Bed, 169
+34, Double Room - Twin Size Bed, 169
+35, Double Room - Twin Size Bed, 169
+36, Double Room - Twin Size Bed, 169
+37, Double Room - Twin Size Bed, 169
+38, Single Suite, 259
+39, Single Suite, 259
+40, Single Suite, 259
+41, Double Suite, 339
+42, Triple Suite, 399
+
+
+

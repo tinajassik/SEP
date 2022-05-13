@@ -18,7 +18,6 @@ public class BookingModelManager implements Serializable
     this.fileName = fileName;
   }
 
-
   // Use the MyFileHandler class to retrieve a BookingList object with all Bookings
   public BookingList getAllBookings()
   {
@@ -109,10 +108,11 @@ public class BookingModelManager implements Serializable
     return allRooms;
   }
 
-  public ArrayList getExpectedArrivals()
+  // Method that returns a booking list with the expected arrivals
+  public BookingList getExpectedArrivals()
   {
     BookingList allBookings = getAllBookings();
-    ArrayList expectedArrivals = new ArrayList<>();
+    BookingList expectedArrivals = new BookingList();
     LocalDate currentDate = LocalDate.now();
 
     for (int i = 0; i < allBookings.size() ; i++)
@@ -121,16 +121,17 @@ public class BookingModelManager implements Serializable
 
       if(booking.getDateInterval().getArrivalDate().equals(currentDate))
       {
-        expectedArrivals.add(booking);
+        expectedArrivals.addBooking(booking);
       }
     }
     return expectedArrivals;
   }
 
-  public ArrayList getExpectedDepartures()
+  // Method that returns a booking list with the expected departures
+  public BookingList getExpectedDepartures()
   {
     BookingList allBookings = getAllBookings();
-    ArrayList expectedDepartures = new ArrayList<>();
+    BookingList expectedDepartures = new BookingList();
     LocalDate currentDate = LocalDate.now();
 
     for (int i = 0; i < allBookings.size() ; i++)
@@ -139,17 +140,18 @@ public class BookingModelManager implements Serializable
 
     if(booking.getDateInterval().getDepartureDate().equals(currentDate))
     {
-      expectedDepartures.add(booking);
+      expectedDepartures.addBooking(booking);
     }
   }
     return expectedDepartures;
   }
 
-  public void createBooking(Guest guest, Room room, Date arrivalDate, Date departureDate)
+  //Method that creates a new booking
+  public Booking createBooking(Guest guest, Room room, DateInterval dates)
   {
-    DateInterval dates = new DateInterval(arrivalDate, departureDate);
-
+    BookingList allBookings = getAllBookings();
     RoomList availableRooms = getAvailableRoomsForASpecificPeriod(dates);
+    Booking booking = null;
 
     for (int i = 0; i < availableRooms.size(); i++)
     {
@@ -157,12 +159,15 @@ public class BookingModelManager implements Serializable
       {
         GuestList allGuests = new GuestList();
 
-        Booking booking = new Booking(allGuests, room, dates);
+         booking = new Booking(allGuests, room, dates);
         allGuests.addGuest(guest);
+        allBookings.addBooking(booking);
       }
     }
+    return booking;
   }
 
+  //Method that search a booking in the system
   public ArrayList searchBooking(String firstName, String lastName)
   {
     BookingList allBookings = getAllBookings();
@@ -174,6 +179,7 @@ public class BookingModelManager implements Serializable
      else return null;
   }
 
+  //Method that removes a booking from the system
   public void removeBooking(String firstName, String lastName)
   {
     BookingList allBookings = getAllBookings();
@@ -187,9 +193,12 @@ public class BookingModelManager implements Serializable
         allBookings.deleteBooking(booking);
 
       booking.getBookedRoom().setAvailability(false);
+      allBookings.deleteBooking(booking);
     }
+
   }
 
+  // Use the MyFileHandler class to save all Bookings in the BookingList object
   public void saveBooking(BookingList bookings)
   {
     try
@@ -206,6 +215,7 @@ public class BookingModelManager implements Serializable
     }
   }
 
+  //Method that returns a room list will all available rooms from a specific period
   public RoomList getAvailableRoomsForASpecificPeriod(DateInterval dateInterval)
   {
     BookingList allBookings = getAllBookings();
@@ -221,6 +231,7 @@ public class BookingModelManager implements Serializable
     return availableRooms;
   }
 
+  //Method that returns a room list will all available rooms of just one type from a specific period
   public RoomList getSpecificTypeRoomsForAPeriod(String roomType, DateInterval dateInterval)
   {
     RoomList availableRooms = getAvailableRoomsForASpecificPeriod(dateInterval);
@@ -233,6 +244,7 @@ public class BookingModelManager implements Serializable
     return rooms;
   }
 
+  //Method that calculates and returns the price of the booking
   public Double getPrice(Booking booking)
   {
     BookingList allBookings = getAllBookings();
@@ -248,6 +260,7 @@ public class BookingModelManager implements Serializable
     return price;
   }
 
+  //Method that returns the price with the discount if the guest is not happy about the facilities of the hotel
   public Double priceWithDiscount(Booking booking)
   {
     BookingList allBookings = getAllBookings();
@@ -318,6 +331,7 @@ public class BookingModelManager implements Serializable
     getPrice(booking);
     getAllBookings().deleteBooking(booking);
   }
+
 
 
 

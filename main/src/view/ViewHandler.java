@@ -15,7 +15,7 @@ public class ViewHandler
   private MainViewController mainViewController;
   private CreateBookingController createBookingController;
   private CheckInController checkInController;
-  private SearchBookingController searchBookingController;
+  private ManageBookingController manageBookingController;
   private RoomsController roomsController;
   private GuestsController guestsController;
 
@@ -149,15 +149,15 @@ public class ViewHandler
 
   private Region loadViewSearchBooking()
   {
-    if(searchBookingController == null)
+    if(manageBookingController == null)
     {
       try
       {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("searchbooking.fxml"));
         Region root = loader.load();
-        searchBookingController = loader.getController();
-        searchBookingController.init(this, modelManager, root);
+        manageBookingController = loader.getController();
+        manageBookingController.init(this, modelManager, root);
       }
       catch (IOException e)
       {
@@ -166,10 +166,10 @@ public class ViewHandler
     }
     else
     {
-      searchBookingController.reset();
+      manageBookingController.reset();
     }
 
-    return searchBookingController.getRoot();
+    return manageBookingController.getRoot();
   }
 
   private Region loadViewRooms()

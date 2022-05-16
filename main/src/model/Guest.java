@@ -46,6 +46,8 @@ public class Guest implements Serializable
     this.phoneNumber=phoneNumber;
   }
 
+
+
   //setter for nationality
   public void setNationality(String nationality)
   {

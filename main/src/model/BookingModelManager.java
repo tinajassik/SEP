@@ -18,6 +18,7 @@ public class BookingModelManager implements Serializable
     this.fileName = fileName;
   }
 
+
   // Use the MyFileHandler class to retrieve a BookingList object with all Bookings
   public BookingList getAllBookings()
   {
@@ -59,8 +60,10 @@ public class BookingModelManager implements Serializable
     {
       Object[] temp = MyFileHandler.readArrayFromBinaryFile(fileName);
       for (int i = 0; i < temp.length; i++) {
-        if (temp[i] instanceof GuestList)
-          getAllGuests().addGuest((Guest) temp[i]);
+        if (temp[i] instanceof GuestList) {
+          for (int j = 0; j < ((GuestList) temp[i]).size(); j++)
+            allGuests.addGuest(((GuestList) temp[i]).getGuest(j));
+        }
       }
     }
     catch (FileNotFoundException e)
@@ -198,12 +201,14 @@ public class BookingModelManager implements Serializable
 
   }
 
-  // Use the MyFileHandler class to save all Bookings in the BookingList object
-  public void saveBooking(BookingList bookings)
+
+  // method saveBooking rewrites all previously added data to the file with the addition of a new booking
+  public void saveBooking(ArrayList<Object> allData)
+  
   {
     try
     {
-      MyFileHandler.writeToBinaryFile(fileName, bookings);
+      MyFileHandler.writeArrayToBinaryFile(fileName, allData.toArray(new Object[allData.size()]));
     }
     catch (FileNotFoundException e)
     {

@@ -35,78 +35,9 @@
       </FlowPane>
       <HBox prefHeight="366.0" prefWidth="680.0">
          <children>
-            <FlowPane alignment="CENTER" prefHeight="372.0" prefWidth="557.0" style="-fx-background-color: #7393B3;">
+            <FlowPane alignment="CENTER" prefHeight="383.0" prefWidth="513.0" style="-fx-background-color: #7393B3;">
                <children>
-                  <VBox alignment="CENTER" prefHeight="130.0" prefWidth="127.0" style="-fx-background-color: #ffffff;">
-                     <opaqueInsets>
-                        <Insets />
-                     </opaqueInsets>
-                     <padding>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                     </padding>
-                     <FlowPane.margin>
-                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                     </FlowPane.margin>
-                     <children>
-                        <ImageView fitHeight="103.0" fitWidth="112.0">
-                           <image>
-                              <Image url="@../img/mainview/checkin-removebg-preview.png" />
-                           </image>
-                        </ImageView>
-                        <Button fx:id="buttonCheckIn" mnemonicParsing="false" onAction="#handleActions" text="Check-In">
-                           <font>
-                              <Font name="Britannic Bold" size="13.0" />
-                           </font>
-                        </Button>
-                     </children>
-                  </VBox>
-                  <VBox alignment="CENTER" prefHeight="128.0" prefWidth="128.0" style="-fx-background-color: #ffffff;">
-                     <opaqueInsets>
-                        <Insets />
-                     </opaqueInsets>
-                     <padding>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                     </padding>
-                     <FlowPane.margin>
-                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                     </FlowPane.margin>
-                     <children>
-                        <ImageView fitHeight="101.0" fitWidth="98.0">
-                           <image>
-                              <Image url="@../img/mainview/checkout.png" />
-                           </image>
-                        </ImageView>
-                        <Button mnemonicParsing="false" text="Check-Out">
-                           <font>
-                              <Font name="Britannic Bold" size="13.0" />
-                           </font>
-                        </Button>
-                     </children>
-                  </VBox>
-                  <VBox alignment="CENTER" prefHeight="139.0" prefWidth="99.0" style="-fx-background-color: #ffffff;">
-                     <opaqueInsets>
-                        <Insets />
-                     </opaqueInsets>
-                     <padding>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                     </padding>
-                     <FlowPane.margin>
-                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                     </FlowPane.margin>
-                     <children>
-                        <ImageView fitHeight="102.0" fitWidth="111.0">
-                           <image>
-                              <Image url="@../img/mainview/guests-removebg-preview.png" />
-                           </image>
-                        </ImageView>
-                        <Button mnemonicParsing="false" text="Guests">
-                           <font>
-                              <Font name="Britannic Bold" size="13.0" />
-                           </font>
-                        </Button>
-                     </children>
-                  </VBox>
-                  <VBox alignment="CENTER" prefHeight="61.0" prefWidth="99.0" style="-fx-background-color: #ffffff;">
+                  <VBox alignment="CENTER" prefHeight="151.0" prefWidth="147.0" style="-fx-background-color: #ffffff;">
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>
@@ -129,7 +60,7 @@
                         </Button>
                      </children>
                   </VBox>
-                  <VBox alignment="CENTER" prefHeight="139.0" prefWidth="127.0" style="-fx-background-color: #ffffff;">
+                  <VBox alignment="CENTER" prefHeight="151.0" prefWidth="139.0" style="-fx-background-color: #ffffff;">
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>
@@ -145,7 +76,7 @@
                               <Image url="@../img/mainview/search-magnifying-glass-icon-search-icon-gray-transparent-png-917227-removebg-preview.png" />
                            </image>
                         </ImageView>
-                        <Button fx:id="buttonSearchBooking" mnemonicParsing="false" onAction="#handleActions" prefHeight="25.0" prefWidth="117.0" text="Search Booking">
+                        <Button fx:id="buttonManageBooking" mnemonicParsing="false" onAction="#handleActions" prefHeight="25.0" prefWidth="133.0" text="Manage Bookings">
                            <font>
                               <Font name="Britannic Bold" size="13.0" />
                            </font>
@@ -158,7 +89,30 @@
                         </Button>
                      </children>
                   </VBox>
-                  <VBox alignment="CENTER" prefHeight="90.0" prefWidth="100.0" style="-fx-background-color: #ffffff;">
+                  <VBox alignment="CENTER" prefHeight="151.0" prefWidth="147.0" style="-fx-background-color: #ffffff;">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                     <FlowPane.margin>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </FlowPane.margin>
+                     <children>
+                        <ImageView fitHeight="102.0" fitWidth="111.0">
+                           <image>
+                              <Image url="@../img/mainview/guests-removebg-preview.png" />
+                           </image>
+                        </ImageView>
+                        <Button mnemonicParsing="false" text="Guests">
+                           <font>
+                              <Font name="Britannic Bold" size="13.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="151.0" prefWidth="149.0" style="-fx-background-color: #ffffff;">
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>
@@ -186,13 +140,13 @@
                   <Insets />
                </HBox.margin>
             </FlowPane>
-            <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
+            <TabPane prefHeight="380.0" prefWidth="245.0" tabClosingPolicy="UNAVAILABLE">
               <tabs>
                 <Tab text="Arrivals">
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <TextArea prefHeight="342.0" prefWidth="200.0" />
+                              <TextArea prefHeight="353.0" prefWidth="245.0" />
                            </children>
                         </AnchorPane>
                   </content>
@@ -201,7 +155,7 @@
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <TextArea prefHeight="343.0" prefWidth="200.0" />
+                              <TextArea prefHeight="355.0" prefWidth="245.0" />
                            </children>
                         </AnchorPane>
                   </content>
@@ -210,7 +164,7 @@
             </TabPane>
          </children>
       </HBox>
-      <FlowPane alignment="BOTTOM_RIGHT" prefHeight="29.0" prefWidth="759.0" style="-fx-background-color: #088F8F;">
+      <FlowPane alignment="BOTTOM_RIGHT" prefHeight="30.0" prefWidth="759.0" style="-fx-background-color: #088F8F;">
          <children>
             <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="\@SpicyBytes">
                <font>

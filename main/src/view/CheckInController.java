@@ -34,7 +34,7 @@ public class CheckInController
   {
     if (e.getSource() == buttonBack )
     {
-      viewHandler.openView("MainView");
+      viewHandler.openView("SearchBooking");
     }
 
   }

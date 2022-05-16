@@ -25,6 +25,12 @@ public class GuestList implements Serializable
     return guests.get(0);
   }
 
+  public Guest getGuest(int i) {
+    return guests.get(i);
+  }
+  public int size() {
+    return guests.size();
+  }
   //getGuestByName() method that returns the guest with the matching name
   public Guest getGuestByName(String firstName, String lastName)
   {

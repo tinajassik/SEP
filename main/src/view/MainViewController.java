@@ -17,9 +17,9 @@ public class MainViewController
   private ViewHandler viewHandler;
 
 
-  @FXML Button buttonCheckIn;
+
   @FXML Button buttonNewBooking;
-  @FXML Button buttonSearchBooking;
+  @FXML Button buttonManageBooking;
   @FXML Button buttonRooms;
 
 
@@ -43,15 +43,12 @@ public class MainViewController
 
   public void handleActions(ActionEvent e)
   {
-    if (e.getSource() == buttonCheckIn)
-    {
-      viewHandler.openView("CheckIn");
-    }
-    else if (e.getSource() == buttonNewBooking)
+
+    if (e.getSource() == buttonNewBooking)
     {
       viewHandler.openView("CreateBooking");
     }
-    else if(e.getSource() == buttonSearchBooking) {
+    else if(e.getSource() == buttonManageBooking) {
       viewHandler.openView("SearchBooking");
     }
     else if (e.getSource() == buttonRooms) {

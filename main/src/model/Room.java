@@ -29,6 +29,10 @@ public class Room implements Serializable
         this.available = true;
     }
 
+    public Room(String roomNumber) {
+        this.roomNumber = roomNumber;
+    }
+
     // Method: getRoomNumber() - returns the room number of the room object being called on in the method call (Room room = new Room(1); room.getRoomNumber();)
     public String getRoomNumber() {
         return roomNumber;

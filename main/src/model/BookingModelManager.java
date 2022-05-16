@@ -5,7 +5,7 @@ import java.io.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-import utilis.MyFileHandler;
+import java.time.LocalDateTime;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
@@ -19,9 +19,6 @@ public class BookingModelManager implements Serializable
   }
 
 
-//  public ArrayList<Object> getAllData() {
-//
-//  }
   // Use the MyFileHandler class to retrieve a BookingList object with all Bookings
   public BookingList getAllBookings()
   {
@@ -114,10 +111,11 @@ public class BookingModelManager implements Serializable
     return allRooms;
   }
 
-  public ArrayList getExpectedArrivals()
+  // Method that returns a booking list with the expected arrivals
+  public BookingList getExpectedArrivals()
   {
     BookingList allBookings = getAllBookings();
-    ArrayList expectedArrivals = new ArrayList<>();
+    BookingList expectedArrivals = new BookingList();
     LocalDate currentDate = LocalDate.now();
 
     for (int i = 0; i < allBookings.size() ; i++)
@@ -126,16 +124,17 @@ public class BookingModelManager implements Serializable
 
       if(booking.getDateInterval().getArrivalDate().equals(currentDate))
       {
-        expectedArrivals.add(booking);
+        expectedArrivals.addBooking(booking);
       }
     }
     return expectedArrivals;
   }
 
-  public ArrayList getExpectedDepartures()
+  // Method that returns a booking list with the expected departures
+  public BookingList getExpectedDepartures()
   {
     BookingList allBookings = getAllBookings();
-    ArrayList expectedDepartures = new ArrayList<>();
+    BookingList expectedDepartures = new BookingList();
     LocalDate currentDate = LocalDate.now();
 
     for (int i = 0; i < allBookings.size() ; i++)
@@ -144,17 +143,18 @@ public class BookingModelManager implements Serializable
 
     if(booking.getDateInterval().getDepartureDate().equals(currentDate))
     {
-      expectedDepartures.add(booking);
+      expectedDepartures.addBooking(booking);
     }
   }
     return expectedDepartures;
   }
 
-  public void createBooking(Guest guest, Room room, Date arrivalDate, Date departureDate)
+  //Method that creates a new booking
+  public Booking createBooking(Guest guest, Room room, DateInterval dates)
   {
-    DateInterval dates = new DateInterval(arrivalDate, departureDate);
-
+    BookingList allBookings = getAllBookings();
     RoomList availableRooms = getAvailableRoomsForASpecificPeriod(dates);
+    Booking booking = null;
 
     for (int i = 0; i < availableRooms.size(); i++)
     {
@@ -162,12 +162,15 @@ public class BookingModelManager implements Serializable
       {
         GuestList allGuests = new GuestList();
 
-        Booking booking = new Booking(allGuests, room, dates);
+         booking = new Booking(allGuests, room, dates);
         allGuests.addGuest(guest);
+        allBookings.addBooking(booking);
       }
     }
+    return booking;
   }
 
+  //Method that search a booking in the system
   public ArrayList searchBooking(String firstName, String lastName)
   {
     BookingList allBookings = getAllBookings();
@@ -179,6 +182,7 @@ public class BookingModelManager implements Serializable
      else return null;
   }
 
+  //Method that removes a booking from the system
   public void removeBooking(String firstName, String lastName)
   {
     BookingList allBookings = getAllBookings();
@@ -192,11 +196,15 @@ public class BookingModelManager implements Serializable
         allBookings.deleteBooking(booking);
 
       booking.getBookedRoom().setAvailability(false);
+      allBookings.deleteBooking(booking);
     }
+
   }
+
 
   // method saveBooking rewrites all previously added data to the file with the addition of a new booking
   public void saveBooking(ArrayList<Object> allData)
+  
   {
     try
     {
@@ -212,6 +220,7 @@ public class BookingModelManager implements Serializable
     }
   }
 
+  //Method that returns a room list will all available rooms from a specific period
   public RoomList getAvailableRoomsForASpecificPeriod(DateInterval dateInterval)
   {
     BookingList allBookings = getAllBookings();
@@ -227,6 +236,7 @@ public class BookingModelManager implements Serializable
     return availableRooms;
   }
 
+  //Method that returns a room list will all available rooms of just one type from a specific period
   public RoomList getSpecificTypeRoomsForAPeriod(String roomType, DateInterval dateInterval)
   {
     RoomList availableRooms = getAvailableRoomsForASpecificPeriod(dateInterval);
@@ -239,6 +249,7 @@ public class BookingModelManager implements Serializable
     return rooms;
   }
 
+  //Method that calculates and returns the price of the booking
   public Double getPrice(Booking booking)
   {
     BookingList allBookings = getAllBookings();
@@ -254,6 +265,7 @@ public class BookingModelManager implements Serializable
     return price;
   }
 
+  //Method that returns the price with the discount if the guest is not happy about the facilities of the hotel
   public Double priceWithDiscount(Booking booking)
   {
     BookingList allBookings = getAllBookings();
@@ -270,25 +282,64 @@ public class BookingModelManager implements Serializable
     }
     return price;
   }
-
-  public void updateXML(BookingList bookingList) throws FileNotFoundException
+/* updateXML() method updates the XML file with information about all bookings that is used on the Hotel's webpage */
+  public void updateXML() throws FileNotFoundException
   {
-    FileOutputStream fileOut = new FileOutputStream("bookingList.xml");
+    FileOutputStream fileOut = new FileOutputStream("C:\\Users\\Ola\\WebstormProjects\\SEP1\\Web\\xml\\bookingList.xml");
     PrintWriter write = new PrintWriter(fileOut);
     write.println("<?xml version=\"1.0\" encoding=\"UTF-8\"?> ");
     write.println("<bookings>");
-    for(int i=0; i < bookingList.size(); i++)
+    for(int i=0; i < getAllBookings().size(); i++)
     {
       write.println("<booking>");
-      write.println("<room>" + bookingList.getBooking(i).getBookedRoom().getRoomType() + "</room>");
-      write.println("<arrival>" + bookingList.getBooking(i).getDateInterval().getArrivalDate() + "</arrival>");
-      write.println("<departure>" + bookingList.getBooking(i).getDateInterval().getDepartureDate()+ "</departure>");
+      write.println("<room>" + getAllBookings().getBooking(i).getBookedRoom().getRoomType() + "</room>");
+      write.println("<arrival>" + getAllBookings().getBooking(i).getDateInterval().getArrivalDate() + "</arrival>");
+      write.println("<departure>" + getAllBookings().getBooking(i).getDateInterval().getDepartureDate()+ "</departure>");
       write.println("</booking>");
     }
     write.println("</bookings>");
     write.close();
     System.out.println("File is created");
   }
+
+/* checkIn() adds new guests to the booking if necesarry and changes the booking status to checked in */
+  public void checkIn(Booking booking, Guest newGuest)
+  {
+    booking.getGuests().addGuest(newGuest);
+    booking.checkedIn();
+  }
+
+  /* deleteAfter6() method deletes booking if the guest have not checked in nor notified the hotel about a late check in */
+
+  public void deleteAfter6()
+  {
+    if(LocalDateTime.now().getHour() >= 18)
+    {
+      for (int i = 0; i < getAllBookings().size();i++)
+      {
+        if(!(getAllBookings().getBooking(i).isCheckIn()) && !(getAllBookings().getBooking(i).isLateCheckIn()))
+        {
+          getAllBookings().deleteBooking(getAllBookings().getBooking(i));
+        }
+      }
+    }
+  }
+/* lateCheckIn() method is called when a guest notifies the hotel that they will not check in until after 6 p.m. */
+  public void lateCheckIn(Booking booking)
+  {
+    booking.willCheckInLate();
+  }
+
+/* checkOut() method is called during check out to calculate the price and delete the booking from the system*/
+  public void checkOut(Booking booking)
+  {
+    getPrice(booking);
+    getAllBookings().deleteBooking(booking);
+  }
+
+
+
+
 
 
 }

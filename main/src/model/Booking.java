@@ -8,6 +8,8 @@ public class Booking implements Serializable
   private GuestList guests;
   private Room room;
   private DateInterval dates;
+  private boolean checkIn = false;
+  private boolean lateCheckIn = false;
 
   //3 arguments constructor
   public Booking(GuestList guests, Room room, DateInterval dates)
@@ -23,6 +25,9 @@ public class Booking implements Serializable
     return guests.getFirstGuest();
   }
 
+  //getGuestList() method that returns the list of guests for a specific room
+  public GuestList getGuests(){ return guests;}
+
   //getDateInterval() method that returns the date interval of the booking
   public DateInterval getDateInterval()
   {
@@ -34,6 +39,19 @@ public class Booking implements Serializable
   {
     return room;
   }
+
+  //isCheckIn() method returns if the guestes have checked in
+  public boolean isCheckIn(){return this.checkIn;}
+
+  //isLateCheckIn method returns if the guests will check in after 6 p.m.
+  public boolean isLateCheckIn(){return this.lateCheckIn;}
+
+  //checkedIn method is run when the guest checks in
+  public void checkedIn(){this.checkIn = true;}
+
+  //willCheckInLate() method is run when the guest lets the hotel know that they will arrive after  6 p.m.
+  public void willCheckInLate(){this.lateCheckIn = true;}
+
 
   //toString() method used to convert string objects into a string
   public String toString()

@@ -29,6 +29,41 @@ public class Room implements Serializable
         this.available = true;
     }
 
+    public Room(String roomNumber)
+    {
+        this.roomNumber = roomNumber;
+
+        switch (roomNumber)
+        {
+            case "1", "2", "3", "4", "5", "6", "7", "8", "9", "10":
+                roomType = "Single Room";
+                price = 129;
+                break;
+            case "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32":
+                roomType = "Double Room - King Size Bed";
+                price = 169;
+                break;
+            case "33", "34", "35", "36", "37":
+                roomType = "Double Room - Twin Size Bed";
+                price = 169;
+                break;
+            case "38", "39", "40":
+                roomType = "Single Suite";
+                price = 259;
+                break;
+            case "41":
+                roomType = "Double Suite";
+                price = 339;
+                break;
+            case "42":
+                roomType = "Triple Suite";
+                price = 399;
+                break;
+            default:
+               break;
+        }
+    }
+
     // Method: getRoomNumber() - returns the room number of the room object being called on in the method call (Room room = new Room(1); room.getRoomNumber();)
     public String getRoomNumber() {
         return roomNumber;

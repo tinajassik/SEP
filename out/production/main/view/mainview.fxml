@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="482.0" prefWidth="759.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.MainViewController">
+   <children>
+      <FlowPane prefHeight="83.0" prefWidth="759.0" style="-fx-background-color: #088F8F;">
+         <children>
+            <ImageView fitHeight="79.0" fitWidth="121.0">
+               <image>
+                  <Image url="@../img/mainview/png-transparent-miami-beach-boutique-hotel-discounts-and-allowances-inn-hotel-text-rectangle-logo-removebg-preview.png" />
+               </image>
+            </ImageView>
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="The Overlook Hotel" textAlignment="CENTER" wrappingWidth="126.33203125">
+               <font>
+                  <Font name="Britannic Bold" size="18.0" />
+               </font>
+               <FlowPane.margin>
+                  <Insets top="5.0" />
+               </FlowPane.margin>
+            </Text>
+         </children>
+      </FlowPane>
+      <HBox prefHeight="366.0" prefWidth="680.0">
+         <children>
+            <FlowPane alignment="CENTER" prefHeight="383.0" prefWidth="513.0" style="-fx-background-color: #7393B3;">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="151.0" prefWidth="147.0" style="-fx-background-color: #ffffff;">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                     <FlowPane.margin>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </FlowPane.margin>
+                     <children>
+                        <ImageView fitHeight="118.0" fitWidth="122.0">
+                           <image>
+                              <Image url="@../img/mainview/createbooking-removebg-preview.png" />
+                           </image>
+                        </ImageView>
+                        <Button fx:id="buttonNewBooking" mnemonicParsing="false" onAction="#handleActions" text="New Booking">
+                           <font>
+                              <Font name="Britannic Bold" size="13.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="151.0" prefWidth="139.0" style="-fx-background-color: #ffffff;">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                     <FlowPane.margin>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </FlowPane.margin>
+                     <children>
+                        <ImageView fitHeight="111.0" fitWidth="117.0">
+                           <image>
+                              <Image url="@../img/mainview/search-magnifying-glass-icon-search-icon-gray-transparent-png-917227-removebg-preview.png" />
+                           </image>
+                        </ImageView>
+                        <Button fx:id="buttonManageBooking" mnemonicParsing="false" onAction="#handleActions" prefHeight="25.0" prefWidth="133.0" text="Manage Bookings">
+                           <font>
+                              <Font name="Britannic Bold" size="13.0" />
+                           </font>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <VBox.margin>
+                              <Insets top="3.0" />
+                           </VBox.margin>
+                        </Button>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="151.0" prefWidth="147.0" style="-fx-background-color: #ffffff;">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                     <FlowPane.margin>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </FlowPane.margin>
+                     <children>
+                        <ImageView fitHeight="102.0" fitWidth="111.0">
+                           <image>
+                              <Image url="@../img/mainview/guests-removebg-preview.png" />
+                           </image>
+                        </ImageView>
+                        <Button fx:id="buttonGuests" mnemonicParsing="false" onAction="#handleActions" text="Guests">
+                           <font>
+                              <Font name="Britannic Bold" size="13.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="151.0" prefWidth="149.0" style="-fx-background-color: #ffffff;">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                     <FlowPane.margin>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </FlowPane.margin>
+                     <children>
+                        <ImageView fitHeight="119.0" fitWidth="107.0">
+                           <image>
+                              <Image url="@../img/mainview/rooms.png" />
+                           </image>
+                        </ImageView>
+                        <Button fx:id="buttonRooms" mnemonicParsing="false" onAction="#handleActions" text="Rooms">
+                           <font>
+                              <Font name="Britannic Bold" size="13.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </VBox>
+               </children>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </FlowPane>
+            <TabPane prefHeight="380.0" prefWidth="245.0" tabClosingPolicy="UNAVAILABLE">
+              <tabs>
+                <Tab text="Arrivals">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <TextArea prefHeight="353.0" prefWidth="245.0" />
+                           </children>
+                        </AnchorPane>
+                  </content>
+                </Tab>
+                <Tab text="Departures">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <TextArea prefHeight="355.0" prefWidth="245.0" />
+                           </children>
+                        </AnchorPane>
+                  </content>
+                </Tab>
+              </tabs>
+            </TabPane>
+         </children>
+      </HBox>
+      <FlowPane alignment="BOTTOM_RIGHT" prefHeight="30.0" prefWidth="759.0" style="-fx-background-color: #088F8F;">
+         <children>
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="\@SpicyBytes">
+               <font>
+                  <Font name="Britannic Bold" size="13.0" />
+               </font>
+               <FlowPane.margin>
+                  <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+               </FlowPane.margin>
+            </Text>
+         </children>
+      </FlowPane>
+   </children>
+</VBox>

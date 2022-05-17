@@ -337,7 +337,21 @@ public class BookingModelManager implements Serializable
     getAllBookings().deleteBooking(booking);
   }
 
+  // TODO: Implement the method that filter all booking by first name and last name
+    public BookingList filterBookingByName(String firstName, String lastName)
+    {
+        BookingList allBookings = getAllBookings();
+        BookingList filteredBookings = new BookingList();
 
+        for (int i = 0; i < allBookings.size(); i++)
+        {
+        if(allBookings.getBooking(i).getBookingGuest().getFirstName().equals(firstName) && allBookings.getBooking(i).getBookingGuest().getLastName().equals(lastName))
+        {
+            filteredBookings.addBooking(allBookings.getBooking(i));
+        }
+        }
+        return filteredBookings;
+    }
 
 
 

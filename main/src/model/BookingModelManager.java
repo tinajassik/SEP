@@ -117,12 +117,14 @@ public class BookingModelManager implements Serializable
     BookingList allBookings = getAllBookings();
     BookingList expectedArrivals = new BookingList();
     LocalDate currentDate = LocalDate.now();
+    Date temp = new Date(currentDate.getDayOfMonth(),
+        currentDate.getMonthValue(), currentDate.getYear());
 
     for (int i = 0; i < allBookings.size() ; i++)
     {
       Booking booking = allBookings.getBooking(i);
 
-      if(booking.getDateInterval().getArrivalDate().equals(currentDate))
+      if(booking.getDateInterval().getArrivalDate().equals(temp))
       {
         expectedArrivals.addBooking(booking);
       }

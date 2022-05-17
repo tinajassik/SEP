@@ -114,7 +114,8 @@ public class CreateBookingController
       guests.addGuest(newGuest);
       Room roomToBeBooked = new Room(roomNumber);
       DateInterval datesToBeBooked = new DateInterval(arrivalDate,departureDate);
-      modelManager.getAllGuests().addGuest(newGuest);
+      GuestList trial=  modelManager.getAllGuests();
+      trial.addGuest(newGuest);
       Booking newBooking = new Booking(guests, roomToBeBooked, datesToBeBooked);
       BookingList bookingList = modelManager.getAllBookings();
       Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
@@ -127,7 +128,7 @@ public class CreateBookingController
       // only if the OK button is pressed, the booking is added to the file
       if (alert.getResult() == ButtonType.OK) {
         bookingList.addBooking(newBooking);
-        allData.add(modelManager.getAllGuests());
+        allData.add(trial);
         allData.add(modelManager.getAllRooms());
         allData.add(bookingList);
         modelManager.saveBooking(allData);

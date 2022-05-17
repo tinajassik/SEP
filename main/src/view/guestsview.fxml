@@ -36,7 +36,7 @@
       </FlowPane>
       <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
          <tabs>
-            <Tab text="Available Rooms">
+            <Tab text="All guests">
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -44,7 +44,7 @@
                           <content>
                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="280.0">
                                  <children>
-                                    <ListView fx:id="guestsListView" layoutX="-15.0" layoutY="8.0" prefHeight="134.0" prefWidth="298.0" />
+                                    <ListView fx:id="guestsListView" layoutX="-2.0" onDragDetected="#updateGuests" prefHeight="134.0" prefWidth="282.0" />
                                  </children>
                               </AnchorPane>
                           </content>
@@ -53,6 +53,11 @@
                      </children>
                   </AnchorPane>
                </content>
+            </Tab>
+            <Tab text="Search guest">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              </content>
             </Tab>
          </tabs>
       </TabPane>

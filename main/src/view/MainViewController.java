@@ -21,6 +21,7 @@ public class MainViewController
   @FXML Button buttonNewBooking;
   @FXML Button buttonManageBooking;
   @FXML Button buttonRooms;
+  @FXML Button buttonGuests;
 
 
 //  @FXML MenuItem exitMenuItem;
@@ -53,6 +54,9 @@ public class MainViewController
     }
     else if (e.getSource() == buttonRooms) {
       viewHandler.openView("Rooms");
+    }
+    else if (e.getSource() == buttonGuests) {
+      viewHandler.openView("Guests");
     }
 
     //    else if (e.getSource() == exitMenuItem)

@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
+import model.BookingList;
 import model.BookingModelManager;
 import model.GuestList;
 import model.RoomList;
@@ -16,7 +17,7 @@ public class GuestsController
   private ViewHandler viewHandler;
 
   @FXML private Button buttonBack;
-  @FXML private ListView guestListView;
+  @FXML private ListView guestsListView;
 
 
   public void init(ViewHandler viewHandler, BookingModelManager modelManager, Region root)
@@ -24,16 +25,13 @@ public class GuestsController
     this.modelManager = modelManager;
     this.root = root;
     this.viewHandler = viewHandler;
+    reset();
+
   }
 
   public void reset() {
-    GuestList guests = modelManager.getAllGuests();
-    for (int i = 0; i < guests.getAllGuests().size(); i++)
-    {
-      guestListView.getItems().add(guests.getAllGuests().get(i));
-    }
+    updateGuests();
   }
-
   public Region getRoot()
   {
     return root;
@@ -43,6 +41,16 @@ public class GuestsController
   {
     if (e.getSource() == buttonBack) {
       viewHandler.openView("MainView");
+    }
+  }
+
+  // maybe idk yet if it works
+  public void updateGuests() {
+    guestsListView.getItems().clear();
+    GuestList guests = modelManager.getAllGuests();
+    for (int i = 0; i < guests.size(); i++)
+    {
+      guestsListView.getItems().add(guests.getGuest(i).getFirstName() + " " + guests.getGuest(i).getLastName()) ;
     }
   }
 

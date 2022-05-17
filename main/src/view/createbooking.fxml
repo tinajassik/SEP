@@ -130,7 +130,7 @@
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Check-in after 18:00" GridPane.rowIndex="6" />
             <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
                <children>
-                  <RadioButton fx:id="lateCheckInYES" mnemonicParsing="false" onAction="#createBooking" text="Yes">
+                  <RadioButton fx:id="lateCheckInYES" mnemonicParsing="false" text="Yes">
                      <padding>
                         <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
                      </padding>

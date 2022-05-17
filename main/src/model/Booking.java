@@ -57,7 +57,7 @@ public class Booking implements Serializable
   public String toString()
   {
     return "Guest: " + getBookingGuest().getFirstName() + " " + getBookingGuest().getLastName() +
-        ", " + "Room Booked: " + getBookedRoom() + ", " + getDateInterval();
+        "\n"  + getBookedRoom() + "\n" + getDateInterval();
   }
 
   //equals() method for checking if obj is the same object as Booking

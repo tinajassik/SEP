@@ -17,6 +17,7 @@ public class MainViewController
   @FXML Button buttonNewBooking;
   @FXML Button buttonManageBooking;
   @FXML Button buttonRooms;
+  @FXML Button buttonGuests;
   @FXML TextArea textAreaArrivals;
   @FXML TextArea textAreaDepartures;
 
@@ -62,8 +63,6 @@ public class MainViewController
     textAreaDepartures.setText(dep);
   }
 
-
-
   public void handleActions(ActionEvent e)
   {
 
@@ -76,6 +75,9 @@ public class MainViewController
     }
     else if (e.getSource() == buttonRooms) {
       viewHandler.openView("Rooms");
+    }
+    else if (e.getSource() == buttonGuests) {
+      viewHandler.openView("Guests");
     }
 
 

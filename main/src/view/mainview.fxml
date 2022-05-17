@@ -14,9 +14,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="482.0" prefWidth="759.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.MainViewController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="481.0" prefWidth="618.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.MainViewController">
    <children>
-      <FlowPane prefHeight="83.0" prefWidth="759.0" style="-fx-background-color: #088F8F;">
+      <FlowPane prefHeight="79.0" prefWidth="568.0" style="-fx-background-color: #088F8F;">
          <children>
             <ImageView fitHeight="79.0" fitWidth="121.0">
                <image>
@@ -33,11 +33,11 @@
             </Text>
          </children>
       </FlowPane>
-      <HBox prefHeight="366.0" prefWidth="680.0">
+      <HBox prefHeight="331.0" prefWidth="759.0">
          <children>
-            <FlowPane alignment="CENTER" prefHeight="383.0" prefWidth="513.0" style="-fx-background-color: #7393B3;">
+            <FlowPane alignment="CENTER" prefHeight="8.0" prefWidth="537.0" style="-fx-background-color: #7393B3;">
                <children>
-                  <VBox alignment="CENTER" prefHeight="151.0" prefWidth="147.0" style="-fx-background-color: #ffffff;">
+                  <VBox alignment="CENTER" prefHeight="151.0" prefWidth="129.0" style="-fx-background-color: #ffffff;">
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>
@@ -146,7 +146,7 @@
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <TextArea prefHeight="353.0" prefWidth="245.0" />
+                              <TextArea fx:id="textAreaArrivals" editable="false" prefHeight="353.0" prefWidth="245.0" />
                            </children>
                         </AnchorPane>
                   </content>
@@ -155,7 +155,7 @@
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <TextArea prefHeight="355.0" prefWidth="245.0" />
+                              <TextArea fx:id="textAreaDepartures" editable="false" prefHeight="355.0" prefWidth="245.0" />
                            </children>
                         </AnchorPane>
                   </content>
@@ -164,7 +164,7 @@
             </TabPane>
          </children>
       </HBox>
-      <FlowPane alignment="BOTTOM_RIGHT" prefHeight="30.0" prefWidth="759.0" style="-fx-background-color: #088F8F;">
+      <FlowPane alignment="BOTTOM_RIGHT" prefHeight="97.0" prefWidth="759.0" style="-fx-background-color: #088F8F;">
          <children>
             <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="\@SpicyBytes">
                <font>

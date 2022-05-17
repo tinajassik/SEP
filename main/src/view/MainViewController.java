@@ -2,11 +2,9 @@ package view;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.MenuItem;
+import javafx.scene.control.*;
 import javafx.scene.layout.Region;
+import model.BookingList;
 import model.BookingModelManager;
 
 public class MainViewController
@@ -16,11 +14,11 @@ public class MainViewController
   private BookingModelManager modelManager;
   private ViewHandler viewHandler;
 
-
-
   @FXML Button buttonNewBooking;
   @FXML Button buttonManageBooking;
   @FXML Button buttonRooms;
+  @FXML TextArea textAreaArrivals;
+  @FXML TextArea textAreaDepartures;
 
 
 //  @FXML MenuItem exitMenuItem;
@@ -31,15 +29,40 @@ public class MainViewController
     this.modelManager = modelManager;
     this.root = root;
     this.viewHandler = viewHandler;
+    displayArrivalsAndDepartures();
 
   }
 
-  public void reset() {}
+  public void reset() {
+    displayArrivalsAndDepartures();
+  }
 
   public Region getRoot()
   {
     return root;
   }
+
+  public void displayArrivalsAndDepartures() {
+    BookingList arrivals = modelManager.getExpectedArrivals();
+    BookingList departures = modelManager.getExpectedDepartures();
+    String arr = "";
+    String dep= "";
+
+    for (int i = 0; i < arrivals.size(); i++) {
+      arr += arrivals.getBooking(i).getBookingGuest().getLastName() + " "
+          + arrivals.getBooking(i).getBookingGuest().getFirstName() + ", Room Number: "
+          + arrivals.getBooking(i).getBookedRoom().getRoomNumber() + "\n";
+    }
+    for (int i = 0; i < departures.size(); i++) {
+      dep += arrivals.getBooking(i).getBookingGuest().getLastName() + " "
+          + arrivals.getBooking(i).getBookingGuest().getFirstName() + ", Room Number: "
+          + arrivals.getBooking(i).getBookedRoom().getRoomNumber() + "\n";
+    }
+    textAreaArrivals.setText(arr);
+    textAreaDepartures.setText(dep);
+  }
+
+
 
   public void handleActions(ActionEvent e)
   {
@@ -54,6 +77,7 @@ public class MainViewController
     else if (e.getSource() == buttonRooms) {
       viewHandler.openView("Rooms");
     }
+
 
     //    else if (e.getSource() == exitMenuItem)
     //    {

@@ -45,7 +45,7 @@
                   <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                </padding>
             </VBox>
-            <ListView fx:id="listView" onDragDetected="#updateBookings" prefHeight="256.0" prefWidth="545.0" />
+            <ListView fx:id="listView" onDragDetected="#updateBookings" onMousePressed="#getSelectedBooking" prefHeight="256.0" prefWidth="545.0" />
             <VBox alignment="CENTER" prefHeight="256.0" prefWidth="301.0" style="-fx-background-color: #ffffff;">
                <opaqueInsets>
                   <Insets />

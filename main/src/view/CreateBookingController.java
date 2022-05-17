@@ -2,10 +2,14 @@ package view;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
+import javafx.scene.image.ImageView;
 import model.*;
+
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -73,6 +77,9 @@ public class CreateBookingController
       else if (main.getChildren().get(i) instanceof DatePicker) {
         if (((DatePicker)main.getChildren().get(i)).getValue() == null)  empty = true;
       }
+      else if (main.getChildren().get(i) instanceof RadioButton) {
+        if ((!((RadioButton) main.getChildren().get(i)).isSelected())) empty = true;
+      }
     }
     return empty;
 }
@@ -88,6 +95,8 @@ public class CreateBookingController
     ArrayList<Object> allData = new ArrayList<>();
     boolean lateCheckIn;
     boolean extraBed;
+
+
 
     if (e.getSource() == buttonSave && !(isFieldEmpty())) {
 
@@ -121,7 +130,6 @@ public class CreateBookingController
           "Please confirm that all the information inserted is correct and you wish to create the booking.");
       alert.setTitle("Booking Confirmation");
       alert.setHeaderText(null);
-
       alert.showAndWait();
 
       // only if the OK button is pressed, the booking is added to the file

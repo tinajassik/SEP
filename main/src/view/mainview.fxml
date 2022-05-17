@@ -105,7 +105,7 @@
                               <Image url="@../img/mainview/guests-removebg-preview.png" />
                            </image>
                         </ImageView>
-                        <Button mnemonicParsing="false" text="Guests">
+                        <Button fx:id="buttonGuests" mnemonicParsing="false" onAction="#handleActions" text="Guests">
                            <font>
                               <Font name="Britannic Bold" size="13.0" />
                            </font>

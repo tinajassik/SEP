@@ -21,7 +21,7 @@
          <children>
             <ImageView fitHeight="70.0" fitWidth="107.0">
                <image>
-                  <Image url="@../img/mainview/png-transparent-miami-beach-boutique-hotel-discounts-and-allowances-inn-hotel-text-rectangle-logo-removebg-preview.png" />
+                  <Image url="@../../../../SEP-OLD/main/src/img/mainview/png-transparent-miami-beach-boutique-hotel-discounts-and-allowances-inn-hotel-text-rectangle-logo-removebg-preview.png" />
                </image>
             </ImageView>
             <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="The Overlook Hotel" textAlignment="CENTER" wrappingWidth="126.33203125">
@@ -36,22 +36,27 @@
       </FlowPane>
       <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
          <tabs>
-            <Tab text="Available Rooms">
+            <Tab text="All guests">
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
                         <ScrollPane layoutY="7.0" prefHeight="137.0" prefWidth="304.0">
-                          <content>
-                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="280.0">
+                           <content>
+                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="280.0">
                                  <children>
-                                    <ListView fx:id="guestsListView" layoutX="-15.0" layoutY="8.0" prefHeight="134.0" prefWidth="298.0" />
+                                    <ListView fx:id="guestsListView" layoutX="-2.0" onDragDetected="#updateGuests" prefHeight="134.0" prefWidth="282.0" />
                                  </children>
                               </AnchorPane>
-                          </content>
+                           </content>
                         </ScrollPane>
                         <TreeView layoutX="310.0" layoutY="-2.0" prefHeight="139.0" prefWidth="264.0" />
                      </children>
                   </AnchorPane>
+               </content>
+            </Tab>
+            <Tab text="Search guest">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
                </content>
             </Tab>
          </tabs>

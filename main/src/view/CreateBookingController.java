@@ -123,7 +123,8 @@ public class CreateBookingController
       guests.addGuest(newGuest);
       Room roomToBeBooked = new Room(roomNumber);
       DateInterval datesToBeBooked = new DateInterval(arrivalDate,departureDate);
-      modelManager.getAllGuests().addGuest(newGuest);
+      GuestList trial=  modelManager.getAllGuests();
+      trial.addGuest(newGuest);
       Booking newBooking = new Booking(guests, roomToBeBooked, datesToBeBooked);
       BookingList bookingList = modelManager.getAllBookings();
       Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
@@ -133,29 +134,30 @@ public class CreateBookingController
       alert.showAndWait();
 
       // only if the OK button is pressed, the booking is added to the file
-      if (alert.getResult() == ButtonType.OK) {
+      if (alert.getResult() == ButtonType.OK)
+      {
         bookingList.addBooking(newBooking);
-        allData.add(modelManager.getAllGuests());
+        allData.add(trial);
         allData.add(modelManager.getAllRooms());
         allData.add(bookingList);
         modelManager.saveBooking(allData);
-      }
-
-        for (int i = 0; i < main.getChildren().size(); i++) {
-          if (main.getChildren().get(i) instanceof TextField) {
+        for (int i = 0; i < main.getChildren().size(); i++)
+        {
+          if (main.getChildren().get(i) instanceof TextField)
+          {
             ((TextField) main.getChildren().get(i)).clear();
           }
-          else if (main.getChildren().get(i) instanceof DatePicker) {
+          else if (main.getChildren().get(i) instanceof DatePicker)
+          {
             ((DatePicker) main.getChildren().get(i)).setValue(null);
           }
-          else if (main.getChildren().get(i) instanceof RadioButton) {
+          else if (main.getChildren().get(i) instanceof RadioButton)
+          {
             ((RadioButton) main.getChildren().get(i)).setSelected(false);
           }
         }
 
-
-
-    }
+      }}
 
 
     else {

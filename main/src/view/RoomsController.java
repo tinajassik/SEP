@@ -16,6 +16,7 @@ public class RoomsController
 
   @FXML private Button buttonBack;
   @FXML private TextArea allRoomsArea;
+  @FXML private TextArea availableRoomsArea;
 
   public void init(ViewHandler viewHandler, BookingModelManager modelManager, Region root)
   {
@@ -28,7 +29,12 @@ public class RoomsController
 
   public void reset() {
     RoomList rooms = modelManager.getAllRooms();
-    allRoomsArea.setText(rooms.toString());
+    String str = "";
+
+    for (int i = 0; i < rooms.size(); i++) {
+      str += rooms.getRoom(i).toString() + "\n --------------\n " ;
+    }
+    allRoomsArea.setText(str);
   }
 
   public Region getRoot()

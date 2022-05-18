@@ -104,9 +104,12 @@ public class CreateBookingController
     String phoneNumber = phoneNumberField.getText();
     String address = addressField.getText();
     String roomNumber = roomNumberField.getText();
+    String extraBedString = extraBedGroup.selectedToggleProperty().toString();
+    String lateCheckInString = checkInGroup.selectedToggleProperty().toString();
     ArrayList<Object> allData = new ArrayList<>();
-    boolean lateCheckIn;
-    boolean extraBed;
+
+
+
 
     if (e.getSource() == buttonSave && !(isFieldEmpty()))
     {
@@ -128,6 +131,7 @@ public class CreateBookingController
       int year2 = birthday.getYear();
       Date birthdayGuest = new Date(day2, month2, year2);
 
+
       // creating all the necessary fields to create a new booking
       Guest newGuest = new Guest(firstName, lastName, address, phoneNumber,
           nationality, birthdayGuest);
@@ -141,6 +145,9 @@ public class CreateBookingController
 
       Booking newBooking = new Booking(guests, roomToBeBooked, datesToBeBooked);
       BookingList bookingList = modelManager.getAllBookings();
+
+      if (extraBedString.equals("Yes"))  newBooking.addExtraBed();
+      if (lateCheckInString.equals("Yes")) newBooking.willCheckInLate();
 
 
       RoomList availableRooms = modelManager.getAvailableRoomsForASpecificPeriod(
@@ -164,12 +171,11 @@ public class CreateBookingController
         alert.setHeaderText(null);
         alert.showAndWait();
 
-   
-
 
       // only if the OK button is pressed, the booking is added to the file
       if (alert.getResult() == ButtonType.OK)
       {
+
         bookingList.addBooking(newBooking);
         allData.add(trial);
         allData.add(modelManager.getAllRooms());

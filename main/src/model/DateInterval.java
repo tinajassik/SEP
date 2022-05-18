@@ -55,8 +55,8 @@ public class DateInterval implements Serializable
     if (obj instanceof DateInterval)
     {
       DateInterval other = (DateInterval) obj;
-      return arrivalDate.copy() == other.arrivalDate.copy()
-          && departureDate.copy() == other.departureDate.copy();
+      return arrivalDate.equals(other.arrivalDate)
+          && departureDate.equals(other.departureDate);
     }
     return false;
   }

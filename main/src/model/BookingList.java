@@ -31,6 +31,15 @@ public class BookingList implements Serializable
   {
     bookings.remove(booking);
   }
+
+  public Booking getBooking(Booking booking) {
+
+    for (int i = 0; i < bookings.size(); i++) {
+      if (bookings.get(i).equals(booking))
+        return booking;
+    }
+    return null;
+  }
   //getBookingByFullName() method that returns an ArrayList with bookings made by the same person
   public ArrayList getBookingsByFullName(String firstName, String lastName)
   {

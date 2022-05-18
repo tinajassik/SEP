@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
 import model.Booking;
 import model.BookingList;
@@ -23,6 +24,9 @@ public class ManageBookingController
   @FXML private Button buttonBack;
   @FXML private ListView listView;
   @FXML private Button buttonCheckIn;
+  @FXML private Button buttonSearch;
+  @FXML private Button buttonShowAll;
+  @FXML private TextField fieldName;
   @FXML private Button buttonCheckOut;
   @FXML private Button buttonManageBooking;
 
@@ -65,6 +69,24 @@ public class ManageBookingController
     else if (e.getSource() == buttonCheckIn)
     {
       viewHandler.openView("CheckIn");
+    }
+
+    else if (e.getSource() == buttonSearch) {
+      listView.getItems().clear();
+      String fullName = fieldName.getText();
+      String[] temp = fullName.split(" ");
+      String firstName = temp[0];
+      String lastName = temp[1];
+      BookingList bookings = modelManager.filterBookingByName(firstName,lastName);
+      for (int i = 0; i < bookings.size(); i++)
+      {
+        listView.getItems().add(bookings.getBooking(i));
+      }
+    }
+
+    else if(e.getSource() == buttonShowAll) {
+      fieldName.clear();
+      updateBookings();
     }
 
 

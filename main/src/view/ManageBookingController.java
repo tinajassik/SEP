@@ -67,6 +67,14 @@ public class ManageBookingController
       viewHandler.openView("CheckIn");
     }
 
+    if (e.getSource() == buttonCheckOut)
+    {
+      viewHandler.openView("CheckOut");
+    }
+
+//    else if (e.getSource() == listView.getSelectionModel()) {
+//      getSelectedBooking();
+//    }
 
   }
 
@@ -78,7 +86,9 @@ public class ManageBookingController
     {
       listView.getItems().add(bookings.getBooking(i));
     }
+
   }
+
 }
 
 

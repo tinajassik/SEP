@@ -28,6 +28,7 @@ public class ManageBookingController
   @FXML private Button buttonSearch;
   @FXML private Button buttonShowAll;
   @FXML private TextField fieldName;
+  @FXML private Button buttonEditBooking;
   @FXML private Button buttonCheckOut;
   @FXML private Button buttonManageBooking;
 
@@ -103,19 +104,23 @@ public class ManageBookingController
           alert.setHeaderText(null);
           alert.showAndWait();
         }
-
-
-
       }
-
-
-
-
     }
 
     else if(e.getSource() == buttonShowAll) {
       fieldName.clear();
       updateBookings();
+    }
+    else if (e.getSource() == buttonEditBooking) {
+      if (listView.getSelectionModel().isEmpty()) {
+        Alert alert = new Alert(Alert.AlertType.WARNING,
+            "You have not selected any booking.");
+        alert.setTitle("Missing information");
+        alert.setHeaderText(null);
+        alert.showAndWait();
+      }
+
+      else viewHandler.openView("EditBooking");
     }
 
 

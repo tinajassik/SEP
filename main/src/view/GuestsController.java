@@ -57,7 +57,6 @@ public class GuestsController
     }
   }
 
-  // maybe idk yet if it works
   public void updateGuests()
   {
     guestsListView.getItems().clear();
@@ -86,6 +85,13 @@ public class GuestsController
         {
           textArea1.setText(guests.getGuest(i).toString() + " \n");
         }
+//        else {
+//          Alert alert = new Alert(Alert.AlertType.WARNING,
+//              "Guest not found.");
+//         alert.setTitle("Missing guest");
+//         alert.setHeaderText(null);
+//         alert.showAndWait();
+//        }
       }
 
       BookingList bookingList = new BookingList();
@@ -117,12 +123,5 @@ public class GuestsController
         if(s.equals(guestsListView.getSelectionModel().getSelectedItem()))
           text.setText(guests.getGuest(i).toString());
       }
-
-
     }
-
-
-
-
-
 }

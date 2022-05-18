@@ -70,7 +70,8 @@ public class ManageBookingController
 
     else if (e.getSource() == buttonCheckIn)
     {
-      if (listView.getSelectionModel().isEmpty()) {
+      if (listView.getSelectionModel().isEmpty())
+      {
         Alert alert = new Alert(Alert.AlertType.WARNING,
             "You have not selected any booking.");
         alert.setTitle("Missing information");
@@ -78,26 +79,32 @@ public class ManageBookingController
         alert.showAndWait();
       }
 
-      else viewHandler.openView("CheckIn");
+      else
+        viewHandler.openView("CheckIn");
     }
 
-    else if (e.getSource() == buttonSearch) {
+    else if (e.getSource() == buttonSearch)
+    {
       String fullName = fieldName.getText();
-      if (!(fullName.equals(""))) {
+      if (!(fullName.equals("")))
+      {
         listView.getItems().clear();
         String[] temp = fullName.split(" ");
 
         // in case the receptionist inputs only one string, index out of bounds will occur, therefore:
-        try {
+        try
+        {
           String firstName = temp[0];
           String lastName = temp[1];
-          BookingList bookings = modelManager.filterBookingByName(firstName,lastName);
+          BookingList bookings = modelManager.filterBookingByName(firstName,
+              lastName);
           for (int i = 0; i < bookings.size(); i++)
           {
             listView.getItems().add(bookings.getBooking(i));
           }
         }
-        catch (IndexOutOfBoundsException exception) {
+        catch (IndexOutOfBoundsException exception)
+        {
           Alert alert = new Alert(Alert.AlertType.WARNING,
               "Name was not found. Please try again.");
           alert.setTitle("Invalid name detected");
@@ -107,12 +114,15 @@ public class ManageBookingController
       }
     }
 
-    else if(e.getSource() == buttonShowAll) {
+    else if (e.getSource() == buttonShowAll)
+    {
       fieldName.clear();
       updateBookings();
     }
-    else if (e.getSource() == buttonEditBooking) {
-      if (listView.getSelectionModel().isEmpty()) {
+    else if (e.getSource() == buttonEditBooking)
+    {
+      if (listView.getSelectionModel().isEmpty())
+      {
         Alert alert = new Alert(Alert.AlertType.WARNING,
             "You have not selected any booking.");
         alert.setTitle("Missing information");
@@ -120,12 +130,11 @@ public class ManageBookingController
         alert.showAndWait();
       }
 
-      else viewHandler.openView("EditBooking");
+      else
+        viewHandler.openView("EditBooking");
+
     }
-
-
   }
-
   // maybe idk yet if it works
   public void updateBookings() {
     listView.getItems().clear();

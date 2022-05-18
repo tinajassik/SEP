@@ -32,7 +32,6 @@ public class GuestsController
     this.root = root;
     this.viewHandler = viewHandler;
     reset();
-
   }
 
   public void reset() {
@@ -48,21 +47,25 @@ public class GuestsController
   {
     if (e.getSource() == buttonBack) {
       viewHandler.openView("MainView");
+      text.clear();
       textArea1.clear();
       textArea2.clear();
       textField1.clear();
       textField2.clear();
+      text.clear();
+
     }
   }
 
   // maybe idk yet if it works
   public void updateGuests() {
     guestsListView.getItems().clear();
+
     GuestList guests = modelManager.getAllGuests();
     for (int i = 0; i < guests.size(); i++)
     {
       guestsListView.getItems().add(guests.getGuest(i).getFirstName() + " " + guests.getGuest(i).getLastName()) ;
-     // if(guestsListView.getItems().)text.setText(guests.getGuest(i).toString());
+
     }
   }
 
@@ -82,24 +85,21 @@ public class GuestsController
         {
           textArea1.setText(guests.getGuest(i).toString() + " \n");
 
-
           for (int j = 0; j < bookings.getBookingsByFullName(firstName, lastName).size(); j++)
           {
-
-            textArea2.setText(bookings.getBooking(i).toString());
+            textArea2.setText(bookings.getBookingsByFullName(firstName, lastName).toString());
           }
         }
       }
     }
-
   }
     public void seeMoreInfo()
     {
       GuestList guests = modelManager.getAllGuests();
       for (int i = 0; i < guests.size(); i++)
       {
-        text.setText(guests.getGuest(i).toString());
-
+        text.setText(guests.getGuest(
+            (Integer) guestsListView.getSelectionModel().getSelectedIndices().get(i)).toString());
       }
     }
 

@@ -48,7 +48,7 @@
                            <content>
                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="280.0">
                                  <children>
-                                    <ListView fx:id="guestsListView" layoutX="-2.0" onDragDetected="#updateGuests" onMouseClicked="#seeMoreInfo" onTouchPressed="#seeMoreInfo" prefHeight="134.0" prefWidth="282.0" />
+                                    <ListView fx:id="guestsListView" layoutX="-2.0" onDragDetected="#updateGuests" onMouseClicked="#seeMoreInfo" onMouseExited="#reset" onTouchPressed="#seeMoreInfo" prefHeight="134.0" prefWidth="282.0" />
                                     <Separator orientation="VERTICAL" prefHeight="200.0" />
                                  </children>
                               </AnchorPane>

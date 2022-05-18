@@ -58,6 +58,7 @@ public class BookingList implements Serializable
 
     for (int i = 0; i < bookings.size(); i++)
     {
+      s +="Booking: ";
       Booking temp = bookings.get(i);
       s += temp +"\n";
     }

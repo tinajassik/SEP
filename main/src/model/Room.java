@@ -118,22 +118,29 @@ public class Room implements Serializable
 
     @Override
     public String toString() {
-        return "Room Number: " + roomNumber + ", Room Type: " + roomType +  ", Price: " + price;
+        return "Room Number: " + roomNumber  +"\n" + "Room Type: " + roomType +  "\n" +"Price: " + price;
     }
 
     // Method: toString() - returns the room number, the room type, the room price, and the room status.
-    @Override
+//    @Override
+//    public boolean equals(Object o) {
+//        if (this == o) return true;
+//        if (o == null || getClass() != o.getClass()) return false;
+//
+//        Room room = (Room) o;
+//
+//        if (extraBed != room.extraBed) return false;
+//        if (available != room.available) return false;
+//        if (Double.compare(room.price, price) != 0) return false;
+//        if (roomNumber != null ? !roomNumber.equals(room.roomNumber) : room.roomNumber != null) return false;
+//        return roomType != null ? roomType.equals(room.roomType) : room.roomType == null;
+//    }
+
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof Room)) return false;
 
-        Room room = (Room) o;
-
-        if (extraBed != room.extraBed) return false;
-        if (available != room.available) return false;
-        if (Double.compare(room.price, price) != 0) return false;
-        if (roomNumber != null ? !roomNumber.equals(room.roomNumber) : room.roomNumber != null) return false;
-        return roomType != null ? roomType.equals(room.roomType) : room.roomType == null;
+        Room other = (Room)o;
+        return roomNumber.equals(other.roomNumber);
     }
 
     // Method: hashCode() - returns the hashcode of the room. This is used to compare two rooms and determine if they are the same.

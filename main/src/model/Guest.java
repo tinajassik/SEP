@@ -100,11 +100,11 @@ public class Guest implements Serializable
   public String toString()
   {
     return "First name: " + firstName +
-        "/n" + "Last name: " + lastName +
-        "/n" + "Adress: " + adress +
-        "/n" + "Phone number: " + phoneNumber +
-        "/n" + "Nationality: " + nationality +
-        "/n" + "Birthday: " + birthday;
+        "\n" + "Last name: " + lastName +
+        "\n" + "Adress: " + adress +
+        "\n" + "Phone number: " + phoneNumber +
+        "\n" + "Nationality: " + nationality +
+        "\n" + "Birthday: " + birthday;
   }
 
   //equals() method for checking if obj is the same object as Guest

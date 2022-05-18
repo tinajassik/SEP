@@ -56,8 +56,12 @@ public class Booking implements Serializable
   //toString() method used to convert string objects into a string
   public String toString()
   {
-    return "Guest: " + getBookingGuest().getFirstName() + " " + getBookingGuest().getLastName() +
-        ", " + "Room Booked: " + getBookedRoom() + ", " + getDateInterval();
+   String status ="";
+   if (checkIn) status = "Checked In";
+   else status = "NOT Checked In";
+
+  return "Guest: " + getBookingGuest().getFirstName() + " " + getBookingGuest().getLastName() +
+        "\n"  + getBookedRoom() + "\n" + getDateInterval() + "\n" + "Status: " + status;
   }
 
   //equals() method for checking if obj is the same object as Booking

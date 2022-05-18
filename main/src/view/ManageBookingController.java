@@ -67,9 +67,6 @@ public class ManageBookingController
       viewHandler.openView("CheckIn");
     }
 
-//    else if (e.getSource() == listView.getSelectionModel()) {
-//      getSelectedBooking();
-//    }
 
   }
 

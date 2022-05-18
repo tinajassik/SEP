@@ -204,9 +204,8 @@ public class BookingModelManager implements Serializable
   }
 
 
-  // method saveBooking rewrites all previously added data to the file with the addition of a new booking
-  public void saveBooking(ArrayList<Object> allData)
-  
+
+  public void updateAllData(ArrayList<Object> allData)
   {
     try
     {
@@ -226,13 +225,16 @@ public class BookingModelManager implements Serializable
   public RoomList getAvailableRoomsForASpecificPeriod(DateInterval dateInterval)
   {
     BookingList allBookings = getAllBookings();
-    RoomList availableRooms = new RoomList();
+    RoomList availableRooms = getAllRooms();
 
     for (int i = 0; i < allBookings.size() ; i++)
     {
       Room room = allBookings.getBooking(i).getBookedRoom();
 
-      if(allBookings.getBooking(i).getDateInterval().isAvailableDate(dateInterval)) availableRooms.addRoom(room);
+      if(!(allBookings.getBooking(i).getDateInterval().isAvailableDate(dateInterval)))
+      {
+        availableRooms.removeRoom(room);
+      }
 
     }
     return availableRooms;
@@ -304,12 +306,7 @@ public class BookingModelManager implements Serializable
     System.out.println("File is created");
   }
 
-/* checkIn() adds new guests to the booking if necesarry and changes the booking status to checked in */
-  public void checkIn(Booking booking, Guest newGuest)
-  {
-    booking.getGuests().addGuest(newGuest);
-    booking.checkedIn();
-  }
+
 
   /* deleteAfter6() method deletes booking if the guest have not checked in nor notified the hotel about a late check in */
 

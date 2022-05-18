@@ -2,16 +2,18 @@ package view;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
-import model.Booking;
-import model.BookingModelManager;
+import javafx.util.converter.LocalDateStringConverter;
+import model.*;
 import utilis.MyFileHandler;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class CheckInController
 {
@@ -39,18 +41,20 @@ public class CheckInController
     this.modelManager = modelManager;
     this.root = root;
     this.viewHandler = viewHandler;
-    roomNumberField = new TextField();
-  displayInitialInfo();
+    reset();
   }
 
-  public void reset() {}
+  public void reset() {
+    displayInitialData();
+  }
 
   public Region getRoot()
   {
     return root;
   }
 
-  public void displayInitialInfo() {
+  public Booking getSelectedBooking() {
+
     Booking booking = null;
     try
     {
@@ -64,9 +68,85 @@ public class CheckInController
     {
       e.printStackTrace();
     }
-    if (booking != null)
-    roomNumberField.setText(booking.getBookedRoom().getRoomNumber());
+
+    return booking;
+
   }
+  public void displayInitialData() {
+    Booking booking = getSelectedBooking();
+    if (booking != null) {
+      roomNumberField.setText(booking.getBookedRoom().getRoomNumber());
+      arrivalDate.setValue(LocalDate.of(booking.getDateInterval().getArrivalDate().getYear(), booking.getDateInterval().getArrivalDate().getMonth(),
+          booking.getDateInterval().getArrivalDate().getDay()));
+      departureDate.setValue(LocalDate.of(booking.getDateInterval().getDepartureDate().getYear(), booking.getDateInterval().getDepartureDate().getMonth(),
+          booking.getDateInterval().getDepartureDate().getDay()));
+    }
+  }
+
+
+  public void checkInGuests(ActionEvent e){
+
+    ArrayList<Object> allData = new ArrayList<>();
+
+    // get all Data before manipulating with the file
+    GuestList checkedGuests = modelManager.getAllGuests();
+    BookingList allBookings = modelManager.getAllBookings();
+    RoomList allRooms = modelManager.getAllRooms();
+
+      if(e.getSource() == buttonCheckInGuest) {
+
+        String firstName = firstNameField.getText();
+        String lastname = lastNameField.getText();
+        String nationality = nationalityField.getText();
+        String address = addressField.getText();
+        String phoneNumber = phoneNumberField.getText();
+        LocalDate birthday = birthdayDate.getValue();
+        int day = birthday.getDayOfMonth();
+        int month = birthday.getMonthValue();
+        int year = birthday.getYear();
+        Date birthdayGuest = new Date(day,month,year);
+        Guest guest = new Guest(firstName,lastname,address,phoneNumber,nationality,birthdayGuest);
+        checkedGuests.addGuest(guest);
+
+        firstNameField.clear();
+        lastNameField.clear();
+        nationalityField.clear();
+        addressField.clear();
+        phoneNumberField.clear();
+        birthdayDate.setValue(null);
+      }
+
+
+    Booking booking = getSelectedBooking();
+
+      if (e.getSource() == buttonCompleteCheckIn) {
+
+        /**
+         *     person who created the booking will be checkIn automatically, since we already have all the necessary data
+         */
+        checkedGuests.addGuest(booking.getBookingGuest());
+
+        // change the status of the booking after completing the checkIn of all guests
+        booking.checkedIn();
+
+        //update data.bin to add all new guests;
+        allData.add(checkedGuests); // now checkedGuests contains all the guests checkedIn before as well as the new ones
+        allData.add(allBookings);
+        allData.add(allRooms);
+        modelManager.updateAllData(allData);
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION,
+            "All guests were successfully checked in.");
+        alert.setTitle("Check-In complete");
+        alert.setHeaderText(null);
+        alert.showAndWait();
+
+      }
+
+
+
+    }
+
   public void handleActions(ActionEvent e)
   {
     if (e.getSource() == buttonBack )

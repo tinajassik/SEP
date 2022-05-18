@@ -203,8 +203,25 @@ public class BookingModelManager implements Serializable
 
   }
 
-
-
+//  public Booking getBooking(Booking b) {
+//
+//    BookingList allBookings = getAllBookings();
+//
+//    for (int i = 0; i < allBookings.size(); i++)
+//    {
+//      Booking booking = allBookings.getBooking(i);
+//
+//      if (b.equals(booking))
+//        return booking;
+//    }
+//
+//    return null;
+//  }
+//  public void updateBookingInformation(Booking booking) {
+//
+//    BookingList bookingListOld = getAllBookings();
+//    bookingListOld.deleteBooking(getBooking(b));
+//  }
   public void updateAllData(ArrayList<Object> allData)
   {
     try

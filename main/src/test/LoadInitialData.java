@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 public class LoadInitialData
 {
+
   public static void main(String[] args)
   {
     ArrayList<Object> initialData= new ArrayList<>();
@@ -52,6 +53,7 @@ public class LoadInitialData
     initialData.add(allRooms);
     initialData.add(bookings);
     initialData.add(guests);
+
 
     try
     {

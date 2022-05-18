@@ -10,6 +10,7 @@ public class Booking implements Serializable
   private DateInterval dates;
   private boolean checkIn = false;
   private boolean lateCheckIn = false;
+  private boolean extraBed = false;
 
   //3 arguments constructor
   public Booking(GuestList guests, Room room, DateInterval dates)
@@ -34,6 +35,9 @@ public class Booking implements Serializable
     return dates;
   }
 
+  public void addExtraBed() {
+    extraBed = true;
+  }
   //getBookedRoom() method that returns the booked room
   public Room getBookedRoom()
   {

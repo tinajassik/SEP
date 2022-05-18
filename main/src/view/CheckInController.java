@@ -36,6 +36,7 @@ public class CheckInController
   @FXML private Button buttonCheckInGuest;
   @FXML private Button buttonCompleteCheckIn;
 
+
   public void init(ViewHandler viewHandler, BookingModelManager modelManager, Region root)
   {
     this.modelManager = modelManager;
@@ -88,7 +89,6 @@ public class CheckInController
 
     ArrayList<Object> allData = new ArrayList<>();
 
-
     // get all Data before manipulating with the file
     GuestList checkedGuests = modelManager.getAllGuests();
     BookingList allBookings = modelManager.getAllBookings();
@@ -120,19 +120,27 @@ public class CheckInController
        // checkIn the person who created the booking automatically without typing again the info
        Booking booking = getSelectedBooking();
        checkedGuests.addGuest(booking.getBookingGuest());
-        // change the status of the booking after completing the checkIn of all guests
-        booking.checkedIn();
+
+       // change the status of the booking after completing the checkIn of all guests
+       Booking updated = allBookings.getBooking(booking);
+       updated.checkedIn();
+       allBookings.deleteBooking(booking);
+       allBookings.addBooking(updated);
+
         Alert alert = new Alert(Alert.AlertType.INFORMATION,
             "All guests were successfully checked in.");
         alert.setTitle("Check-In complete");
         alert.setHeaderText(null);
         alert.showAndWait();
       }
+
     //update data.bin to add all new guests;
     allData.add(checkedGuests); // now checkedGuests contains all the guests checkedIn before as well as the new ones
     allData.add(allBookings);
     allData.add(allRooms);
     modelManager.updateAllData(allData);
+
+
 
     }
 

@@ -92,7 +92,7 @@ public class Booking implements Serializable
    else status = "NOT Checked In";
 
   return "Guest: " + getBookingGuest().getFirstName() + " " + getBookingGuest().getLastName() +
-        "\n"  + getBookedRoom() + "\n" + getDateInterval() + "\n" + "Status: " + status;
+        "\n"  + getBookedRoom() + "\n" + getDateInterval() + "\n" + "Status: " + status +"\n";
   }
 
   /**

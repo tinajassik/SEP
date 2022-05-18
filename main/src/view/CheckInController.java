@@ -88,13 +88,14 @@ public class CheckInController
 
     ArrayList<Object> allData = new ArrayList<>();
 
+
     // get all Data before manipulating with the file
     GuestList checkedGuests = modelManager.getAllGuests();
     BookingList allBookings = modelManager.getAllBookings();
     RoomList allRooms = modelManager.getAllRooms();
 
-      if(e.getSource() == buttonCheckInGuest) {
 
+      if(e.getSource() == buttonCheckInGuest) {
         String firstName = firstNameField.getText();
         String lastname = lastNameField.getText();
         String nationality = nationalityField.getText();
@@ -115,35 +116,23 @@ public class CheckInController
         phoneNumberField.clear();
         birthdayDate.setValue(null);
       }
-
-
-    Booking booking = getSelectedBooking();
-
-      if (e.getSource() == buttonCompleteCheckIn) {
-
-        /**
-         *     person who created the booking will be checkIn automatically, since we already have all the necessary data
-         */
-        checkedGuests.addGuest(booking.getBookingGuest());
-
+     if (e.getSource() == buttonCompleteCheckIn) {
+       // checkIn the person who created the booking automatically without typing again the info
+       Booking booking = getSelectedBooking();
+       checkedGuests.addGuest(booking.getBookingGuest());
         // change the status of the booking after completing the checkIn of all guests
         booking.checkedIn();
-
-        //update data.bin to add all new guests;
-        allData.add(checkedGuests); // now checkedGuests contains all the guests checkedIn before as well as the new ones
-        allData.add(allBookings);
-        allData.add(allRooms);
-        modelManager.updateAllData(allData);
-
         Alert alert = new Alert(Alert.AlertType.INFORMATION,
             "All guests were successfully checked in.");
         alert.setTitle("Check-In complete");
         alert.setHeaderText(null);
         alert.showAndWait();
-
       }
-
-
+    //update data.bin to add all new guests;
+    allData.add(checkedGuests); // now checkedGuests contains all the guests checkedIn before as well as the new ones
+    allData.add(allBookings);
+    allData.add(allRooms);
+    modelManager.updateAllData(allData);
 
     }
 

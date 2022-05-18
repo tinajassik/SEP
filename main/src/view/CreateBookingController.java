@@ -134,10 +134,14 @@ public class CreateBookingController
       GuestList guests = new GuestList();
       guests.addGuest(newGuest);
       Room roomToBeBooked = new Room(roomNumber);
-      DateInterval datesToBeBooked = new DateInterval(arrivalDate, departureDate);
-      modelManager.getAllGuests().addGuest(newGuest);
+
+      DateInterval datesToBeBooked = new DateInterval(arrivalDate,departureDate);
+      GuestList trial=  modelManager.getAllGuests();
+      trial.addGuest(newGuest);
+
       Booking newBooking = new Booking(guests, roomToBeBooked, datesToBeBooked);
       BookingList bookingList = modelManager.getAllBookings();
+
 
       RoomList availableRooms = modelManager.getAvailableRoomsForASpecificPeriod(
           datesToBeBooked);
@@ -160,36 +164,35 @@ public class CreateBookingController
         alert.setHeaderText(null);
         alert.showAndWait();
 
-        // only if the OK button is pressed, the booking is added to the file
-        if (alert.getResult() == ButtonType.OK)
+   
+
+
+      // only if the OK button is pressed, the booking is added to the file
+      if (alert.getResult() == ButtonType.OK)
+      {
+        bookingList.addBooking(newBooking);
+        allData.add(trial);
+        allData.add(modelManager.getAllRooms());
+        allData.add(bookingList);
+        modelManager.saveBooking(allData);
+        
+        for (int i = 0; i < main.getChildren().size(); i++)
         {
-          bookingList.addBooking(newBooking);
-          allData.add(modelManager.getAllGuests());
-          allData.add(modelManager.getAllRooms());
-          allData.add(bookingList);
-          modelManager.updateAllData(allData);
+          if (main.getChildren().get(i) instanceof TextField)
+          {
+            ((TextField) main.getChildren().get(i)).clear();
+          }
+          else if (main.getChildren().get(i) instanceof DatePicker)
+          {
+            ((DatePicker) main.getChildren().get(i)).setValue(null);
+          }
+          else if (main.getChildren().get(i) instanceof RadioButton)
+          {
+            ((RadioButton) main.getChildren().get(i)).setSelected(false);
+          }
         }
 
-
-
-
-
-        for (int j = 0; j < main.getChildren().size(); j++)
-        {
-          if (main.getChildren().get(j) instanceof TextField)
-          {
-            ((TextField) main.getChildren().get(j)).clear();
-          }
-          else if (main.getChildren().get(j) instanceof DatePicker)
-          {
-            ((DatePicker) main.getChildren().get(j)).setValue(null);
-          }
-          else if (main.getChildren().get(j) instanceof RadioButton)
-          {
-            ((RadioButton) main.getChildren().get(j)).setSelected(false);
-          }
-        }
-      }
+      }}
 
       else
       {

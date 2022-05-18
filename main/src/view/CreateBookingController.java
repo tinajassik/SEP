@@ -174,7 +174,7 @@ public class CreateBookingController
         allData.add(trial);
         allData.add(modelManager.getAllRooms());
         allData.add(bookingList);
-        modelManager.saveBooking(allData);
+        modelManager.updateAllData(allData);
         
         for (int i = 0; i < main.getChildren().size(); i++)
         {

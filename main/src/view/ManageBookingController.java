@@ -3,6 +3,7 @@ package view;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
@@ -68,20 +69,48 @@ public class ManageBookingController
 
     else if (e.getSource() == buttonCheckIn)
     {
-      viewHandler.openView("CheckIn");
+      if (listView.getSelectionModel().isEmpty()) {
+        Alert alert = new Alert(Alert.AlertType.WARNING,
+            "You have not selected any booking.");
+        alert.setTitle("Missing information");
+        alert.setHeaderText(null);
+        alert.showAndWait();
+      }
+
+      else viewHandler.openView("CheckIn");
     }
 
     else if (e.getSource() == buttonSearch) {
-      listView.getItems().clear();
       String fullName = fieldName.getText();
-      String[] temp = fullName.split(" ");
-      String firstName = temp[0];
-      String lastName = temp[1];
-      BookingList bookings = modelManager.filterBookingByName(firstName,lastName);
-      for (int i = 0; i < bookings.size(); i++)
-      {
-        listView.getItems().add(bookings.getBooking(i));
+      if (!(fullName.equals(""))) {
+        listView.getItems().clear();
+        String[] temp = fullName.split(" ");
+
+        // in case the receptionist inputs only one string, index out of bounds will occur, therefore:
+        try {
+          String firstName = temp[0];
+          String lastName = temp[1];
+          BookingList bookings = modelManager.filterBookingByName(firstName,lastName);
+          for (int i = 0; i < bookings.size(); i++)
+          {
+            listView.getItems().add(bookings.getBooking(i));
+          }
+        }
+        catch (IndexOutOfBoundsException exception) {
+          Alert alert = new Alert(Alert.AlertType.WARNING,
+              "Name was not found. Please try again.");
+          alert.setTitle("Invalid name detected");
+          alert.setHeaderText(null);
+          alert.showAndWait();
+        }
+
+
+
       }
+
+
+
+
     }
 
     else if(e.getSource() == buttonShowAll) {

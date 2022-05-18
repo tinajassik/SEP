@@ -61,7 +61,7 @@ public class Booking implements Serializable
    else status = "NOT Checked In";
 
   return "Guest: " + getBookingGuest().getFirstName() + " " + getBookingGuest().getLastName() +
-        "\n"  + getBookedRoom() + "\n" + getDateInterval() + "\n" + "Status: " + status;
+        "\n"  + getBookedRoom() + "\n" + getDateInterval() + "\n" + "Status: " + status +"\n";
   }
 
   //equals() method for checking if obj is the same object as Booking

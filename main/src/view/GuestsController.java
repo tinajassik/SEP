@@ -5,10 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
-import model.BookingList;
-import model.BookingModelManager;
-import model.GuestList;
-import model.RoomList;
+import model.*;
 
 public class GuestsController
 {
@@ -26,7 +23,8 @@ public class GuestsController
   @FXML private TextArea text;
   @FXML private Button searchButton;
 
-  public void init(ViewHandler viewHandler, BookingModelManager modelManager, Region root)
+  public void init(ViewHandler viewHandler, BookingModelManager modelManager,
+      Region root)
   {
     this.modelManager = modelManager;
     this.root = root;
@@ -34,7 +32,8 @@ public class GuestsController
     reset();
   }
 
-  public void reset() {
+  public void reset()
+  {
     updateGuests();
   }
 
@@ -45,7 +44,8 @@ public class GuestsController
 
   public void handleActions(ActionEvent e)
   {
-    if (e.getSource() == buttonBack) {
+    if (e.getSource() == buttonBack)
+    {
       viewHandler.openView("MainView");
       text.clear();
       textArea1.clear();
@@ -58,22 +58,23 @@ public class GuestsController
   }
 
   // maybe idk yet if it works
-  public void updateGuests() {
+  public void updateGuests()
+  {
     guestsListView.getItems().clear();
 
     GuestList guests = modelManager.getAllGuests();
     for (int i = 0; i < guests.size(); i++)
     {
-      guestsListView.getItems().add(guests.getGuest(i).getFirstName() + " " + guests.getGuest(i).getLastName()) ;
+      guestsListView.getItems().add(
+          guests.getGuest(i).getFirstName() + " " + guests.getGuest(i).getLastName());
 
     }
   }
 
   public void searchGuest(ActionEvent e)
   {
-
     BookingList bookings = modelManager.getAllBookings();
-    GuestList guests = modelManager.getAllGuests();
+    GuestList guests = modelManager.getAllGuests(); String s = "";
     if (e.getSource() == searchButton)
     {
       String firstName = textField1.getText();
@@ -81,26 +82,43 @@ public class GuestsController
 
       for (int i = 0; i < guests.size(); i++)
       {
-        if (guests.getGuest(i).getFirstName().equals(firstName)&&guests.getGuest(i).getLastName().equals(lastName))
+        if (guests.getGuest(i).getFirstName().equals(firstName) && guests.getGuest(i).getLastName().equals(lastName))
         {
           textArea1.setText(guests.getGuest(i).toString() + " \n");
-
-          for (int j = 0; j < bookings.getBookingsByFullName(firstName, lastName).size(); j++)
-          {
-            textArea2.setText(bookings.getBookingsByFullName(firstName, lastName).toString());
-          }
         }
       }
+
+      BookingList bookingList = new BookingList();
+      for (int j = 0; j < bookings.getBookingsByFullName(firstName, lastName).size(); j++)
+      {
+        System.out.println("1");
+        bookingList.addBooking(
+            (Booking) bookings.getBookingsByFullName(firstName, lastName).get(j));
+      }
+      s = "";
+      for (int a = 0; a < bookingList.size(); a++)
+      {
+        System.out.println("2");
+        s += "Booking number: " + (a + 1) + "\n";
+        s += bookings.getBooking(a) + "\n";
+      }
+
+      System.out.println(s);
     }
-  }
+   textArea2.setText(s);
+}
     public void seeMoreInfo()
     {
       GuestList guests = modelManager.getAllGuests();
+      String guest = (String) guestsListView.getSelectionModel().getSelectedItem();
       for (int i = 0; i < guests.size(); i++)
       {
-        text.setText(guests.getGuest(
-            (Integer) guestsListView.getSelectionModel().getSelectedIndices().get(i)).toString());
+        String s =guests.getGuest(i).getFirstName() + " " + guests.getGuest(i).getLastName();
+        if(s.equals(guestsListView.getSelectionModel().getSelectedItem()))
+          text.setText(guests.getGuest(i).toString());
       }
+
+
     }
 
 

@@ -1,13 +1,19 @@
 package view;
 
+import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 
+import javafx.stage.Stage;
+import javafx.util.Duration;
 import model.*;
 
 import java.io.IOException;
@@ -109,8 +115,6 @@ public class CreateBookingController
     ArrayList<Object> allData = new ArrayList<>();
 
 
-
-
     if (e.getSource() == buttonSave && !(isFieldEmpty()))
     {
 
@@ -140,8 +144,7 @@ public class CreateBookingController
       Room roomToBeBooked = new Room(roomNumber);
 
       DateInterval datesToBeBooked = new DateInterval(arrivalDate,departureDate);
-      GuestList trial=  modelManager.getAllGuests();
-      trial.addGuest(newGuest);
+
 
       Booking newBooking = new Booking(guests, roomToBeBooked, datesToBeBooked);
       BookingList bookingList = modelManager.getAllBookings();
@@ -177,7 +180,6 @@ public class CreateBookingController
       {
 
         bookingList.addBooking(newBooking);
-        allData.add(trial);
         allData.add(modelManager.getAllRooms());
         allData.add(bookingList);
         modelManager.updateAllData(allData);
@@ -197,6 +199,24 @@ public class CreateBookingController
             ((RadioButton) main.getChildren().get(i)).setSelected(false);
           }
         }
+
+        Parent root;
+        try {
+          root = FXMLLoader.load(getClass().getClassLoader().getResource("view/bookingsaved.fxml"));
+          Stage stage = new Stage();
+          stage.setTitle("BOOKING CREATED!!!!");
+          stage.setScene(new Scene(root));
+          stage.show();
+          PauseTransition delay = new PauseTransition(Duration.seconds(1));
+          delay.setOnFinished( event -> stage.close() );
+          delay.play();
+
+
+        }
+        catch (IOException exception) {
+          exception.printStackTrace();
+        }
+
 
       }}
 

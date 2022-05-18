@@ -1,6 +1,11 @@
 package model;
 import java.io.Serializable;
 
+/**
+ * A class containing information about a Date object
+ * @author Kevin Kluka
+ * @version 1.3
+ */
 public class Date implements Serializable
 {
   //CREATING FIELDS/ATTRIBUTES FOR CLASS Date
@@ -9,6 +14,13 @@ public class Date implements Serializable
   private int year;
 
   //3 ARGUMENTS CONSTRUCTOR
+
+  /**
+   * 3- argument constructor initializing the Date object
+   * @param day
+   * @param month
+   * @param year
+   */
   public Date(int day, int month, int year)
   {
     this.day = day;
@@ -16,17 +28,27 @@ public class Date implements Serializable
     this.year = year;
   }
 
-  //SETTER FOR DAY
+  /**
+   * Sets the value of the day variable
+   * @param day the day value that should be set
+   */
   public void setDay(int day)
   {
     this.day = day;
   }
-
+  /**
+   * Sets the value of the month variable
+   * @param month the month value that should be set
+   */
   //SETTER FOR MONTH
   public void setMonth(int month)
   {
     this.month = month;
   }
+  /**
+   * Sets the value of the year variable
+   * @param year the year value that should be set
+   */
 
   //SETTER FOR YEAR
   public void setYear(int year)
@@ -34,11 +56,20 @@ public class Date implements Serializable
     this.year = year;
   }
 
+  /**
+   * @return the value of the day variable
+   */
+
   //GETTER FOR DAY
   public int getDay()
   {
     return day;
   }
+
+  /**
+   *
+   * @return the value of the month variable
+   */
 
   //GETTER FOR MONTH
   public int getMonth()
@@ -46,11 +77,20 @@ public class Date implements Serializable
     return month;
   }
 
+  /**
+   * @return the value of the year variable
+   */
+
   //GETTER FOR YEAR
   public int getYear()
   {
     return year;
   }
+
+  /**
+   * Creates a String containing all information about a Date object
+   * @return
+   */
 
   //TO STRING METHOD INCLUDING IDENTIFICATION TEXT FOR EACH FIELD
   public String toString()
@@ -62,11 +102,22 @@ public class Date implements Serializable
     return "Error: Not a valid date!";
   }
 
+  /**
+   * Creates a copy of a Date object
+   * @return Date object with the same values
+   */
+
   //COPY METHOD FOR MAINLY COMPOSITION
   public Date copy()
   {
     return new Date(day, month, year);
   }
+
+  /**
+   * Compares a Date object to another object and determines whether they are same type and if their values are equal
+   * @param obj the object that is compared to a Date object
+   * @return true or false statement depending on the outcome of the comparison of the two objects
+   */
 
   //EQUALS METHOD COMPARING ELEMENTS OF ATTRIBUTES
   public boolean equals(Object obj)
@@ -84,6 +135,11 @@ public class Date implements Serializable
     //RETURN FALSE IF obj DOES NOT HAVE SAME ATTRIBUTES VALUES AS OTHER
     return false;
   }
+
+  /**
+   * Checks if a given year is a leap year
+   * @return true or false statement telling whether it is a leap year or not
+   */
 
   //CHECKING IF GIVEN YEAR IS A LEAP YEAR
   public boolean isLeapYear()
@@ -135,6 +191,10 @@ public class Date implements Serializable
     }
   }
 
+  /**
+   * Checks if
+   * @return
+   */
   //CHECKING IF WRITTEN DATE IS CORRECT POSSIBLY EXISTING DATE
   public boolean dateCheck()
   {

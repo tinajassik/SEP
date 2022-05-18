@@ -70,7 +70,7 @@
                         <Image url="@../img/mainview/checkout.png" />
                      </image>
                   </ImageView>
-                  <Button fx:id="buttonCheckOut" mnemonicParsing="false" text="Check-Out">
+                  <Button fx:id="buttonCheckOut" mnemonicParsing="false" onAction="#handleActions" text="Check-Out">
                      <font>
                         <Font name="Britannic Bold" size="13.0" />
                      </font>

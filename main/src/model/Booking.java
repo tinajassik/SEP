@@ -2,6 +2,12 @@ package model;
 import java.util.ArrayList;
 import java.io.Serializable;
 
+/**
+ * A class containing all information about a Booking object
+ * @author Andreea Asimine Aleksandra Adamczak
+ * @version 1.2
+ */
+
 public class Booking implements Serializable
 {
   //creating fields/attributes for class Booking
@@ -12,7 +18,11 @@ public class Booking implements Serializable
   private boolean lateCheckIn = false;
   private boolean extraBed = false;
 
-  //3 arguments constructor
+  /** 3 arguments constructor
+   * @param guests the guest list for a particular room
+   * @param room the booked room
+   * @param dates the dates of arrival and departure
+   */
   public Booking(GuestList guests, Room room, DateInterval dates)
   {
     this.guests=guests;
@@ -20,16 +30,22 @@ public class Booking implements Serializable
     this.dates=dates;
   }
 
-  //getBookingGuest() method that returns the first person from the ArrayList(the person that made the booking)
+  /**
+   * @return the first person from the ArrayList(the person that made the booking)
+   */
   public Guest getBookingGuest()
   {
     return guests.getFirstGuest();
   }
 
-  //getGuestList() method that returns the list of guests for a specific room
+  /**
+   * @return method that returns the list of guests for a specific room
+   */
   public GuestList getGuests(){ return guests;}
 
-  //getDateInterval() method that returns the date interval of the booking
+  /**
+   * @return method that returns the date interval of the booking
+   */
   public DateInterval getDateInterval()
   {
     return dates;
@@ -38,26 +54,37 @@ public class Booking implements Serializable
   public void addExtraBed() {
     extraBed = true;
   }
-  //getBookedRoom() method that returns the booked room
+  /**
+   * @return method that returns the booked room
+   */
   public Room getBookedRoom()
   {
     return room;
   }
 
-  //isCheckIn() method returns if the guestes have checked in
+  /**
+   * @return method returns if the guests have checked in
+   */
   public boolean isCheckIn(){return this.checkIn;}
 
-  //isLateCheckIn method returns if the guests will check in after 6 p.m.
+  /**
+   * @return method returns if the guests will check in after 6 p.m.
+   */
   public boolean isLateCheckIn(){return this.lateCheckIn;}
 
-  //checkedIn method is run when the guest checks in
+  /**
+   * method is run when the guest checks in
+   */
   public void checkedIn(){this.checkIn = true;}
 
-  //willCheckInLate() method is run when the guest lets the hotel know that they will arrive after  6 p.m.
+  /**
+   * method is run when the guest lets the hotel know that they will arrive after  6 p.m.
+   */
   public void willCheckInLate(){this.lateCheckIn = true;}
 
-
-  //toString() method used to convert string objects into a string
+  /**
+   * @return method used to convert string objects into a string
+   */
   public String toString()
   {
    String status ="";
@@ -65,10 +92,13 @@ public class Booking implements Serializable
    else status = "NOT Checked In";
 
   return "Guest: " + getBookingGuest().getFirstName() + " " + getBookingGuest().getLastName() +
-        "\n"  + getBookedRoom() + "\n" + getDateInterval() + "\n" + "Status: " + status;
+        "\n"  + getBookedRoom() + "\n" + getDateInterval() + "\n" + "Status: " + status +"\n";
   }
 
-  //equals() method for checking if obj is the same object as Booking
+  /**
+   * @param obj the object that is being compared
+   * @return method returns if the compared objects are the bookings containing same information
+   */
   public boolean equals(Object obj)
   {
     if (!(obj instanceof Booking)) //check if obj is the same type

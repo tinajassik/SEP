@@ -55,7 +55,7 @@ public class GuestList implements Serializable
     String s="";
     for (int i = 0; i < guests.size(); i++)
     {
-      s+= "Guest: " + guests.get(i) + "/n";
+      s+= "Guest: " + guests.get(i) + "\n";
     }
     return s;
   }

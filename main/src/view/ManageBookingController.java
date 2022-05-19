@@ -3,6 +3,7 @@ package view;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
@@ -35,7 +36,7 @@ public class ManageBookingController
     reset();
   }
 
-  public void getSelectedBooking() {
+  public Booking getSelectedBooking() {
     Booking selectedBooking = (Booking) listView.getSelectionModel().getSelectedItem();
     try {
       fileHandler.writeToBinaryFile("selectedBooking.bin",selectedBooking);
@@ -43,6 +44,7 @@ public class ManageBookingController
     catch (IOException e) {
       e.printStackTrace();
     }
+    return selectedBooking;
   }
 
   public void reset() {
@@ -69,7 +71,16 @@ public class ManageBookingController
 
     if (e.getSource() == buttonCheckOut)
     {
-      viewHandler.openView("CheckOut");
+      if(!(getSelectedBooking().isCheckIn()))
+      {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setContentText("The guest you want to check out has not checked in");
+        alert.showAndWait();
+      }
+      else
+      {
+        viewHandler.openView("CheckOut");
+      }
     }
 
 //    else if (e.getSource() == listView.getSelectionModel()) {

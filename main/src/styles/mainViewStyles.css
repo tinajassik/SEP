@@ -1,0 +1,17 @@
+.windowMenu {
+    -fx-background-color:  #F8F5E0;
+}
+
+.button {
+    -fx-background-color:  #F8F5E0;
+}
+
+.tabs {
+    -fx-font-size: 15px;
+    -fx-background-color: #AA8F66;
+    -fx-alignment: center;
+    -fx-font-style: #000000;
+    -fx-font-family: "Britannic Bold";
+}
+
+

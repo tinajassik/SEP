@@ -85,13 +85,13 @@ public class GuestsController
         {
           textArea1.setText(guests.getGuest(i).toString() + " \n");
         }
-//        else {
-//          Alert alert = new Alert(Alert.AlertType.WARNING,
-//              "Guest not found.");
-//         alert.setTitle("Missing guest");
-//         alert.setHeaderText(null);
-//         alert.showAndWait();
-//        }
+        else {
+          Alert alert = new Alert(Alert.AlertType.WARNING,
+              "Guest not found.");
+         alert.setTitle("Missing guest");
+         alert.setHeaderText(null);
+         alert.showAndWait();
+        }
       }
 
       BookingList bookingList = new BookingList();

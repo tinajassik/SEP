@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="610.0" prefWidth="684.0" stylesheets="@../styles/mainViewStyles.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.MainViewController">
+<VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="498.0" prefWidth="711.0" stylesheets="@../styles/mainViewStyles.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.MainViewController">
    <children>
       <FlowPane prefHeight="79.0" prefWidth="568.0" styleClass="header" stylesheets="@../styles/styles.css">
          <children>
@@ -25,11 +25,11 @@
             </ImageView>
          </children>
       </FlowPane>
-      <HBox prefHeight="501.0" prefWidth="684.0" stylesheets="@../styles/mainViewStyles.css">
+      <HBox prefHeight="320.0" prefWidth="685.0" stylesheets="@../styles/mainViewStyles.css">
          <children>
-            <FlowPane alignment="CENTER" prefHeight="504.0" prefWidth="470.0" styleClass="windowMenu" stylesheets="@../styles/mainViewStyles.css">
+            <FlowPane alignment="CENTER" prefHeight="501.0" prefWidth="465.0" styleClass="windowMenu" stylesheets="@../styles/mainViewStyles.css">
                <children>
-                  <VBox alignment="CENTER" prefHeight="151.0" prefWidth="209.0">
+                  <VBox alignment="CENTER" prefHeight="93.0" prefWidth="209.0">
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>
@@ -37,7 +37,7 @@
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </padding>
                      <FlowPane.margin>
-                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </FlowPane.margin>
                      <children>
                         <Button fx:id="buttonNewBooking" mnemonicParsing="false" onAction="#handleActions" stylesheets="@../styles/mainViewStyles.css" text="New Booking">
@@ -45,7 +45,7 @@
                               <Font name="Britannic Bold" size="13.0" />
                            </font>
                            <graphic>
-                              <ImageView fitHeight="80.0" fitWidth="91.0">
+                              <ImageView fitHeight="93.0" fitWidth="95.0">
                                  <image>
                                     <Image url="@../img/mainview/createbooking-removebg-preview.png" />
                                  </image>
@@ -54,7 +54,7 @@
                         </Button>
                      </children>
                   </VBox>
-                  <VBox alignment="CENTER" prefHeight="3.0" prefWidth="220.0">
+                  <VBox alignment="CENTER" prefHeight="100.0" prefWidth="225.0">
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>
@@ -62,10 +62,10 @@
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </padding>
                      <FlowPane.margin>
-                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </FlowPane.margin>
                      <children>
-                        <Button fx:id="buttonManageBooking" alignment="CENTER" mnemonicParsing="false" onAction="#handleActions" prefHeight="79.0" prefWidth="191.0" text="Manage Bookings">
+                        <Button fx:id="buttonManageBooking" alignment="CENTER" mnemonicParsing="false" onAction="#handleActions" prefHeight="86.0" prefWidth="263.0" text="Manage Bookings">
                            <font>
                               <Font name="Britannic Bold" size="13.0" />
                            </font>
@@ -73,10 +73,10 @@
                               <Insets />
                            </opaqueInsets>
                            <VBox.margin>
-                              <Insets top="3.0" />
+                              <Insets />
                            </VBox.margin>
                            <graphic>
-                              <ImageView fitHeight="71.0" fitWidth="60.0">
+                              <ImageView fitHeight="78.0" fitWidth="67.0">
                                  <image>
                                     <Image url="@../img/mainview/search-magnifying-glass-icon-search-icon-gray-transparent-png-917227-removebg-preview.png" />
                                  </image>
@@ -93,7 +93,7 @@
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </padding>
                      <FlowPane.margin>
-                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </FlowPane.margin>
                      <children>
                         <Button fx:id="buttonGuests" mnemonicParsing="false" onAction="#handleActions" prefHeight="124.0" prefWidth="179.0" text="Guests">
@@ -118,7 +118,7 @@
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </padding>
                      <FlowPane.margin>
-                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </FlowPane.margin>
                      <children>
                         <Button fx:id="buttonRooms" mnemonicParsing="false" onAction="#handleActions" text="Rooms">
@@ -146,7 +146,7 @@
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <TextArea fx:id="textAreaArrivals" editable="false" prefHeight="473.0" prefWidth="245.0" styleClass="text-area" stylesheets="@../styles/mainViewStyles.css" />
+                              <TextArea fx:id="textAreaArrivals" editable="false" prefHeight="473.0" prefWidth="231.0" stylesheets="@../styles/mainViewStyles.css" />
                            </children>
                         </AnchorPane>
                   </content>
@@ -155,7 +155,7 @@
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <TextArea fx:id="textAreaDepartures" editable="false" prefHeight="466.0" prefWidth="245.0" />
+                              <TextArea fx:id="textAreaDepartures" editable="false" layoutX="7.0" layoutY="8.0" prefHeight="351.0" prefWidth="231.0" />
                            </children>
                         </AnchorPane>
                   </content>
@@ -164,7 +164,7 @@
             </TabPane>
          </children>
       </HBox>
-      <FlowPane alignment="BOTTOM_RIGHT" prefHeight="29.0" prefWidth="684.0" styleClass="header" stylesheets="@../styles/styles.css">
+      <FlowPane alignment="BOTTOM_RIGHT" prefHeight="41.0" prefWidth="685.0" styleClass="header" stylesheets="@../styles/styles.css">
          <children>
             <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="\@SpicyBytes">
                <font>

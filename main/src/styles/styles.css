@@ -1,3 +1,28 @@
 .header {
     -fx-background-color: #AA8F66;
 }
+
+.footer {
+    -fx-background-color: #AA8F66;
+}
+
+.background {
+    -fx-background-color: #F8F5E0;
+}
+
+.button{
+    -fx-background-color: #AA8F66;
+    -fx-font-weight: bold;
+}
+.button:hover{
+    -fx-background-color: #B79F7B;
+}
+
+.button-back{
+    -fx-background-color: #F8F5E0;
+    -fx-font-weight: bold;
+}
+
+.button-back:hover{
+    -fx-background-color: #F6F5F4;
+}

@@ -96,6 +96,7 @@ public class CheckInController
 
 
       if(e.getSource() == buttonCheckInGuest) {
+
         String firstName = firstNameField.getText();
         String lastname = lastNameField.getText();
         String nationality = nationalityField.getText();
@@ -123,6 +124,9 @@ public class CheckInController
 
        // change the status of the booking after completing the checkIn of all guests
        Booking updated = allBookings.getBooking(booking);
+
+//       allBookings.getBooking(booking).checkedIn();
+
        updated.checkedIn();
        allBookings.deleteBooking(booking);
        allBookings.addBooking(updated);

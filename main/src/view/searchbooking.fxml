@@ -35,8 +35,9 @@
          <children>
             <VBox alignment="CENTER" prefHeight="256.0" prefWidth="329.0" spacing="10.0">
                <children>
-                  <TextField prefHeight="25.0" prefWidth="457.0" promptText="Type First and Last Name" />
-                  <Button fx:id="buttonSearch" mnemonicParsing="false" prefHeight="25.0" prefWidth="84.0" text="Search" />
+                  <TextField fx:id="fieldName" prefHeight="25.0" prefWidth="457.0" promptText="Type First and Last Name" />
+                  <Button fx:id="buttonSearch" mnemonicParsing="false" onAction="#handleActions" prefHeight="25.0" prefWidth="84.0" text="Search" />
+                  <Button fx:id="buttonShowAll" mnemonicParsing="false" onAction="#handleActions" prefHeight="25.0" prefWidth="84.0" text="Show All" />
                </children>
                <HBox.margin>
                   <Insets />
@@ -79,7 +80,7 @@
                         <Image url="@../img/mainview/cancelbooking.png" />
                      </image>
                   </ImageView>
-                  <Button fx:id="buttonEditBooking" mnemonicParsing="false" text="Edit Booking">
+                  <Button fx:id="buttonEditBooking" mnemonicParsing="false" onAction="#handleActions" text="Edit Booking">
                      <font>
                         <Font name="Britannic Bold" size="13.0" />
                      </font>

@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
 import model.Booking;
 import model.BookingList;
@@ -24,6 +25,10 @@ public class ManageBookingController
   @FXML private Button buttonBack;
   @FXML private ListView listView;
   @FXML private Button buttonCheckIn;
+  @FXML private Button buttonSearch;
+  @FXML private Button buttonShowAll;
+  @FXML private TextField fieldName;
+  @FXML private Button buttonEditBooking;
   @FXML private Button buttonCheckOut;
   @FXML private Button buttonManageBooking;
 
@@ -36,7 +41,7 @@ public class ManageBookingController
     reset();
   }
 
-  public Booking getSelectedBooking() {
+  public void getSelectedBooking() {
     Booking selectedBooking = (Booking) listView.getSelectionModel().getSelectedItem();
     try {
       fileHandler.writeToBinaryFile("selectedBooking.bin",selectedBooking);
@@ -44,7 +49,6 @@ public class ManageBookingController
     catch (IOException e) {
       e.printStackTrace();
     }
-    return selectedBooking;
   }
 
   public void reset() {
@@ -66,29 +70,71 @@ public class ManageBookingController
 
     else if (e.getSource() == buttonCheckIn)
     {
-      viewHandler.openView("CheckIn");
-    }
-
-    if (e.getSource() == buttonCheckOut)
-    {
-      if(!(getSelectedBooking().isCheckIn()))
+      if (listView.getSelectionModel().isEmpty())
       {
-        Alert alert = new Alert(Alert.AlertType.WARNING);
-        alert.setContentText("The guest you want to check out has not checked in");
+        Alert alert = new Alert(Alert.AlertType.WARNING,
+            "You have not selected any booking.");
+        alert.setTitle("Missing information");
+        alert.setHeaderText(null);
         alert.showAndWait();
       }
+
       else
+        viewHandler.openView("CheckIn");
+    }
+
+    else if (e.getSource() == buttonSearch)
+    {
+      String fullName = fieldName.getText();
+      if (!(fullName.equals("")))
       {
-        viewHandler.openView("CheckOut");
+        listView.getItems().clear();
+        String[] temp = fullName.split(" ");
+
+        // in case the receptionist inputs only one string, index out of bounds will occur, therefore:
+        try
+        {
+          String firstName = temp[0];
+          String lastName = temp[1];
+          BookingList bookings = modelManager.filterBookingByName(firstName,
+              lastName);
+          for (int i = 0; i < bookings.size(); i++)
+          {
+            listView.getItems().add(bookings.getBooking(i));
+          }
+        }
+        catch (IndexOutOfBoundsException exception)
+        {
+          Alert alert = new Alert(Alert.AlertType.WARNING,
+              "Name was not found. Please try again.");
+          alert.setTitle("Invalid name detected");
+          alert.setHeaderText(null);
+          alert.showAndWait();
+        }
       }
     }
 
-//    else if (e.getSource() == listView.getSelectionModel()) {
-//      getSelectedBooking();
-//    }
+    else if (e.getSource() == buttonShowAll)
+    {
+      fieldName.clear();
+      updateBookings();
+    }
+    else if (e.getSource() == buttonEditBooking)
+    {
+      if (listView.getSelectionModel().isEmpty())
+      {
+        Alert alert = new Alert(Alert.AlertType.WARNING,
+            "You have not selected any booking.");
+        alert.setTitle("Missing information");
+        alert.setHeaderText(null);
+        alert.showAndWait();
+      }
 
+      else
+        viewHandler.openView("EditBooking");
+
+    }
   }
-
   // maybe idk yet if it works
   public void updateBookings() {
     listView.getItems().clear();
@@ -97,9 +143,7 @@ public class ManageBookingController
     {
       listView.getItems().add(bookings.getBooking(i));
     }
-
   }
-
 }
 
 

@@ -19,6 +19,7 @@ public class ViewHandler
   private RoomsController roomsController;
   private GuestsController guestsController;
   private CheckOutController checkOutController;
+  private EditBookingController editBookingController;
 
   private BookingModelManager modelManager;
 
@@ -59,6 +60,9 @@ public class ViewHandler
         break;
       case "CheckOut":
         root = loadViewCheckOut();
+        break;
+      case "EditBooking":
+        root = loadViewEditBooking();
         break;
     }
     scene.setRoot(root);
@@ -250,6 +254,32 @@ public class ViewHandler
 
     return guestsController.getRoot();
   }
+
+  private Region loadViewEditBooking()
+  {
+    if(editBookingController == null)
+    {
+      try
+      {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("editbooking.fxml"));
+        Region root = loader.load();
+        editBookingController = loader.getController();
+        editBookingController.init(this, modelManager, root);
+      }
+      catch (IOException e)
+      {
+        e.printStackTrace();
+      }
+    }
+    else
+    {
+      editBookingController.reset();
+    }
+
+    return editBookingController.getRoot();
+  }
+
 
 
 

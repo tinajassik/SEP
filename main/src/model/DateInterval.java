@@ -1,4 +1,6 @@
 package model;
+import javafx.scene.control.DatePicker;
+
 import java.io.Serializable;
 
 public class DateInterval implements Serializable
@@ -7,23 +9,9 @@ public class DateInterval implements Serializable
   private Date arrivalDate;
   private Date departureDate;
 
-  //2 ARGUMENTS CONSTRUCTOR
-  public DateInterval(Date arrivalDate, Date departureDate)
-  {
-    this.arrivalDate = arrivalDate.copy();
-    this.departureDate = departureDate.copy();
-  }
-
-  //SETTER FOR ARRIVAL DATE
-  public void setArrivalDate(Date arrivalDate)
-  {
-    this.arrivalDate = arrivalDate.copy();
-  }
-
-  //SETTER FOR DEPARTURE DATE
-  public void setDepartureDate(Date departureDate)
-  {
-    this.departureDate = departureDate.copy();
+  public DateInterval(Date arrivalDate, Date departureDate) {
+    this.arrivalDate =arrivalDate;
+    this.departureDate = departureDate;
   }
 
   //GETTER FOR ARRIVAL DATE

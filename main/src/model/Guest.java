@@ -1,4 +1,6 @@
 package model;
+import javafx.scene.control.DatePicker;
+
 import java.io.Serializable;
 
 public class Guest implements Serializable

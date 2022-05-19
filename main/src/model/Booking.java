@@ -111,4 +111,6 @@ public class Booking implements Serializable
     return guests.equals(other.guests) && room.equals(other.room)
         && dates.equals(other.dates);
   }
+
+//  test
 }

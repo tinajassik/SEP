@@ -17,7 +17,7 @@
    <children>
       <FlowPane prefHeight="0.0" prefWidth="573.0" styleClass="header" stylesheets="@../styles/styles.css">
          <children>
-            <ImageView fitHeight="85.0" fitWidth="85.0">
+            <ImageView fitHeight="80.0" fitWidth="100.0">
                <image>
                   <Image url="@../img/mainview/logo-overlook-hotel.png" />
                </image>

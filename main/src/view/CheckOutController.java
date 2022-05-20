@@ -7,6 +7,8 @@ import javafx.scene.layout.Region;
 import javafx.scene.text.Text;
 import model.*;
 import utilis.MyFileHandler;
+import view.ViewHandler;
+
 import java.time.LocalDate;
 
 import java.io.IOException;

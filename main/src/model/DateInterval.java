@@ -86,7 +86,8 @@ public class DateInterval implements Serializable
         || departureDate.copy().isBefore(other.arrivalDate.copy());
   }
 
-    public void setDepartureDate(Date date) {
-    departureDate = date;
-    }
+  public void setDepartureDate(Date date)
+  {
+    this.departureDate = date;
+  }
 }

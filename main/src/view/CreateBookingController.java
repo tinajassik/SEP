@@ -155,7 +155,7 @@ public class CreateBookingController
 
       RoomList availableRooms = modelManager.getAvailableRoomsForASpecificPeriod(
           datesToBeBooked);
-      boolean canBeBooked = false;
+      boolean canBeBooked = false; 
 
       for (int i = 0; i < availableRooms.size(); i++)
       {

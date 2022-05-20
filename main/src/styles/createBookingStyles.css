@@ -1,0 +1,6 @@
+.text-area-create-booking {
+    /*-fx-background-color: #463F3A; !*for some reason it just a border*!*/
+    /*-fx-text-fill: #463F3A;*/
+    -fx-font-family: "Britannic Bold";
+    -fx-font-size: 12px;
+}

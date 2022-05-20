@@ -14,9 +14,9 @@ public class Booking implements Serializable
   private GuestList guests;
   private Room room;
   private DateInterval dates;
-  private boolean checkIn = false;
-  private boolean lateCheckIn = false;
-  private boolean extraBed = false;
+  private boolean checkIn;
+  private boolean lateCheckIn;
+  private boolean extraBed;
 
   /** 3 arguments constructor
    * @param guests the guest list for a particular room
@@ -28,6 +28,9 @@ public class Booking implements Serializable
     this.guests=guests;
     this.room=room;
     this.dates=dates;
+    checkIn = false;
+    lateCheckIn = false;
+    extraBed = false;
   }
 
   /**
@@ -111,4 +114,5 @@ public class Booking implements Serializable
     return guests.equals(other.guests) && room.equals(other.room)
         && dates.equals(other.dates);
   }
+
 }

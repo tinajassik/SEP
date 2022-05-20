@@ -15,18 +15,20 @@ public class LoadInitialData
     ArrayList<Object> initialData= new ArrayList<>();
     RoomList allRooms = new RoomList();
     BookingList bookings = new BookingList();
-    GuestList guests = new GuestList();
-    Guest guest = new Guest("Kristina", "Jassova", "Sneznica Slovakia",
-        "0987654", "Slovak", new Date(7, 8, 2001));
-    guests.addGuest(guest);
-    DateInterval dates = new DateInterval(new Date(1, 1, 2023),
-        new Date(6, 1, 2023));
+
+    ArrayList<DateInterval> dates = new ArrayList<>();
+    ArrayList<GuestList> allGuests = new ArrayList<>();
+
 
     String[] roomsArray = null;
+    String[] guestsArray = null;
+    String[] dateIntervals = null;
 
     try
     {
       roomsArray = MyFileHandler.readArrayFromTextFile("main/rooms.txt");
+      guestsArray = MyFileHandler.readArrayFromTextFile("main/guests.txt");
+      dateIntervals = MyFileHandler.readArrayFromTextFile("main/dateintervals.txt");
 
       for (int i = 0; i < roomsArray.length; i++)
       {
@@ -38,21 +40,58 @@ public class LoadInitialData
 
         allRooms.addRoom(new Room(roomNumber, roomType, price));
       }
+
+      for (int i = 0; i < guestsArray.length; i++) {
+        String tempGuest = guestsArray[i];
+        String[] temp = tempGuest.split(",");
+
+        String firstName = temp[0];
+        String lastName = temp[1];
+        String address = temp[2];
+        String nationality = temp[3];
+        String phoneNumber = temp[4];
+        int day = Integer.parseInt(temp[5]);
+        int month = Integer.parseInt(temp[6]);
+        int year = Integer.parseInt(temp[7]);
+        Date birthday = new Date(day, month, year);
+        GuestList guests = new GuestList();
+        guests.addGuest(new Guest(firstName,lastName,address,nationality,phoneNumber,birthday));
+        allGuests.add(guests);
+
+      }
+
+      for (int i = 0; i < dateIntervals.length; i++)
+    {
+      String tempDates= dateIntervals[i];
+      String[] temp = tempDates.split(",");
+      int day1 = Integer.parseInt(temp[0]);
+      int month1 = Integer.parseInt(temp[1]);
+      int year1 = Integer.parseInt(temp[2]);
+      int day2 = Integer.parseInt(temp[3]);
+      int month2 = Integer.parseInt(temp[4]);
+      int year2 = Integer.parseInt(temp[5]);
+
+      Date arrivalDate = new Date(day1, month1, year1);
+      Date departureDate = new Date(day2, month2, year2);
+
+      dates.add(new DateInterval(arrivalDate,departureDate));
+    }
+
     }
     catch (FileNotFoundException e)
     {
       System.out.println("File was not found, or could not be opened");
     }
 
-    for (int i = 1; i < 10; i++)
-    {
-      bookings.addBooking(new Booking(guests, allRooms.getRoom(1),
-          new DateInterval(new Date(1, i, 2023), new Date(5, i, 2023))));
+
+
+    for (int i = 0; i < allGuests.size(); i++) {
+      if (i < dates.size())
+      bookings.addBooking(new Booking(allGuests.get(i),allRooms.getRoom(i),dates.get(i)));
     }
 
     initialData.add(allRooms);
     initialData.add(bookings);
-    initialData.add(guests);
 
 
     try

@@ -32,7 +32,16 @@ public class ViewHandler
   public void start(Stage window)
   {
     this.window = window;
+    window.setResizable(false);
     openView("MainView");
+    loadViewRooms();
+    loadViewEditBooking();
+    loadViewGuests();
+    loadViewMain();
+    loadViewSearchBooking();
+    loadViewCreateBooking();
+    loadViewCheckIn();
+
   }
 
   public void openView(String id)
@@ -278,6 +287,10 @@ public class ViewHandler
     }
 
     return editBookingController.getRoot();
+  }
+
+  public ManageBookingController getManageBookingController() {
+    return manageBookingController;
   }
 
 

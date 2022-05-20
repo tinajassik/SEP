@@ -33,6 +33,7 @@ public class Booking implements Serializable
     extraBed = false;
   }
 
+
   /**
    * @return the first person from the ArrayList(the person that made the booking)
    */
@@ -42,7 +43,7 @@ public class Booking implements Serializable
   }
 
   /**
-   * @return method that returns the list of guests for a specific room
+   * @return method that returns the list of guests.txt for a specific room
    */
   public GuestList getGuests(){ return guests;}
 
@@ -66,12 +67,12 @@ public class Booking implements Serializable
   }
 
   /**
-   * @return method returns if the guests have checked in
+   * @return method returns if the guests.txt have checked in
    */
   public boolean isCheckIn(){return this.checkIn;}
 
   /**
-   * @return method returns if the guests will check in after 6 p.m.
+   * @return method returns if the guests.txt will check in after 6 p.m.
    */
   public boolean isLateCheckIn(){return this.lateCheckIn;}
 

@@ -1,0 +1,27 @@
+Kristina,Jassova, Kosice 183, Slovakia, 50348392,7,8,2001
+Tina,Jassova, Sneznica 183, Slovakia, 50348392,7,8,2001
+Kristina,Jassik, Zilina 182, Slovakia, 50348392,7,8,2001
+Kristhina,Jassova, Zilina 181, Slovakia, 50348392,7,8,2001
+Tina,Jassik,Sneznica 183, Slovakia, 50348392,7,8,2001
+Allan,Henriksen, Aarhus 1234, Denmark, 50345231,13,12,1987
+Allan,Henriksen, Horsens 1234, Denmark, 50345231,7,12,1980
+Allan,Henriksen, Copenhagen 3342, Denmark, 50345231,11,12,1990
+Aleksandra,Adamczak, Poznan 14, Poland, 50436273,4,2,2000
+Aleksandra,Adamczak, Poznan 134, Poland, 50436273,4,2,1999
+Aleksandra,Adamak, Poznan 124, Poland, 50436273,5,2,2001
+Alexandra,Adamcak, Poznan 234, Poland, 50436273,2,2,2001
+Alexandra,Adamczak, Poznan 134, Poland, 50436273,7,2,2001
+Dragos,Cotaga, Somewhere 123, Moldowa, 56785432,7,9,2000
+Dragos,Cotagea, Somewhere 12, Moldowa, 56784432,7,9,2002
+Dragos,Cotagga, Somewhere 13, Moldowa, 563785132,7,8,2000
+Kevin,Klka, ZabudlaSom 111, Slovakia, 234325643,1,2,1997
+Kevin,Klika, ZabudlaSom 223, Slovakia, 234215653,1,2,1998
+Kevin,Kluka, ZabudlaSom 223, Slovakia, 23425653,1,2,1978
+Andreea,Asimine, CityIDK 1390, Romania, 4211234562,11,9,1999
+Andrea,Kubalova, CityIDK 1260, Romania, 4213124562,8,9,1999
+Andrejka,Asimine, CityIDK 190, Romania, 4211234562,12,7,2000
+Andreea,Asimine, City11 1290, Romania, 421334562,12,9,1976
+Andreea,Asimine, CityIDKwow 1190, Romania, 42133562,12,9,1954
+
+
+

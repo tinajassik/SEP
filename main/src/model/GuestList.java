@@ -43,13 +43,21 @@ public class GuestList implements Serializable
     return null;
   }
 
-  //getAllGuests() method that returns the ArrayList with all the guests
+  public void removeGuest(Guest guest) {
+    for (int i = 0; i < guests.size(); i++) {
+      if (guests.get(i).equals(guest)) {
+        guests.remove(guest);
+      }
+    }
+  }
+
+  //getAllGuests() method that returns the ArrayList with all the guests.txt
   public ArrayList getAllGuests()
   {
     return guests;
   }
 
-  //toString() method used to convert the ArrayList guests into a string
+  //toString() method used to convert the ArrayList guests.txt into a string
   public String toString()
   {
     String s="";

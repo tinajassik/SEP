@@ -52,6 +52,10 @@ public class ManageBookingController
     return  selectedBooking;
   }
 
+  public Booking getSelectedBookingNew() {
+    return (Booking) listView.getSelectionModel().getSelectedItem();
+  }
+
   public void reset() {
     updateBookings();
   }
@@ -120,6 +124,7 @@ public class ManageBookingController
       fieldName.clear();
       updateBookings();
     }
+
     else if (e.getSource() == buttonEditBooking)
     {
       if (listView.getSelectionModel().isEmpty())
@@ -130,7 +135,6 @@ public class ManageBookingController
         alert.setHeaderText(null);
         alert.showAndWait();
       }
-
       else
         viewHandler.openView("EditBooking");
 

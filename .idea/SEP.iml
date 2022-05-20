@@ -6,5 +6,7 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="XmlJsonParser-1.4" level="application" />
+    <orderEntry type="library" name="javafx-sdk-18.0" level="application" />
+    <orderEntry type="library" exported="" name="lib" level="project" />
   </component>
 </module>

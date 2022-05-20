@@ -41,7 +41,7 @@ public class ManageBookingController
     reset();
   }
 
-  public void getSelectedBooking() {
+  public Booking getSelectedBooking() {
     Booking selectedBooking = (Booking) listView.getSelectionModel().getSelectedItem();
     try {
       fileHandler.writeToBinaryFile("selectedBooking.bin",selectedBooking);
@@ -49,6 +49,7 @@ public class ManageBookingController
     catch (IOException e) {
       e.printStackTrace();
     }
+    return  selectedBooking;
   }
 
   public void reset() {
@@ -133,6 +134,20 @@ public class ManageBookingController
       else
         viewHandler.openView("EditBooking");
 
+    }
+    else if (e.getSource() == buttonCheckOut)
+    {
+      if (!(getSelectedBooking().isCheckIn()))
+      {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setContentText(
+                "The guest you want to check out has not checked in");
+        alert.showAndWait();
+      }
+      else
+      {
+        viewHandler.openView("CheckOut");
+      }
     }
   }
   // maybe idk yet if it works

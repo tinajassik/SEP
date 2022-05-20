@@ -59,8 +59,8 @@
             <TextField fx:id="discountText" onAction="#handleActions" promptText="Enter discount" GridPane.columnIndex="3" GridPane.rowIndex="2" />
             <Button fx:id="addFee" mnemonicParsing="false" onAction="#handleActions" text="Add a fee" GridPane.columnIndex="3" GridPane.rowIndex="3" />
             <TextField fx:id="fee" onAction="#handleActions" promptText="Enter the fee" GridPane.columnIndex="3" GridPane.rowIndex="4" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Room price: " GridPane.rowIndex="4" />
-            <Text fx:id="roomPrice" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-area" text="Room price: " GridPane.rowIndex="4" />
+            <Text fx:id="roomPrice" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-area" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="4" />
          </children>
          <VBox.margin>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

@@ -37,6 +37,7 @@
             <RowConstraints maxHeight="29.599981689453116" minHeight="10.0" prefHeight="18.39999999999999" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="50.400000000000006" minHeight="10.0" prefHeight="23.199987792968756" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="47.00001220703126" minHeight="10.0" prefHeight="17.60002441406249" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="47.00001220703126" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="61.5999755859375" minHeight="8.00000610351563" prefHeight="22.800012207031244" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
@@ -48,14 +49,18 @@
             <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-area" text="Name:" GridPane.rowIndex="1" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-area" text="Arrival date:" GridPane.rowIndex="2" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-area" text="Departure date:" GridPane.rowIndex="3" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-area" text="Price:" GridPane.rowIndex="4" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-area" text="Price:" GridPane.rowIndex="5" />
             <Text fx:id="fullName" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-area" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Text fx:id="arrivalDate" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-area" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <Text fx:id="departureDate" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-area" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <TextField fx:id="price" onAction="#handleActions" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <TextField fx:id="price" onAction="#handleActions" GridPane.columnIndex="1" GridPane.rowIndex="5" />
             <Button fx:id="normalPrice" mnemonicParsing="false" onAction="#handleActions" text="Regular price" GridPane.columnIndex="2" GridPane.rowIndex="1" />
             <Button fx:id="discountPrice" mnemonicParsing="false" onAction="#handleActions" prefHeight="26.0" prefWidth="140.0" text="Price with discount" GridPane.columnIndex="3" GridPane.rowIndex="1" />
             <TextField fx:id="discountText" onAction="#handleActions" promptText="Enter discount" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+            <Button fx:id="addFee" mnemonicParsing="false" onAction="#handleActions" text="Add a fee" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+            <TextField fx:id="fee" onAction="#handleActions" promptText="Enter the fee" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Room price: " GridPane.rowIndex="4" />
+            <Text fx:id="roomPrice" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="4" />
          </children>
          <VBox.margin>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

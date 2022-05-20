@@ -24,9 +24,12 @@ public class CheckOutController
   @FXML private Text fullName;
   @FXML private Text arrivalDate;
   @FXML private Text departureDate;
+  @FXML private Text roomPrice;
   @FXML private Button buttonBack;
   @FXML private Button normalPrice;
   @FXML private Button discountPrice;
+  @FXML private Button addFee;
+  @FXML private TextField fee;
   @FXML private TextField price;
   @FXML private TextField discountText;
   public void init(ViewHandler viewHandler, BookingModelManager modelManager, Region root)
@@ -73,6 +76,7 @@ public class CheckOutController
         allData.add(allGuests);
         modelManager.updateAllData(allData);
       }
+
       price.setText(modelManager.getPrice(booking).toString());
     }
 
@@ -94,6 +98,17 @@ public class CheckOutController
         modelManager.updateAllData(allData);
       }
       price.setText(modelManager.priceWithDiscount(booking,discount).toString());
+    }
+    if (e.getSource() == addFee)
+    {
+      double feeValue = Double.parseDouble(fee.getText());
+
+      if(!(price.getText().isEmpty()))
+      {
+        double priceDouble = Double.parseDouble(price.getText()) + feeValue;
+        price.setText(Double.toString(priceDouble));
+      }
+
     }
     }
 
@@ -118,6 +133,7 @@ public class CheckOutController
       fullName.setText(booking.getBookingGuest().getFirstName() + " " + booking.getBookingGuest().getLastName());
       arrivalDate.setText(booking.getDateInterval().getArrivalDate().toString());
       departureDate.setText(LocalDate.now().toString());
+      roomPrice.setText(Double.toString(booking.getBookedRoom().getPrice()));
     }
 
     return booking;

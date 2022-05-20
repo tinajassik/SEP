@@ -16,8 +16,8 @@ public class Date implements Serializable
   //3 ARGUMENTS CONSTRUCTOR
 
   /**
-   * 3- argument constructor initializing the Date object
-   * @param day
+   * Three- argument constructor.
+   * @param day the
    * @param month
    * @param year
    */
@@ -57,6 +57,7 @@ public class Date implements Serializable
   }
 
   /**
+   * Returns the value of the day variable
    * @return the value of the day variable
    */
 
@@ -67,7 +68,7 @@ public class Date implements Serializable
   }
 
   /**
-   *
+   * Returns the value of the month variable
    * @return the value of the month variable
    */
 
@@ -78,6 +79,7 @@ public class Date implements Serializable
   }
 
   /**
+   * Returns the value of the year variable
    * @return the value of the year variable
    */
 
@@ -147,6 +149,9 @@ public class Date implements Serializable
     return (year % 4 == 0 && year % 100 != 0) || year % 400 == 0;
   }
 
+  /**
+   * Changes the date to the next day's date
+   */
   //METHOD ADDING ONE DAY TO A DAY
   public void nextDay()
   {
@@ -192,8 +197,8 @@ public class Date implements Serializable
   }
 
   /**
-   * Checks if
-   * @return
+   * Checks if the date contains correct values
+   * @return true statement if the date is correct and false if it is not
    */
   //CHECKING IF WRITTEN DATE IS CORRECT POSSIBLY EXISTING DATE
   public boolean dateCheck()
@@ -235,6 +240,12 @@ public class Date implements Serializable
 
   //IF DATE IS AFTER OTHER DATE METHOD WILL RETURN TRUE
   //IF DAY IS BEFORE OR EQUAL METHOD WILL RETURN FALSE
+
+  /**
+   * Checks if a date is chronologically after another date
+   * @param other the date that is supposed to be chronologically first
+   * @return true statement if the date is chronologically after the date in the other parameter and a false statement if it is before
+   */
   public boolean isAfter(Date other)
   {
     if (!equals(other))
@@ -269,6 +280,11 @@ public class Date implements Serializable
 
   //IF DATE IS BEFORE OTHER DATE METHOD RETURN TRUE
   //IF DATE IS AFTER OR EQUAL TO OTHER DATE METHOD RETURN FALSE
+/**
+ * Checks if a date is chronologically before another date
+ * @param other the date that is supposed to be chronologically second
+ * @return true statement if the date is chronologically before the date in the other parameter and a false statement if it is after
+ * */
   public boolean isBefore(Date other)
   {
     return !isAfter(other) && !equals(other);

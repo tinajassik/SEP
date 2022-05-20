@@ -3,22 +3,37 @@ import javafx.scene.control.DatePicker;
 
 import java.io.Serializable;
 
+/**
+ * A class representing information about guest's first and last name, address phone number, nationality and birthday
+ * @author Andreea Asimine
+ * @version 1.1
+ */
 public class Guest implements Serializable
 {
   //creating fields/attributes for class Guest
   private String firstName;
   private String lastName;
-  private String adress;
+  private String address;
   private String phoneNumber;
   private String nationality;
   private Date birthday;
 
   //3 arguments constructor
-  public Guest(String firstName, String lastName, String adress, String phoneNumber, String nationality, Date birthday)
+
+  /**
+   * Three- argument constructor
+   * @param firstName the guest's first name
+   * @param lastName the guest's last name
+   * @param address the guest's address
+   * @param phoneNumber the guest's phone number
+   * @param nationality the guest's nationality
+   * @param birthday the guest's birthday
+   */
+  public Guest(String firstName, String lastName, String address, String phoneNumber, String nationality, Date birthday)
   {
     this.firstName=firstName;
     this.lastName=lastName;
-    this.adress=adress;
+    this.address=address;
     this.phoneNumber=phoneNumber;
     this.nationality=nationality;
     this.birthday=birthday.copy();
@@ -39,7 +54,7 @@ public class Guest implements Serializable
   //setter for adress
   public void setAdress(String adress)
   {
-    this.adress=adress;
+    this.address=adress;
   }
 
   //setter for phoneNumber
@@ -77,7 +92,7 @@ public class Guest implements Serializable
   //getter for adress
   public String getAdress()
   {
-    return adress;
+    return address;
   }
 
   //getter for phoneNumber
@@ -103,7 +118,7 @@ public class Guest implements Serializable
   {
     return "First name: " + firstName +
         "\n" + "Last name: " + lastName +
-        "\n" + "Adress: " + adress +
+        "\n" + "Adress: " + address +
         "\n" + "Phone number: " + phoneNumber +
         "\n" + "Nationality: " + nationality +
         "\n" + "Birthday: " + birthday;
@@ -121,7 +136,7 @@ public class Guest implements Serializable
     //check if the fields are the same
     return firstName.equals(other.firstName) &&
         lastName.equals(other.lastName) &&
-        adress.equals(other.adress) &&
+        address.equals(other.address) &&
         phoneNumber.equals(other.phoneNumber) &&
         nationality.equals(other.nationality) &&
         birthday.equals(other.birthday);

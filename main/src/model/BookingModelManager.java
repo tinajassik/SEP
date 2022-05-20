@@ -270,7 +270,7 @@ public class BookingModelManager implements Serializable
   }
 
   //Method that returns the price with the discount if the guest is not happy about the facilities of the hotel
-  public Double priceWithDiscount(Booking booking)
+  public Double priceWithDiscount(Booking booking, double discount)
   {
     BookingList allBookings = getAllBookings();
 
@@ -281,7 +281,7 @@ public class BookingModelManager implements Serializable
       if(allBookings.getBooking(i).equals(booking))
       {
         price = getPrice(booking);
-        price = price - (0.1*price);
+        price = price - ((discount/100)*price);
       }
     }
     return price;

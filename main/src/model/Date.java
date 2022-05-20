@@ -97,7 +97,7 @@ public class Date implements Serializable
   {
     if (dateCheck())
     {
-      return day + "/" + month + "/" + year;
+      return year + "-" + month + "-" + day ;
     }
     return "Error: Not a valid date!";
   }

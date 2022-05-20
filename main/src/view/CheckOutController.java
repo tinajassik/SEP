@@ -2,20 +2,17 @@ package view;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.Region;
-import model.Booking;
-import model.BookingModelManager;
-import model.Date;
+import javafx.scene.text.Text;
+import model.*;
 import utilis.MyFileHandler;
 import view.ViewHandler;
 
 import java.time.LocalDate;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class CheckOutController
 {
@@ -23,26 +20,26 @@ public class CheckOutController
   private Region root;
   private ViewHandler viewHandler;
   private MyFileHandler fileHandler;
-  ;
 
-  @FXML private TextField fullName;
-  @FXML private TextField arrivalDate;
-  @FXML private DatePicker departureDate;
+  @FXML private Text fullName;
+  @FXML private Text arrivalDate;
+  @FXML private Text departureDate;
   @FXML private Button buttonBack;
-  @FXML private Button buttonPrice;
+  @FXML private Button normalPrice;
+  @FXML private Button discountPrice;
   @FXML private TextField price;
-
+  @FXML private TextField discountText;
   public void init(ViewHandler viewHandler, BookingModelManager modelManager, Region root)
   {
     this.modelManager = modelManager;
     this.root = root;
     this.viewHandler = viewHandler;
-    reset();
     displayInitialInfo();
+
   }
 
   public void reset() {
-
+    displayInitialInfo();
   }
 
   public Region getRoot()
@@ -56,31 +53,50 @@ public class CheckOutController
     {
       viewHandler.openView("SearchBooking");
     }
-    if (e.getSource() == buttonPrice)
+    Booking booking = displayInitialInfo();
+    int day = booking.getDateInterval().getDepartureDate().getDay();
+    int month = booking.getDateInterval().getDepartureDate().getMonth();
+    int year = booking.getDateInterval().getDepartureDate().getYear();
+    if (e.getSource() == normalPrice)
     {
-
-      int day = departureDate.getValue().getDayOfMonth();
-      int month = departureDate.getValue().getMonthValue();
-      int year = departureDate.getValue().getYear();
-      Date departure = displayInitialInfo().getDateInterval().getDepartureDate();
-      Booking booking = displayInitialInfo();
-
-      booking.getBookedRoom().getPrice();
-      if(departure.getDay() == day && departure.getMonth() == month && departure.getYear() == year)
+      if(LocalDate.now().getDayOfMonth() != day || LocalDate.now().getMonthValue() != month || LocalDate.now().getYear() != year)
       {
-        price.setText(modelManager.getPrice(booking).toString());
-        System.out.println(modelManager.getPrice(booking).toString());
+        ArrayList<Object> allData = new ArrayList<>();
+        RoomList allRooms = modelManager.getAllRooms();
+        GuestList allGuests = modelManager.getAllGuests();
+        BookingList allBookings = modelManager.getAllBookings();
+        allBookings.deleteBooking(booking);
+        booking.getDateInterval().setDepartureDate(new Date(LocalDate.now().getDayOfMonth(),LocalDate.now().getMonthValue(),LocalDate.now().getYear()));
+        allBookings.addBooking(booking);
+        allData.add(allBookings);
+        allData.add(allRooms);
+        allData.add(allGuests);
+        modelManager.updateAllData(allData);
       }
-      else
-      {
-        booking.getDateInterval().getDepartureDate().setDay(day);
-        booking.getDateInterval().getDepartureDate().setMonth(month);
-        booking.getDateInterval().getDepartureDate().setYear(year);
-        price.setText(modelManager.getPrice(booking).toString());
-      }
+      price.setText(modelManager.getPrice(booking).toString());
     }
 
-  }
+    if (e.getSource() == discountPrice)
+    {
+      double discount = Double.parseDouble(discountText.getText());
+      if(LocalDate.now().getDayOfMonth() != day || LocalDate.now().getMonthValue() != month || LocalDate.now().getYear() != year)
+      {
+        ArrayList<Object> allData = new ArrayList<>();
+        RoomList allRooms = modelManager.getAllRooms();
+        GuestList allGuests = modelManager.getAllGuests();
+        BookingList allBookings = modelManager.getAllBookings();
+        allBookings.deleteBooking(booking);
+        booking.getDateInterval().setDepartureDate(new Date(LocalDate.now().getDayOfMonth(),LocalDate.now().getMonthValue(),LocalDate.now().getYear()));
+        allBookings.addBooking(booking);
+        allData.add(allBookings);
+        allData.add(allRooms);
+        allData.add(allGuests);
+        modelManager.updateAllData(allData);
+      }
+      price.setText(modelManager.priceWithDiscount(booking,discount).toString());
+    }
+    }
+
 
   public Booking displayInitialInfo() {
     Booking booking = null;
@@ -92,17 +108,19 @@ public class CheckOutController
     {
       e.printStackTrace();
     }
+
     catch (ClassNotFoundException e)
     {
       e.printStackTrace();
     }
     if (booking != null)
     {
-      fullName.setText(booking.getBookingGuest().getFirstName() + booking.getBookingGuest().getLastName());
+      fullName.setText(booking.getBookingGuest().getFirstName() + " " + booking.getBookingGuest().getLastName());
       arrivalDate.setText(booking.getDateInterval().getArrivalDate().toString());
-      departureDate.setValue(LocalDate.now());
+      departureDate.setText(LocalDate.now().toString());
     }
-     return booking;
+
+    return booking;
   }
 
 }

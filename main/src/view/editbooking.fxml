@@ -16,7 +16,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="427.0" prefWidth="573.0" styleClass="background" stylesheets="@../styles/styles.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.EditBookingController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="355.0" prefWidth="573.0" styleClass="background" stylesheets="@../styles/styles.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.EditBookingController">
    <children>
       <FlowPane prefHeight="73.0" prefWidth="573.0" styleClass="header" stylesheets="@../styles/styles.css">
          <children>
@@ -27,12 +27,12 @@
             </ImageView>
          </children>
       </FlowPane>
-      <GridPane fx:id="main" hgap="10.0" prefHeight="290.0" prefWidth="553.0" styleClass="background" stylesheets="@../styles/styles.css" vgap="10.0">
+      <GridPane fx:id="main" hgap="10.0" prefHeight="262.0" prefWidth="583.0" styleClass="background" stylesheets="@../styles/styles.css" vgap="10.0">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="279.33331298828125" minWidth="10.0" prefWidth="174.33334350585938" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="469.3333435058594" minWidth="0.0" prefWidth="125.66668701171872" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="469.3333435058594" minWidth="0.0" prefWidth="160.33331298828125" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="469.3333435058594" minWidth="10.0" prefWidth="111.66668701171875" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="469.3333435058594" minWidth="0.0" prefWidth="110.00001220703126" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="469.3333435058594" minWidth="10.0" prefWidth="134.79998779296875" />
          </columnConstraints>
          <rowConstraints>
             <RowConstraints />
@@ -156,6 +156,7 @@
                </GridPane.margin>
             </TextField>
             <Button fx:id="buttonSave" mnemonicParsing="false" onAction="#handleActions" onKeyPressed="#makeChanges" onMouseClicked="#makeChanges" text="Save" GridPane.rowIndex="8" />
+            <Button fx:id="removeBooking" mnemonicParsing="false" onAction="#deleteeBooking" prefHeight="26.0" prefWidth="125.0" text="Cancel booking" GridPane.columnIndex="3" GridPane.rowIndex="8" />
          </children>
          <VBox.margin>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -164,7 +165,7 @@
             <Insets bottom="3.0" left="3.0" right="3.0" />
          </padding>
       </GridPane>
-      <FlowPane alignment="BOTTOM_RIGHT" prefHeight="46.0" prefWidth="573.0" styleClass="footer" stylesheets="@../styles/styles.css">
+      <FlowPane alignment="BOTTOM_RIGHT" prefHeight="63.0" prefWidth="573.0" styleClass="footer" stylesheets="@../styles/styles.css">
          <children>
             <Button fx:id="buttonBack" mnemonicParsing="false" onAction="#handleActions" styleClass="button-back" stylesheets="@../styles/styles.css" text="Back">
                <FlowPane.margin>

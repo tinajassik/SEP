@@ -73,7 +73,8 @@ public class GuestsController
   public void searchGuest(ActionEvent e)
   {
     BookingList bookings = modelManager.getAllBookings();
-    GuestList guests = modelManager.getAllGuests(); String s = "";
+    GuestList guests = modelManager.getAllGuests();
+    String s = "";
     if (e.getSource() == searchButton)
     {
       String firstName = textField1.getText();
@@ -84,6 +85,7 @@ public class GuestsController
         if (guests.getGuest(i).getFirstName().equals(firstName) && guests.getGuest(i).getLastName().equals(lastName))
         {
           textArea1.setText(guests.getGuest(i).toString() + " \n");
+
         }
         else {
           Alert alert = new Alert(Alert.AlertType.WARNING,
@@ -93,11 +95,14 @@ public class GuestsController
          alert.showAndWait();
         }
       }
-
+      System.out.println("1");
       BookingList bookingList = new BookingList();
+      System.out.println("2");
+      System.out.println(bookings.getBookingsByFullName(firstName, lastName).size());
+      System.out.println("2.5");
       for (int j = 0; j < bookings.getBookingsByFullName(firstName, lastName).size(); j++)
       {
-        System.out.println("1");
+        System.out.println("3");
         bookingList.addBooking(
             (Booking) bookings.getBookingsByFullName(firstName, lastName).get(j));
       }

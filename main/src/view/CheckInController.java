@@ -74,7 +74,7 @@ public class CheckInController
         firstNameField.setText(booking.getBookingGuest().getFirstName());
         lastNameField.setText(booking.getBookingGuest().getLastName());
         nationalityField.setText(booking.getBookingGuest().getNationality());
-        addressField.setText(booking.getBookingGuest().getAdress());
+        addressField.setText(booking.getBookingGuest().getAddress());
         phoneNumberField.setText(booking.getBookingGuest().getPhoneNumber());
         Date birthday = booking.getBookingGuest().getBirthday();
         birthdayDate.setValue(LocalDate.of(birthday.getYear(), birthday.getMonth(),birthday.getDay()));

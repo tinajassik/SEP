@@ -35,6 +35,7 @@ public class EditBookingController
   @FXML private TextField roomNumberField;
   @FXML private Button buttonSave;
   @FXML private GridPane main;
+  @FXML private Button removeBooking;
 
   ToggleGroup checkInGroup = new ToggleGroup();
   ToggleGroup extraBedGroup = new ToggleGroup();
@@ -137,28 +138,31 @@ public class EditBookingController
     Booking booking = getSelectedBooking();
     BookingList bookingList = modelManager.getAllBookings();
 
-
     for (int i = 0; i < bookingList.size(); i++)
     {
       if (booking.equals(bookingList.getBooking(i)))
       {
-       if (firstNameField.getText() != null)
+        if (firstNameField.getText() != null)
           bookingList.getBooking(i).getBookingGuest().setFirstName(firstNameField.getText());
         System.out.println("1");
         if (lastNameField.getText() != null)
           bookingList.getBooking(i).getBookingGuest().setLastName(lastNameField.getText());
         if (nationalityField.getText() != null)
           bookingList.getBooking(i).getBookingGuest().setNationality(nationalityField.getText());
-//        if(arrivalDate.getValue().getYear()!=null)booking.getDateInterval().setArrivalDate(arrivalDate.getValue().);
-//        if(departureDate.getValue()!=null)booking.getDateInterval().setDepartureDate(departureDate.getValue());
+        //        if(arrivalDate.getValue().getYear()!=null)booking.getDateInterval().setArrivalDate(arrivalDate.getValue().);
+        //        if(departureDate.getValue()!=null)booking.getDateInterval().setDepartureDate(departureDate.getValue());
 
         LocalDate arrival = arrivalDate.getValue();
         LocalDate departure = departureDate.getValue();
         LocalDate bday = birthdayDate.getValue();
 
-        bookingList.getBooking(i).getDateInterval().setArrivalDate(new Date(arrival.getDayOfMonth(), arrival.getMonthValue(),arrival.getYear()));
-        bookingList.getBooking(i).getDateInterval().setDepartureDate(new Date(departure.getDayOfMonth(),departure.getMonthValue(),departure.getYear()));
-        bookingList.getBooking(i).getBookingGuest().setBirthday(new Date(bday.getDayOfMonth(),bday.getMonthValue(),bday.getYear()));
+        bookingList.getBooking(i).getDateInterval().setArrivalDate(
+            new Date(arrival.getDayOfMonth(), arrival.getMonthValue(), arrival.getYear()));
+        bookingList.getBooking(i).getDateInterval().setDepartureDate(
+            new Date(departure.getDayOfMonth(), departure.getMonthValue(),
+                departure.getYear()));
+        bookingList.getBooking(i).getBookingGuest().setBirthday(
+            new Date(bday.getDayOfMonth(), bday.getMonthValue(), bday.getYear()));
 
         if (addressField.getText() != null)
           bookingList.getBooking(i).getBookingGuest().setAddress(addressField.getText());
@@ -168,18 +172,77 @@ public class EditBookingController
         if (roomNumberField.getText() != null)
           bookingList.getBooking(i).getBookedRoom().setRoomNumber(roomNumberField.getText());
 
-        if (extraBedNO.isSelected() || extraBedYES.isSelected()) {
-          if (extraBedNO.isSelected()) bookingList.getBooking(i).removeExtraBed();
-          else bookingList.getBooking(i).addExtraBed();
+        if (extraBedNO.isSelected() || extraBedYES.isSelected())
+        {
+          if (extraBedNO.isSelected())
+            bookingList.getBooking(i).removeExtraBed();
+          else
+            bookingList.getBooking(i).addExtraBed();
         }
 
-        if (lateCheckInNO.isSelected() || lateCheckInYES.isSelected()) {
-          if(lateCheckInNO.isSelected()) bookingList.getBooking(i).willNotCheckInLate();
-          else bookingList.getBooking(i).willCheckInLate();
-        }
+        if (lateCheckInNO.isSelected() || lateCheckInYES.isSelected())
+        {
+          if (lateCheckInNO.isSelected())
+            bookingList.getBooking(i).willNotCheckInLate();
+          else
+            bookingList.getBooking(i).willCheckInLate();
         }
       }
+    }
     modelManager.updateBookings(bookingList);
+
+  }
+    public void deleteeBooking(ActionEvent e)
+    {
+      Booking booking = getSelectedBooking();
+      BookingList bookingList = modelManager.getAllBookings();
+      if (e.getSource() == removeBooking)
+      {
+        for (int i = 0; i < bookingList.size(); i++)
+        {
+          if (booking.equals(bookingList.getBooking(i)) && !(booking.isCheckIn()))
+          {
+            bookingList.deleteBooking(booking);
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
+                "The booking will be deleted.");
+            alert.setTitle("Cancel selected booking");
+            alert.setHeaderText(null);
+            alert.showAndWait();
+            modelManager.updateBookings(bookingList);
+            clearAllFields();
+          }
+          else if (booking.equals(bookingList.getBooking(i)) && booking.isCheckIn())
+          {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
+                "The booking can't be deleted."
+                    + "The guests are already checked in.");
+            alert.setTitle("Cancel selected booking");
+            alert.setHeaderText(null);
+            alert.showAndWait();
+            modelManager.updateBookings(bookingList);
+          }
+        }
+
+      }
+    }
+  public void clearAllFields() {
+
+    for (int i = 0; i < main.getChildren().size(); i++)
+    {
+      if (main.getChildren().get(i) instanceof TextField)
+      {
+        ((TextField) main.getChildren().get(i)).clear();
+      }
+      else if (main.getChildren().get(i) instanceof DatePicker)
+      {
+        ((DatePicker) main.getChildren().get(i)).setValue(null);
+      }
+    }
+
+    extraBedYES.setSelected(false);
+    extraBedNO.setSelected(false);
+    lateCheckInNO.setSelected(false);
+    lateCheckInYES.setSelected(false);
 
 
   }

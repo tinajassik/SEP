@@ -36,7 +36,7 @@ public class CheckInController
   @FXML private Button buttonCheckInGuest;
   @FXML private Button buttonCompleteCheckIn;
 
-  private int count = 0;
+private int count;
 
 
   public void init(ViewHandler viewHandler, BookingModelManager modelManager, Region root)
@@ -44,6 +44,7 @@ public class CheckInController
     this.modelManager = modelManager;
     this.root = root;
     this.viewHandler = viewHandler;
+    count = 0;
     reset();
   }
 
@@ -74,7 +75,7 @@ public class CheckInController
         firstNameField.setText(booking.getBookingGuest().getFirstName());
         lastNameField.setText(booking.getBookingGuest().getLastName());
         nationalityField.setText(booking.getBookingGuest().getNationality());
-        addressField.setText(booking.getBookingGuest().getAdress());
+        addressField.setText(booking.getBookingGuest().getAddress());
         phoneNumberField.setText(booking.getBookingGuest().getPhoneNumber());
         Date birthday = booking.getBookingGuest().getBirthday();
         birthdayDate.setValue(LocalDate.of(birthday.getYear(), birthday.getMonth(),birthday.getDay()));
@@ -120,7 +121,9 @@ public class CheckInController
       }
      if (e.getSource() == buttonCompleteCheckIn) {
        Booking booking = getSelectedBookingNew();
-       allBookings.getBooking(booking).checkedIn();
+       allBookings.deleteBooking(booking);
+       booking.checkedIn();
+       allBookings.addBooking(booking);
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION,
             "All guests were successfully checked in.");

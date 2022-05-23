@@ -73,7 +73,9 @@ public class GuestsController
   public void searchGuest(ActionEvent e)
   {
     BookingList bookings = modelManager.getAllBookings();
-    GuestList guests = modelManager.getAllGuests(); String s = "";
+    GuestList guests = modelManager.getAllGuests();
+    String s = "";
+    boolean found = false;
     if (e.getSource() == searchButton)
     {
       String firstName = textField1.getText();
@@ -84,32 +86,35 @@ public class GuestsController
         if (guests.getGuest(i).getFirstName().equals(firstName) && guests.getGuest(i).getLastName().equals(lastName))
         {
           textArea1.setText(guests.getGuest(i).toString() + " \n");
+          found = true;
         }
-        else {
+
+      }
+
+      if (!found) {
           Alert alert = new Alert(Alert.AlertType.WARNING,
-              "Guest not found.");
-         alert.setTitle("Missing guest");
-         alert.setHeaderText(null);
-         alert.showAndWait();
-        }
+                  "Guest not found.");
+          alert.setTitle("Missing guest");
+          alert.setHeaderText(null);
+          alert.showAndWait();
+
       }
 
       BookingList bookingList = new BookingList();
       for (int j = 0; j < bookings.getBookingsByFullName(firstName, lastName).size(); j++)
       {
-        System.out.println("1");
+
         bookingList.addBooking(
             (Booking) bookings.getBookingsByFullName(firstName, lastName).get(j));
       }
       s = "";
       for (int a = 0; a < bookingList.size(); a++)
       {
-        System.out.println("2");
+
         s += "Booking number: " + (a + 1) + "\n";
         s += bookings.getBooking(a) + "\n";
       }
 
-      System.out.println(s);
     }
    textArea2.setText(s);
 }

@@ -72,7 +72,7 @@
                         <Image url="@../img/mainview/cancelbooking.png" />
                      </image>
                   </ImageView>
-                  <Button fx:id="buttonEditBooking" mnemonicParsing="false" stylesheets="@../styles/styles.css" text="Edit Booking">
+                  <Button fx:id="buttonEditBooking" mnemonicParsing="false" onAction="#handleActions" stylesheets="@../styles/styles.css" text="Edit Booking">
                      <font>
                         <Font name="Britannic Bold" size="13.0" />
                      </font>

@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 
 import javafx.stage.Stage;
@@ -60,6 +61,7 @@ public class CreateBookingController
 
   public void reset()
   {
+  clearAllFields();
   }
 
   public Region getRoot()
@@ -83,7 +85,6 @@ public class CreateBookingController
     for (int i = 0; i < main.getChildren().size(); i++)
     {
 
-      System.out.println(i +" " + main.getChildren().get(i).getClass());
       if (main.getChildren().get(i) instanceof TextField)
       {
         if (((TextField) main.getChildren().get(i)).getText().isEmpty())
@@ -94,17 +95,34 @@ public class CreateBookingController
         if (((DatePicker) main.getChildren().get(i)).getValue() == null)
           empty = true;
       }
-      else if (main.getChildren().get(i) instanceof RadioButton)
-      {
-        if ((!((RadioButton) main.getChildren().get(i)).isSelected()))
-          empty = true;
-      }
-
-//      if(!extraBedYES.isSelected() )
     }
-    return empty;
+
+    if (!extraBedNO.isSelected() && !extraBedYES.isSelected()) empty = true;
+   if (!lateCheckInNO.isSelected() && !lateCheckInYES.isSelected()) empty = true;
+      return empty;
   }
 
+  public void clearAllFields() {
+
+    for (int i = 0; i < main.getChildren().size(); i++)
+    {
+      if (main.getChildren().get(i) instanceof TextField)
+      {
+        ((TextField) main.getChildren().get(i)).clear();
+      }
+      else if (main.getChildren().get(i) instanceof DatePicker)
+      {
+        ((DatePicker) main.getChildren().get(i)).setValue(null);
+      }
+    }
+
+    extraBedYES.setSelected(false);
+    extraBedNO.setSelected(false);
+    lateCheckInNO.setSelected(false);
+    lateCheckInYES.setSelected(false);
+
+
+  }
   public void createBooking(ActionEvent e)
   {
 
@@ -114,9 +132,8 @@ public class CreateBookingController
     String phoneNumber = phoneNumberField.getText();
     String address = addressField.getText();
     String roomNumber = roomNumberField.getText();
-    String extraBedString = extraBedGroup.selectedToggleProperty().toString();
-    String lateCheckInString = checkInGroup.selectedToggleProperty().toString();
-    ArrayList<Object> allData = new ArrayList<>();
+
+
 
 
     if (e.getSource() == buttonSave && !(isFieldEmpty()))
@@ -153,9 +170,12 @@ public class CreateBookingController
       Booking newBooking = new Booking(guests, roomToBeBooked, datesToBeBooked);
       BookingList bookingList = modelManager.getAllBookings();
 
-      if (extraBedString.equals("Yes"))  newBooking.addExtraBed();
-      if (lateCheckInString.equals("Yes")) newBooking.willCheckInLate();
+      if (extraBedYES.isSelected())  newBooking.addExtraBed();
 
+      if (lateCheckInYES.isSelected()) newBooking.willCheckInLate();
+
+
+//      modelManager.createBooking(newGuest,roomToBeBooked,datesToBeBooked);
 
       RoomList availableRooms = modelManager.getAvailableRoomsForASpecificPeriod(
           datesToBeBooked);
@@ -184,26 +204,12 @@ public class CreateBookingController
       {
 
         bookingList.addBooking(newBooking);
-        allData.add(modelManager.getAllRooms());
-        allData.add(bookingList);
-        modelManager.updateAllData(allData);
+
+        modelManager.updateBookings(bookingList);
+
+        clearAllFields();
         
-        for (int i = 0; i < main.getChildren().size(); i++)
-        {
-          if (main.getChildren().get(i) instanceof TextField)
-          {
-            ((TextField) main.getChildren().get(i)).clear();
-          }
-          else if (main.getChildren().get(i) instanceof DatePicker)
-          {
-            ((DatePicker) main.getChildren().get(i)).setValue(null);
-          }
-          else if (main.getChildren().get(i) instanceof RadioButton)
-          {
-            ((RadioButton) main.getChildren().get(i)).setSelected(false);
-            System.out.println("Asd");
-          }
-        }
+
 
         Parent root;
         try {
@@ -223,7 +229,8 @@ public class CreateBookingController
         }
 
 
-      }}
+      }
+      }
 
       else
       {

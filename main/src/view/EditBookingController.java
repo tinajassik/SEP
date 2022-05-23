@@ -4,7 +4,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
 import model.*;
 import utilis.MyFileHandler;
@@ -101,7 +100,7 @@ public class EditBookingController
       firstNameField.setText(booking.getBookingGuest().getFirstName());
       lastNameField.setText(booking.getBookingGuest().getLastName());
       nationalityField.setText(booking.getBookingGuest().getNationality());
-      addressField.setText(booking.getBookingGuest().getAdress());
+      addressField.setText(booking.getBookingGuest().getAddress());
       phoneNumberField.setText(booking.getBookingGuest().getPhoneNumber());
       birthdayDate.setValue(LocalDate.of(booking.getBookingGuest().getBirthday().getYear(),
           booking.getBookingGuest().getBirthday().getMonth(),
@@ -175,7 +174,7 @@ public class EditBookingController
 //        bookingList.getBooking(i).getBookingGuest().setBirthday(birthdayDate);
 
         if (addressField.getText() != null)
-          bookingList.getBooking(i).getBookingGuest().setAdress(addressField.getText());
+          bookingList.getBooking(i).getBookingGuest().setAddress(addressField.getText());
         if (phoneNumberField.getText() != null)
           bookingList.getBooking(i).getBookingGuest().setPhoneNumber(phoneNumberField.getText());
         // if(birthdayDate.getValue()!=null)booking.getBookingGuest().setBirthday(birthdayDate.getValue());

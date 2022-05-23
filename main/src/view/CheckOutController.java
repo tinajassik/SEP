@@ -134,6 +134,8 @@ public class CheckOutController
       arrivalDate.setText(booking.getDateInterval().getArrivalDate().toString());
       departureDate.setText(LocalDate.now().toString());
       roomPrice.setText(Double.toString(booking.getBookedRoom().getPrice()));
+      price.setEditable(false);
+
     }
 
     return booking;

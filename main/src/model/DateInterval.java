@@ -77,7 +77,7 @@ public class DateInterval implements Serializable
   {
     if (compareDatesContinuity())
     {
-      return "Arrival date: " + arrivalDate.copy() + "\n" + "Departure date:"
+      return "Arrival date: " + arrivalDate.copy() + "\n" + "Departure date: "
           + departureDate.copy();
     }
     return "Error: Arrival date is not before departure date or they are equal!";

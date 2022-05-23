@@ -34,11 +34,11 @@ public class ViewHandler
     this.window = window;
     window.setResizable(false);
     openView("MainView");
+    loadViewSearchBooking();
     loadViewRooms();
     loadViewEditBooking();
     loadViewGuests();
     loadViewMain();
-    loadViewSearchBooking();
     loadViewCreateBooking();
     loadViewCheckIn();
 

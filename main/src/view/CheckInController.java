@@ -54,25 +54,25 @@ public class CheckInController
     return root;
   }
 
-  public Booking getSelectedBooking() {
+//  public Booking getSelectedBooking() {
+//
+//    Booking booking = null;
+//    try
+//    {
+//      booking = (Booking) fileHandler.readFromBinaryFile("selectedBooking.bin");
+//    }
+//    catch (IOException e)
+//    {
+//      e.printStackTrace();
+//    }
+//    catch (ClassNotFoundException e)
+//    {
+//      e.printStackTrace();
+//    }
 
-    Booking booking = null;
-    try
-    {
-      booking = (Booking) fileHandler.readFromBinaryFile("selectedBooking.bin");
-    }
-    catch (IOException e)
-    {
-      e.printStackTrace();
-    }
-    catch (ClassNotFoundException e)
-    {
-      e.printStackTrace();
-    }
-
-    return booking;
-
-  }
+//    return booking;
+//
+//  }
 
   public Booking getSelectedBookingNew() {
     return viewHandler.getManageBookingController().getSelectedBookingNew();
@@ -124,7 +124,7 @@ public class CheckInController
       }
      if (e.getSource() == buttonCompleteCheckIn) {
        // checkIn the person who created the booking automatically without typing again the info
-       Booking booking = getSelectedBooking();
+       Booking booking = getSelectedBookingNew();
        checkedGuests.addGuest(booking.getBookingGuest());
 
        // change the status of the booking after completing the checkIn of all guests.txt

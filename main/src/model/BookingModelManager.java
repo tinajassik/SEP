@@ -124,7 +124,7 @@ public class BookingModelManager implements Serializable
     {
       Booking booking = allBookings.getBooking(i);
 
-      if(booking.getDateInterval().getArrivalDate().equals(temp))
+      if(booking.getDateInterval().getArrivalDate().equals(temp) && !booking.isCheckIn())
       {
         expectedArrivals.addBooking(booking);
       }
@@ -138,12 +138,13 @@ public class BookingModelManager implements Serializable
     BookingList allBookings = getAllBookings();
     BookingList expectedDepartures = new BookingList();
     LocalDate currentDate = LocalDate.now();
+    Date temp = new Date(currentDate.getDayOfMonth(), currentDate.getMonthValue(),currentDate.getYear());
 
     for (int i = 0; i < allBookings.size() ; i++)
   {
     Booking booking = allBookings.getBooking(i);
 
-    if(booking.getDateInterval().getDepartureDate().equals(currentDate))
+    if(booking.getDateInterval().getDepartureDate().equals(temp))
     {
       expectedDepartures.addBooking(booking);
     }
@@ -203,7 +204,31 @@ public class BookingModelManager implements Serializable
 
   }
 
+  public void updateBookings (BookingList bookingList) {
 
+    RoomList allRooms = getAllRooms();
+    GuestList guests = getAllGuests();
+
+    ArrayList<Object> allData  = new ArrayList<>();
+    allData.add(allRooms);
+    allData.add(guests);
+    allData.add(bookingList);
+
+    try
+    {
+      MyFileHandler.writeArrayToBinaryFile(fileName, allData.toArray(new Object[allData.size()]));
+    }
+    catch (FileNotFoundException e)
+    {
+      System.out.println("File not found");
+    }
+    catch (IOException e)
+    {
+      System.out.println("IO Error writing to file");
+    }
+
+
+  }
 
   public void updateAllData(ArrayList<Object> allData)
   {

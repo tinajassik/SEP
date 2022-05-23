@@ -141,17 +141,28 @@ public class ManageBookingController
     }
     else if (e.getSource() == buttonCheckOut)
     {
-      if (!(getSelectedBooking().isCheckIn()))
-      {
-        Alert alert = new Alert(Alert.AlertType.WARNING);
-        alert.setContentText(
-                "The guest you want to check out has not checked in");
+      if (listView.getSelectionModel().isEmpty()) {
+        Alert alert = new Alert(Alert.AlertType.WARNING,
+                "You have not selected any booking.");
+        alert.setTitle("Missing information");
+        alert.setHeaderText(null);
         alert.showAndWait();
+
+      } else {
+        if (!(getSelectedBooking().isCheckIn()))
+        {
+          Alert alert = new Alert(Alert.AlertType.WARNING);
+          alert.setContentText(
+                  "The guest you want to check out has not checked in");
+          alert.showAndWait();
+        }
+        else
+        {
+          viewHandler.openView("CheckOut");
+        }
+
       }
-      else
-      {
-        viewHandler.openView("CheckOut");
-      }
+
     }
   }
   // maybe idk yet if it works

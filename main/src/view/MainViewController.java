@@ -55,9 +55,9 @@ public class MainViewController
           + arrivals.getBooking(i).getBookedRoom().getRoomNumber() + "\n";
     }
     for (int i = 0; i < departures.size(); i++) {
-      dep += arrivals.getBooking(i).getBookingGuest().getLastName() + " "
-          + arrivals.getBooking(i).getBookingGuest().getFirstName() + ", Room Number: "
-          + arrivals.getBooking(i).getBookedRoom().getRoomNumber() + "\n";
+      dep += departures.getBooking(i).getBookingGuest().getLastName() + " "
+          + departures.getBooking(i).getBookingGuest().getFirstName() + ", Room Number: "
+          + departures.getBooking(i).getBookedRoom().getRoomNumber() + "\n";
     }
     textAreaArrivals.setText(arr);
     textAreaDepartures.setText(dep);

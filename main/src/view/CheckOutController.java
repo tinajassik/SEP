@@ -114,20 +114,20 @@ public class CheckOutController
 
 
   public Booking displayInitialInfo() {
-    Booking booking = null;
-    try
-    {
-      booking = (Booking) fileHandler.readFromBinaryFile("selectedBooking.bin");
-    }
-    catch (IOException e)
-    {
-      e.printStackTrace();
-    }
-
-    catch (ClassNotFoundException e)
-    {
-      e.printStackTrace();
-    }
+    Booking booking = viewHandler.getManageBookingController().getSelectedBooking();
+//    try
+//    {
+//      booking = (Booking) fileHandler.readFromBinaryFile("selectedBooking.bin");
+//    }
+//    catch (IOException e)
+//    {
+//      e.printStackTrace();
+//    }
+//
+//    catch (ClassNotFoundException e)
+//    {
+//      e.printStackTrace();
+//    }
     if (booking != null)
     {
       fullName.setText(booking.getBookingGuest().getFirstName() + " " + booking.getBookingGuest().getLastName());

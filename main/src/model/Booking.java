@@ -28,9 +28,6 @@ public class Booking implements Serializable
     this.guests=guests;
     this.room=room;
     this.dates=dates;
-    checkIn = false;
-    lateCheckIn = false;
-    extraBed = false;
   }
 
 
@@ -42,6 +39,9 @@ public class Booking implements Serializable
     return guests.getFirstGuest();
   }
 
+  public boolean hasExtraBed() {
+    return extraBed;
+  }
   /**
    * @return method that returns the list of guests.txt for a specific room
    */
@@ -76,6 +76,9 @@ public class Booking implements Serializable
    */
   public boolean isLateCheckIn(){return this.lateCheckIn;}
 
+  public void removeExtraBed() {
+    extraBed =false;
+  }
   /**
    * method is run when the guest checks in
    */
@@ -86,17 +89,30 @@ public class Booking implements Serializable
    */
   public void willCheckInLate(){this.lateCheckIn = true;}
 
+  public void willNotCheckInLate() {
+    lateCheckIn = false;
+  }
+
   /**
    * @return method used to convert string objects into a string
    */
   public String toString()
   {
    String status ="";
+   String bed="";
+   String late="";
    if (checkIn) status = "Checked In";
    else status = "NOT Checked In";
 
+   if(extraBed) bed = " Yes";
+   else  bed = " No";
+
+   if(lateCheckIn) late = "Will Check-In after 18:00";
+
+
   return "Guest: " + getBookingGuest().getFirstName() + " " + getBookingGuest().getLastName() +
-        "\n"  + getBookedRoom() + "\n" + getDateInterval() + "\n" + "Status: " + status +"\n";
+        "\n"  + getBookedRoom() + "\n" + getDateInterval() + "\n" + "Status: " + status +"\n"
+          + "Extra bed: " + bed + "\n" + late;
   }
 
   /**

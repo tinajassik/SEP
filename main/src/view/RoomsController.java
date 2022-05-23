@@ -36,6 +36,9 @@ public class RoomsController
     allRoomsArea.setText(str);
     reset();
 
+    allRoomsArea.setEditable(false);
+    availableRoomsArea.setEditable(false);
+
   }
 
   public void reset() {

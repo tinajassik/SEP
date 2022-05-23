@@ -66,7 +66,7 @@ public class EditBookingController
 
   public Booking getSelectedBooking()
   {
-    return  viewHandler.getManageBookingController().getSelectedBooking();
+    return  viewHandler.getManageBookingController().getSelectedBookingNew();
 
 //    Booking booking = null;
 //    try

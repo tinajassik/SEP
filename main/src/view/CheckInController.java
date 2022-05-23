@@ -36,6 +36,8 @@ public class CheckInController
   @FXML private Button buttonCheckInGuest;
   @FXML private Button buttonCompleteCheckIn;
 
+  private int count = 0;
+
 
   public void init(ViewHandler viewHandler, BookingModelManager modelManager, Region root)
   {
@@ -54,25 +56,6 @@ public class CheckInController
     return root;
   }
 
-//  public Booking getSelectedBooking() {
-//
-//    Booking booking = null;
-//    try
-//    {
-//      booking = (Booking) fileHandler.readFromBinaryFile("selectedBooking.bin");
-//    }
-//    catch (IOException e)
-//    {
-//      e.printStackTrace();
-//    }
-//    catch (ClassNotFoundException e)
-//    {
-//      e.printStackTrace();
-//    }
-
-//    return booking;
-//
-//  }
 
   public Booking getSelectedBookingNew() {
     return viewHandler.getManageBookingController().getSelectedBookingNew();
@@ -86,6 +69,19 @@ public class CheckInController
           booking.getDateInterval().getArrivalDate().getDay()));
       departureDate.setValue(LocalDate.of(booking.getDateInterval().getDepartureDate().getYear(), booking.getDateInterval().getDepartureDate().getMonth(),
           booking.getDateInterval().getDepartureDate().getDay()));
+
+      if (count == 0) {
+        firstNameField.setText(booking.getBookingGuest().getFirstName());
+        lastNameField.setText(booking.getBookingGuest().getLastName());
+        nationalityField.setText(booking.getBookingGuest().getNationality());
+        addressField.setText(booking.getBookingGuest().getAdress());
+        phoneNumberField.setText(booking.getBookingGuest().getPhoneNumber());
+        Date birthday = booking.getBookingGuest().getBirthday();
+        birthdayDate.setValue(LocalDate.of(birthday.getYear(), birthday.getMonth(),birthday.getDay()));
+        count++;
+      }
+
+
     }
   }
 
@@ -123,33 +119,21 @@ public class CheckInController
         birthdayDate.setValue(null);
       }
      if (e.getSource() == buttonCompleteCheckIn) {
-       // checkIn the person who created the booking automatically without typing again the info
        Booking booking = getSelectedBookingNew();
-       checkedGuests.addGuest(booking.getBookingGuest());
-
-       // change the status of the booking after completing the checkIn of all guests.txt
-       Booking updated = allBookings.getBooking(booking);
-
-//       allBookings.getBooking(booking).checkedIn();
-
-       updated.checkedIn();
-       allBookings.deleteBooking(booking);
-       allBookings.addBooking(updated);
+       allBookings.getBooking(booking).checkedIn();
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION,
-            "All guests.txt were successfully checked in.");
+            "All guests were successfully checked in.");
         alert.setTitle("Check-In complete");
         alert.setHeaderText(null);
         alert.showAndWait();
       }
 
     //update data.bin to add all new guests.txt;
-    allData.add(checkedGuests); // now checkedGuests contains all the guests.txt checkedIn before as well as the new ones
+    allData.add(checkedGuests); // now checkedGuests contains all the guests checkedIn before as well as the new ones
     allData.add(allBookings);
     allData.add(allRooms);
     modelManager.updateAllData(allData);
-
-
 
     }
 

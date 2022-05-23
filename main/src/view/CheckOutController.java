@@ -56,12 +56,13 @@ public class CheckOutController
     {
       viewHandler.openView("SearchBooking");
     }
-    Booking booking = displayInitialInfo();
-    int day = booking.getDateInterval().getDepartureDate().getDay();
-    int month = booking.getDateInterval().getDepartureDate().getMonth();
-    int year = booking.getDateInterval().getDepartureDate().getYear();
+
     if (e.getSource() == normalPrice)
     {
+      Booking booking = displayInitialInfo();
+      int day = booking.getDateInterval().getDepartureDate().getDay();
+      int month = booking.getDateInterval().getDepartureDate().getMonth();
+      int year = booking.getDateInterval().getDepartureDate().getYear();
       if(LocalDate.now().getDayOfMonth() != day || LocalDate.now().getMonthValue() != month || LocalDate.now().getYear() != year)
       {
         BookingList allBookings = modelManager.getAllBookings();
@@ -76,6 +77,10 @@ public class CheckOutController
 
     if (e.getSource() == discountPrice)
     {
+      Booking booking = displayInitialInfo();
+      int day = booking.getDateInterval().getDepartureDate().getDay();
+      int month = booking.getDateInterval().getDepartureDate().getMonth();
+      int year = booking.getDateInterval().getDepartureDate().getYear();
       double discount = Double.parseDouble(discountText.getText());
       if(LocalDate.now().getDayOfMonth() != day || LocalDate.now().getMonthValue() != month || LocalDate.now().getYear() != year)
       {
@@ -104,7 +109,7 @@ public class CheckOutController
 
 
   public Booking displayInitialInfo() {
-    Booking booking = viewHandler.getManageBookingController().getSelectedBooking();
+    Booking booking = viewHandler.getManageBookingController().getSelectedBookingNew();
 //    try
 //    {
 //      booking = (Booking) fileHandler.readFromBinaryFile("selectedBooking.bin");

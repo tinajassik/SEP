@@ -64,17 +64,11 @@ public class CheckOutController
     {
       if(LocalDate.now().getDayOfMonth() != day || LocalDate.now().getMonthValue() != month || LocalDate.now().getYear() != year)
       {
-        ArrayList<Object> allData = new ArrayList<>();
-        RoomList allRooms = modelManager.getAllRooms();
-        GuestList allGuests = modelManager.getAllGuests();
         BookingList allBookings = modelManager.getAllBookings();
         allBookings.deleteBooking(booking);
         booking.getDateInterval().setDepartureDate(new Date(LocalDate.now().getDayOfMonth(),LocalDate.now().getMonthValue(),LocalDate.now().getYear()));
         allBookings.addBooking(booking);
-        allData.add(allBookings);
-        allData.add(allRooms);
-        allData.add(allGuests);
-        modelManager.updateAllData(allData);
+        modelManager.updateBookings(allBookings);
       }
 
       price.setText(modelManager.getPrice(booking).toString());
@@ -85,17 +79,13 @@ public class CheckOutController
       double discount = Double.parseDouble(discountText.getText());
       if(LocalDate.now().getDayOfMonth() != day || LocalDate.now().getMonthValue() != month || LocalDate.now().getYear() != year)
       {
-        ArrayList<Object> allData = new ArrayList<>();
-        RoomList allRooms = modelManager.getAllRooms();
-        GuestList allGuests = modelManager.getAllGuests();
+
         BookingList allBookings = modelManager.getAllBookings();
         allBookings.deleteBooking(booking);
         booking.getDateInterval().setDepartureDate(new Date(LocalDate.now().getDayOfMonth(),LocalDate.now().getMonthValue(),LocalDate.now().getYear()));
         allBookings.addBooking(booking);
-        allData.add(allBookings);
-        allData.add(allRooms);
-        allData.add(allGuests);
-        modelManager.updateAllData(allData);
+
+        modelManager.updateBookings(allBookings);
       }
       price.setText(modelManager.priceWithDiscount(booking,discount).toString());
     }

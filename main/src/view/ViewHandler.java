@@ -35,12 +35,13 @@ public class ViewHandler
     window.setResizable(false);
     openView("MainView");
     loadViewSearchBooking();
-    loadViewRooms();
+    loadViewCheckOut();
     loadViewEditBooking();
-    loadViewGuests();
-    loadViewMain();
-    loadViewCreateBooking();
     loadViewCheckIn();
+    loadViewRooms();
+    loadViewGuests();
+    loadViewCreateBooking();
+
 
   }
 

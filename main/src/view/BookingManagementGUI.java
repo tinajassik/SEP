@@ -18,7 +18,6 @@ public class BookingManagementGUI extends Application
     BookingModelManager modelManager = new BookingModelManager("data.bin");
     ViewHandler viewHandler = new ViewHandler(modelManager);
     viewHandler.start(window);
-//    modelManager.deleteAfter6(); ??? 
   }
 
 

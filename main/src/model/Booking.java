@@ -28,6 +28,9 @@ public class Booking implements Serializable
     this.guests=guests;
     this.room=room;
     this.dates=dates;
+    checkIn = false;
+    extraBed = false;
+    lateCheckIn = false;
   }
 
 
@@ -82,7 +85,7 @@ public class Booking implements Serializable
   /**
    * method is run when the guest checks in
    */
-  public void checkedIn(){this.checkIn = true;}
+  public void checkedIn(){checkIn = true;}
 
   /**
    * method is run when the guest lets the hotel know that they will arrive after  6 p.m.

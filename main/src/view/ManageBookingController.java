@@ -41,16 +41,16 @@ public class ManageBookingController
     reset();
   }
 
-  public Booking getSelectedBooking() {
-    Booking selectedBooking = (Booking) listView.getSelectionModel().getSelectedItem();
-    try {
-      fileHandler.writeToBinaryFile("selectedBooking.bin",selectedBooking);
-    }
-    catch (IOException e) {
-      e.printStackTrace();
-    }
-    return  selectedBooking;
-  }
+//  public Booking getSelectedBooking() {
+//    Booking selectedBooking = (Booking) listView.getSelectionModel().getSelectedItem();
+//    try {
+//      fileHandler.writeToBinaryFile("selectedBooking.bin",selectedBooking);
+//    }
+//    catch (IOException e) {
+//      e.printStackTrace();
+//    }
+//    return  selectedBooking;
+//  }
 
   public Booking getSelectedBookingNew() {
     return (Booking) listView.getSelectionModel().getSelectedItem();
@@ -149,7 +149,7 @@ public class ManageBookingController
         alert.showAndWait();
 
       } else {
-        if (!(getSelectedBooking().isCheckIn()))
+        if (!((Booking)listView.getSelectionModel().getSelectedItem()).isCheckIn())
         {
           Alert alert = new Alert(Alert.AlertType.WARNING);
           alert.setContentText(

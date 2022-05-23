@@ -82,6 +82,8 @@ public class CreateBookingController
 
     for (int i = 0; i < main.getChildren().size(); i++)
     {
+
+      System.out.println(i +" " + main.getChildren().get(i).getClass());
       if (main.getChildren().get(i) instanceof TextField)
       {
         if (((TextField) main.getChildren().get(i)).getText().isEmpty())
@@ -97,6 +99,8 @@ public class CreateBookingController
         if ((!((RadioButton) main.getChildren().get(i)).isSelected()))
           empty = true;
       }
+
+//      if(!extraBedYES.isSelected() )
     }
     return empty;
   }
@@ -197,6 +201,7 @@ public class CreateBookingController
           else if (main.getChildren().get(i) instanceof RadioButton)
           {
             ((RadioButton) main.getChildren().get(i)).setSelected(false);
+            System.out.println("Asd");
           }
         }
 

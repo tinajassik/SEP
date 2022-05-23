@@ -73,8 +73,13 @@ public class CheckInController
     return booking;
 
   }
+
+  public Booking getSelectedBookingNew() {
+    return viewHandler.getManageBookingController().getSelectedBookingNew();
+  }
+
   public void displayInitialData() {
-    Booking booking = getSelectedBooking();
+    Booking booking = getSelectedBookingNew();
     if (booking != null) {
       roomNumberField.setText(booking.getBookedRoom().getRoomNumber());
       arrivalDate.setValue(LocalDate.of(booking.getDateInterval().getArrivalDate().getYear(), booking.getDateInterval().getArrivalDate().getMonth(),
@@ -122,7 +127,7 @@ public class CheckInController
        Booking booking = getSelectedBooking();
        checkedGuests.addGuest(booking.getBookingGuest());
 
-       // change the status of the booking after completing the checkIn of all guests
+       // change the status of the booking after completing the checkIn of all guests.txt
        Booking updated = allBookings.getBooking(booking);
 
 //       allBookings.getBooking(booking).checkedIn();
@@ -132,14 +137,14 @@ public class CheckInController
        allBookings.addBooking(updated);
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION,
-            "All guests were successfully checked in.");
+            "All guests.txt were successfully checked in.");
         alert.setTitle("Check-In complete");
         alert.setHeaderText(null);
         alert.showAndWait();
       }
 
-    //update data.bin to add all new guests;
-    allData.add(checkedGuests); // now checkedGuests contains all the guests checkedIn before as well as the new ones
+    //update data.bin to add all new guests.txt;
+    allData.add(checkedGuests); // now checkedGuests contains all the guests.txt checkedIn before as well as the new ones
     allData.add(allBookings);
     allData.add(allRooms);
     modelManager.updateAllData(allData);

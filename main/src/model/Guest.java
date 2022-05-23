@@ -51,6 +51,7 @@ public class Guest implements Serializable
     this.lastName=lastName;
   }
 
+  
   //setter for adress
   public void setAdress(String adress)
   {

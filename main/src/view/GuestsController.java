@@ -75,7 +75,9 @@ public class GuestsController
     BookingList bookings = modelManager.getAllBookings();
     GuestList guests = modelManager.getAllGuests();
     String s = "";
+
     boolean found = false;
+
     if (e.getSource() == searchButton)
     {
       String firstName = textField1.getText();
@@ -86,7 +88,9 @@ public class GuestsController
         if (guests.getGuest(i).getFirstName().equals(firstName) && guests.getGuest(i).getLastName().equals(lastName))
         {
           textArea1.setText(guests.getGuest(i).toString() + " \n");
+
           found = true;
+
         }
 
       }
@@ -99,10 +103,14 @@ public class GuestsController
           alert.showAndWait();
 
       }
-
+      System.out.println("1");
       BookingList bookingList = new BookingList();
+      System.out.println("2");
+      System.out.println(bookings.getBookingsByFullName(firstName, lastName).size());
+      System.out.println("2.5");
       for (int j = 0; j < bookings.getBookingsByFullName(firstName, lastName).size(); j++)
       {
+
 
         bookingList.addBooking(
             (Booking) bookings.getBookingsByFullName(firstName, lastName).get(j));

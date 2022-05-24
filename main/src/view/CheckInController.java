@@ -44,11 +44,11 @@ private int count;
     this.modelManager = modelManager;
     this.root = root;
     this.viewHandler = viewHandler;
-    count = 0;
     reset();
   }
 
   public void reset() {
+    count = 0;
     displayInitialData();
   }
 

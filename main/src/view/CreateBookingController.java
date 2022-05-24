@@ -5,6 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -28,6 +29,7 @@ public class CreateBookingController
   private ViewHandler viewHandler;
 
   @FXML private Button buttonBack;
+  @FXML private Button buttonApply;
   @FXML private RadioButton lateCheckInYES;
   @FXML private RadioButton lateCheckInNO;
   @FXML private RadioButton extraBedYES;
@@ -40,7 +42,7 @@ public class CreateBookingController
   @FXML private DatePicker departureDate;
   @FXML private DatePicker birthdayDate;
   @FXML private TextField phoneNumberField;
-  @FXML private TextField roomNumberField;
+  @FXML private ChoiceBox<Room> roomSelection;
   @FXML private Button buttonSave;
   @FXML private GridPane main;
 
@@ -61,7 +63,7 @@ public class CreateBookingController
 
   public void reset()
   {
-  clearAllFields();
+    clearAllFields();
   }
 
   public Region getRoot()
@@ -97,12 +99,18 @@ public class CreateBookingController
       }
     }
 
-    if (!extraBedNO.isSelected() && !extraBedYES.isSelected()) empty = true;
-   if (!lateCheckInNO.isSelected() && !lateCheckInYES.isSelected()) empty = true;
-      return empty;
+    if (!extraBedNO.isSelected() && !extraBedYES.isSelected())
+      empty = true;
+    if (!lateCheckInNO.isSelected() && !lateCheckInYES.isSelected())
+      empty = true;
+    if(roomSelection.getSelectionModel().isEmpty())
+      empty = true;
+
+    return empty;
   }
 
-  public void clearAllFields() {
+  public void clearAllFields()
+  {
 
     for (int i = 0; i < main.getChildren().size(); i++)
     {
@@ -120,9 +128,23 @@ public class CreateBookingController
     extraBedNO.setSelected(false);
     lateCheckInNO.setSelected(false);
     lateCheckInYES.setSelected(false);
-
+    roomSelection.getItems().clear();
 
   }
+
+  public void getAvailableRooms(DateInterval dates)
+  {
+
+    roomSelection.getItems().clear();
+    RoomList available = modelManager.getAvailableRoomsForASpecificPeriod(
+        dates);
+    for (int i = 0; i < available.size(); i++)
+    {
+      roomSelection.getItems().add(available.getRoom(i));
+    }
+
+  }
+
   public void createBooking(ActionEvent e)
   {
 
@@ -131,12 +153,29 @@ public class CreateBookingController
     String lastName = lastNameField.getText();
     String phoneNumber = phoneNumberField.getText();
     String address = addressField.getText();
-    String roomNumber = roomNumberField.getText();
+    //    String roomNumber = roomSelection.get();
+
+    if (e.getSource() == buttonApply)
+    {
+      LocalDate arrival = this.arrivalDate.getValue();
+      int day = arrival.getDayOfMonth();
+      int month = arrival.getMonthValue();
+      int year = arrival.getYear();
+      Date arrivalDate = new Date(day, month, year);
+      LocalDate departure = this.departureDate.getValue();
+      int day1 = departure.getDayOfMonth();
+      int month1 = departure.getMonthValue();
+      int year1 = departure.getYear();
+      Date departureDate = new Date(day1, month1, year1);
+      DateInterval datesToBeBooked = new DateInterval(arrivalDate,
+          departureDate);
+      getAvailableRooms(datesToBeBooked);
+
+    }
 
 
 
-
-    if (e.getSource() == buttonSave && !(isFieldEmpty()))
+    else if (e.getSource() == buttonSave && !(isFieldEmpty()))
     {
 
       // creating objects from the Date class using data retrieved from the DatePicker
@@ -156,34 +195,37 @@ public class CreateBookingController
       int year2 = birthday.getYear();
       Date birthdayGuest = new Date(day2, month2, year2);
 
-
       // creating all the necessary fields to create a new booking
       Guest newGuest = new Guest(firstName, lastName, address, phoneNumber,
           nationality, birthdayGuest);
       GuestList guests = new GuestList();
       guests.addGuest(newGuest);
-      Room roomToBeBooked = new Room(roomNumber);
 
-      DateInterval datesToBeBooked = new DateInterval(arrivalDate,departureDate);
-
+      DateInterval datesToBeBooked = new DateInterval(arrivalDate,
+          departureDate);
+//      getAvailableRooms(datesToBeBooked);
+      Room roomToBeBooked = new Room(
+          roomSelection.getSelectionModel().getSelectedItem().getRoomNumber());
 
       Booking newBooking = new Booking(guests, roomToBeBooked, datesToBeBooked);
       BookingList bookingList = modelManager.getAllBookings();
 
-      if (extraBedYES.isSelected())  newBooking.addExtraBed();
+      if (extraBedYES.isSelected())
+        newBooking.addExtraBed();
 
-      if (lateCheckInYES.isSelected()) newBooking.willCheckInLate();
+      if (lateCheckInYES.isSelected())
+        newBooking.willCheckInLate();
 
-
-//      modelManager.createBooking(newGuest,roomToBeBooked,datesToBeBooked);
+      //      modelManager.createBooking(newGuest,roomToBeBooked,datesToBeBooked);
 
       RoomList availableRooms = modelManager.getAvailableRoomsForASpecificPeriod(
           datesToBeBooked);
-      boolean canBeBooked = false; 
+      boolean canBeBooked = false;
 
       for (int i = 0; i < availableRooms.size(); i++)
       {
-        if (roomToBeBooked.getRoomNumber().equals(availableRooms.getRoom(i).getRoomNumber()))
+        if (roomToBeBooked.getRoomNumber()
+            .equals(availableRooms.getRoom(i).getRoomNumber()))
         {
           canBeBooked = true;
         }
@@ -198,38 +240,35 @@ public class CreateBookingController
         alert.setHeaderText(null);
         alert.showAndWait();
 
+        // only if the OK button is pressed, the booking is added to the file
+        if (alert.getResult() == ButtonType.OK)
+        {
 
-      // only if the OK button is pressed, the booking is added to the file
-      if (alert.getResult() == ButtonType.OK)
-      {
+          bookingList.addBooking(newBooking);
 
-        bookingList.addBooking(newBooking);
+          modelManager.updateBookings(bookingList);
 
-        modelManager.updateBookings(bookingList);
+          clearAllFields();
 
-        clearAllFields();
-        
+          Parent root;
+          try
+          {
+            root = FXMLLoader.load(getClass().getClassLoader()
+                .getResource("view/bookingsaved.fxml"));
+            Stage stage = new Stage();
+            stage.setTitle("BOOKING CREATED!!!!");
+            stage.setScene(new Scene(root));
+            stage.show();
+            PauseTransition delay = new PauseTransition(Duration.seconds(1));
+            delay.setOnFinished(event -> stage.close());
+            delay.play();
 
-
-        Parent root;
-        try {
-          root = FXMLLoader.load(getClass().getClassLoader().getResource("view/bookingsaved.fxml"));
-          Stage stage = new Stage();
-          stage.setTitle("BOOKING CREATED!!!!");
-          stage.setScene(new Scene(root));
-          stage.show();
-          PauseTransition delay = new PauseTransition(Duration.seconds(1));
-          delay.setOnFinished( event -> stage.close() );
-          delay.play();
-
-
+          }
+          catch (IOException exception)
+          {
+            exception.printStackTrace();
+          }
         }
-        catch (IOException exception) {
-          exception.printStackTrace();
-        }
-
-
-      }
       }
 
       else
@@ -243,7 +282,8 @@ public class CreateBookingController
         alert.showAndWait();
       }
     }
-    else {
+    else
+    {
       Alert alert = new Alert(Alert.AlertType.WARNING,
           "You have not filled in all the necessary information. Try again please.");
       alert.setTitle("Missing information");
@@ -251,8 +291,8 @@ public class CreateBookingController
       alert.showAndWait();
 
     }
-    }
   }
+}
 
 
 

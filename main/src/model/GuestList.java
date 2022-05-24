@@ -85,6 +85,19 @@ public class GuestList implements Serializable
   }
 
   /**
+   * Removes a guest from the list
+   * @param guest the Guest that is supposed to be removed
+   */
+  public void removeGuest(Guest guest) {
+    for (int i = 0; i < guests.size(); i++) {
+      if (guests.get(i).equals(guest)) {
+        guests.remove(guest);
+      }
+    }
+  }
+
+
+  /**
    * Gets a list with all Guest objects
    * @return a list with Guest objects
    */
@@ -110,9 +123,9 @@ public class GuestList implements Serializable
   }
 
   /**
-   * Compares two
-   * @param obj
-   * @return
+   * Compares two GuestLists by comparing each Guest object
+   * @param obj the list to compare with
+   * @return true if given list contains objects that are equal to this list
    */
   //equals() method for checking if obj is the same object as GuestList
   public boolean equals(Object obj)

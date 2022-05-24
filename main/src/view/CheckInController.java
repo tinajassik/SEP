@@ -123,6 +123,10 @@ private int count;
        Booking booking = getSelectedBookingNew();
        allBookings.deleteBooking(booking);
        booking.checkedIn();
+       for (int i = 0; i < checkedGuests.size(); i++) {
+         booking.getGuests().addGuest(checkedGuests.getGuest(i));
+       }
+
        allBookings.addBooking(booking);
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION,

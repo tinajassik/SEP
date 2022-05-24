@@ -51,15 +51,6 @@ public class BookingList implements Serializable
     bookings.remove(booking);
   }
 
-  public Booking getBooking(Booking booking) {
-
-    for (int i = 0; i < bookings.size(); i++) {
-      if (bookings.get(i).equals(booking))
-        return booking;
-    }
-    return null;
-  }
-
   /**
    * Searches for all bookings based on the first and last name of the person who made the booking
    * @param firstName first name of the person who made the booking
@@ -126,7 +117,4 @@ public class BookingList implements Serializable
     //check if the fields are the same
     return bookings.equals(other.bookings);
   }
-
-
-
 }

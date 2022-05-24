@@ -152,58 +152,6 @@ public class BookingModelManager implements Serializable
     return expectedDepartures;
   }
 
-  //Method that creates a new booking
-  public Booking createBooking(Guest guest, Room room, DateInterval dates)
-  {
-    BookingList allBookings = getAllBookings();
-    RoomList availableRooms = getAvailableRoomsForASpecificPeriod(dates);
-    Booking booking = null;
-
-    for (int i = 0; i < availableRooms.size(); i++)
-    {
-      if(availableRooms.getRoom(i).equals(room))
-      {
-        GuestList allGuests = new GuestList();
-
-         booking = new Booking(allGuests, room, dates);
-        allGuests.addGuest(guest);
-        allBookings.addBooking(booking);
-      }
-    }
-    return booking;
-  }
-
-  //Method that search a booking in the system
-  public ArrayList searchBooking(String firstName, String lastName)
-  {
-    BookingList allBookings = getAllBookings();
-
-    if(allBookings.getBookingsByFullName(firstName, lastName).size()!=0)
-
-      return allBookings.getBookingsByFullName(firstName, lastName);
-
-     else return null;
-  }
-
-  //Method that removes a booking from the system
-  public void removeBooking(String firstName, String lastName)
-  {
-    BookingList allBookings = getAllBookings();
-
-    for (int i = 0; i < allBookings.size(); i++)
-    {
-      Booking booking = allBookings.getBooking(i);
-
-      if (booking.getBookingGuest().getFirstName().equals(firstName)
-          && booking.getBookingGuest().getLastName().equals(lastName))
-        allBookings.deleteBooking(booking);
-
-      booking.getBookedRoom().setAvailability(false);
-      allBookings.deleteBooking(booking);
-    }
-
-  }
-
   public void updateBookings (BookingList bookingList) {
 
     RoomList allRooms = getAllRooms();
@@ -265,21 +213,8 @@ public class BookingModelManager implements Serializable
     return availableRooms;
   }
 
-  //Method that returns a room list will all available rooms of just one type from a specific period
-  public RoomList getSpecificTypeRoomsForAPeriod(String roomType, DateInterval dateInterval)
-  {
-    RoomList availableRooms = getAvailableRoomsForASpecificPeriod(dateInterval);
-    RoomList rooms = new RoomList();
-
-    for (int i = 0; i < availableRooms.size(); i++)
-    {
-      if(availableRooms.getRoom(i).getRoomType().equals(roomType))rooms.addRoom(availableRooms.getRoom(i));
-    }
-    return rooms;
-  }
-
   //Method that calculates and returns the price of the booking
-  public Double getPrice(Booking booking)
+  public double getPrice(Booking booking)
   {
     BookingList allBookings = getAllBookings();
     double price=0;
@@ -295,7 +230,7 @@ public class BookingModelManager implements Serializable
   }
 
   //Method that returns the price with the discount if the guest is not happy about the facilities of the hotel
-  public Double priceWithDiscount(Booking booking, double discount)
+  public double priceWithDiscount(Booking booking, double discount)
   {
     BookingList allBookings = getAllBookings();
 
@@ -329,36 +264,6 @@ public class BookingModelManager implements Serializable
     write.println("</bookings>");
     write.close();
     System.out.println("File is created");
-  }
-
-
-
-  /* deleteAfter6() method deletes booking if the guest have not checked in nor notified the hotel about a late check in */
-
-  public void deleteAfter6()
-  {
-    if(LocalDateTime.now().getHour() >= 18)
-    {
-      for (int i = 0; i < getAllBookings().size();i++)
-      {
-        if(!(getAllBookings().getBooking(i).isCheckIn()) && !(getAllBookings().getBooking(i).isLateCheckIn()))
-        {
-          getAllBookings().deleteBooking(getAllBookings().getBooking(i));
-        }
-      }
-    }
-  }
-/* lateCheckIn() method is called when a guest notifies the hotel that they will not check in until after 6 p.m. */
-  public void lateCheckIn(Booking booking)
-  {
-    booking.willCheckInLate();
-  }
-
-/* checkOut() method is called during check out to calculate the price and delete the booking from the system*/
-  public void checkOut(Booking booking)
-  {
-    getPrice(booking);
-    getAllBookings().deleteBooking(booking);
   }
 
   // TODO: Implement the method that filter all booking by first name and last name

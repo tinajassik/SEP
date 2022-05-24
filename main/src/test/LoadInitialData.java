@@ -55,7 +55,7 @@ public class LoadInitialData
         int year = Integer.parseInt(temp[7]);
         Date birthday = new Date(day, month, year);
         GuestList guests = new GuestList();
-        guests.addGuest(new Guest(firstName,lastName,address,nationality,phoneNumber,birthday));
+        guests.addGuest(new Guest(firstName,lastName,address,phoneNumber,nationality,birthday));
         allGuests.add(guests);
 
       }

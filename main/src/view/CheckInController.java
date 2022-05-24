@@ -44,11 +44,11 @@ private int count;
     this.modelManager = modelManager;
     this.root = root;
     this.viewHandler = viewHandler;
-    count = 0;
     reset();
   }
 
   public void reset() {
+    count = 0;
     displayInitialData();
   }
 
@@ -123,6 +123,10 @@ private int count;
        Booking booking = getSelectedBookingNew();
        allBookings.deleteBooking(booking);
        booking.checkedIn();
+       for (int i = 0; i < checkedGuests.size(); i++) {
+         booking.getGuests().addGuest(checkedGuests.getGuest(i));
+       }
+
        allBookings.addBooking(booking);
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION,

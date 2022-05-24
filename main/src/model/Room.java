@@ -4,13 +4,9 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * Room class.
- * Returns the room number, the room type, the room price, and the room status.
- *
+ * A class representing a room with a room number, a room type, a room price, and a room status.
  * @author Dragos Cotaga
  * @version 1.1
- * @see Room
- * @since 2022-05-10
  */
 
 // Room class
@@ -22,6 +18,13 @@ public class Room implements Serializable
 
 
     // Constructor for the Room class. Initializes the room number, room type, extra bed, available, and price variables.
+
+        /**
+         * Three-argument constructor.
+         * @param roomNumber the room number
+         * @param roomType the room type
+         * @param price the room price
+         */
     public Room(String roomNumber, String roomType, double price) {
         this.roomNumber = roomNumber;
         this.roomType = roomType;
@@ -29,7 +32,10 @@ public class Room implements Serializable
         this.available = true;
     }
 
-
+        /**
+         *
+         * @param roomNumber
+         */
     public Room(String roomNumber)
     {
         this.roomNumber = roomNumber;
@@ -66,15 +72,63 @@ public class Room implements Serializable
 
     }
 
+
+    // Method: getRoomNumber() - returns the room number of the room object being called on in the method call (Room room = new Room(1); room.getRoomNumber();)
+
+        /**
+         * Gets the room number
+          * @return the room number
+         */
+    public String getRoomNumber() {
+        return roomNumber;
+    }
+
+        /**
+         * Sets the room number
+         * @param roomNumber the number that the room number will be set to
+         */
+
     // Method: setRoomNumber() - sets the room number of the room object being called on in the method call (Room room = new Room(1); room.setRoomNumber(2);)
     public void setRoomNumber(String roomNumber) {
         this.roomNumber = roomNumber;
     }
 
-    // Method: getRoomNumber() - returns the room number of the room object being called on in the method call (Room room = new Room(1); room.getRoomNumber();)
-    public String getRoomNumber() {
-            return roomNumber;
-        }
+
+        /**
+         * Gets the room type
+         * @return the room type
+         */
+    // Method: getRoomType() - returns the room type of the room object being called on in the method call (Room room = new Room(1); room.getRoomType();)
+    public String getRoomType() {
+        return roomType;
+    }
+
+        /**
+         * Sets the room type
+         * @param roomType the type that the room type will be set to
+         */
+    // Method: setRoomType() - sets the room type of the room object being called on in the method call (Room room = new Room(1); room.setRoomType("Single");)
+    public void setRoomType(String roomType) {
+        this.roomType = roomType;
+    }
+
+        /**
+         * Checks if there should be an extra bed
+         * @return true if there should be an extra bed
+         */
+    // Method: isExtraBed() - returns the extra bed status of the room object being called on in the method call (Room room = new Room(1); room.isExtraBed();)
+    public boolean isExtraBed() {
+        return extraBed;
+    }
+
+        /**
+         * Sets the
+         * @param extraBed
+         */
+    // Method: setExtraBed() - sets the extra bed status of the room object being called on in the method call (Room room = new Room(1); room.setExtraBed(true);)
+    public void setExtraBed(boolean extraBed) {
+        this.extraBed = extraBed;
+    }
 
 
         // Method: getRoomType() - returns the room type of the room object being called on in the method call (Room room = new Room(1); room.getRoomType();)

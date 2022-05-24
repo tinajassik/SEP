@@ -79,6 +79,11 @@ public class CreateBookingController
     }
   }
 
+  public boolean checkDates(DateInterval dates)
+  {
+    return dates.compareDatesContinuity();
+  }
+
   public boolean isFieldEmpty()
   {
 
@@ -103,7 +108,7 @@ public class CreateBookingController
       empty = true;
     if (!lateCheckInNO.isSelected() && !lateCheckInYES.isSelected())
       empty = true;
-    if(roomSelection.getSelectionModel().isEmpty())
+    if (roomSelection.getSelectionModel().isEmpty())
       empty = true;
 
     return empty;
@@ -134,7 +139,6 @@ public class CreateBookingController
 
   public void getAvailableRooms(DateInterval dates)
   {
-
     roomSelection.getItems().clear();
     RoomList available = modelManager.getAvailableRoomsForASpecificPeriod(
         dates);
@@ -142,7 +146,10 @@ public class CreateBookingController
     {
       roomSelection.getItems().add(available.getRoom(i));
     }
-
+    if (available.size() > 0)
+    {
+      roomSelection.setValue(available.getRoom(0));
+    }
   }
 
   public void createBooking(ActionEvent e)
@@ -169,11 +176,21 @@ public class CreateBookingController
       Date departureDate = new Date(day1, month1, year1);
       DateInterval datesToBeBooked = new DateInterval(arrivalDate,
           departureDate);
-      getAvailableRooms(datesToBeBooked);
+      if (!(checkDates(datesToBeBooked)))
+      {
+        Alert alert = new Alert(Alert.AlertType.WARNING,
+            "Arrival and departure dates are not valid!");
+        alert.setTitle("Dates Error");
+        alert.setHeaderText(null);
+        alert.showAndWait();
+        this.arrivalDate.setValue(null);
+        this.departureDate.setValue(null);
+
+      }
+      else
+        getAvailableRooms(datesToBeBooked);
 
     }
-
-
 
     else if (e.getSource() == buttonSave && !(isFieldEmpty()))
     {
@@ -203,7 +220,8 @@ public class CreateBookingController
 
       DateInterval datesToBeBooked = new DateInterval(arrivalDate,
           departureDate);
-//      getAvailableRooms(datesToBeBooked);
+
+      //      getAvailableRooms(datesToBeBooked);
       Room roomToBeBooked = new Room(
           roomSelection.getSelectionModel().getSelectedItem().getRoomNumber());
 

@@ -73,7 +73,7 @@ public class CheckOutController
         modelManager.updateBookings(allBookings);
       }
 
-      price.setText(modelManager.getPrice(booking).toString());
+      price.setText(String.valueOf(modelManager.getPrice(booking)));
     }
 
     if (e.getSource() == discountPrice)
@@ -100,7 +100,7 @@ public class CheckOutController
 
           modelManager.updateBookings(allBookings);
         }
-        price.setText(modelManager.priceWithDiscount(booking,discount).toString());
+         price.setText(String.valueOf(modelManager.priceWithDiscount(booking,discount)));
       }
 
     }

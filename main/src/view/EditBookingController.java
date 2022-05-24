@@ -68,22 +68,6 @@ public class EditBookingController
   {
     return  viewHandler.getManageBookingController().getSelectedBookingNew();
 
-//    Booking booking = null;
-//    try
-//    {
-//      booking = (Booking) fileHandler.readFromBinaryFile("selectedBooking.bin");
-//    }
-//    catch (IOException e)
-//    {
-//      e.printStackTrace();
-//    }
-//    catch (ClassNotFoundException e)
-//    {
-//      e.printStackTrace();
-//    }
-//
-//    return booking;
-
   }
 
   public void displayInitialData()

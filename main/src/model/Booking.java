@@ -33,7 +33,6 @@ public class Booking implements Serializable
     lateCheckIn = false;
   }
 
-
   /**
    * @return the first person from the ArrayList(the person that made the booking)
    */

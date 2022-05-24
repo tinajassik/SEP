@@ -29,34 +29,6 @@ public class Date implements Serializable
   }
 
   /**
-   * Sets the value of the day variable
-   * @param day the day value that should be set
-   */
-  public void setDay(int day)
-  {
-    this.day = day;
-  }
-  /**
-   * Sets the value of the month variable
-   * @param month the month value that should be set
-   */
-  //SETTER FOR MONTH
-  public void setMonth(int month)
-  {
-    this.month = month;
-  }
-  /**
-   * Sets the value of the year variable
-   * @param year the year value that should be set
-   */
-
-  //SETTER FOR YEAR
-  public void setYear(int year)
-  {
-    this.year = year;
-  }
-
-  /**
    * Returns the value of the day variable
    * @return the value of the day variable
    */

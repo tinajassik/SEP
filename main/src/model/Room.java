@@ -72,6 +72,7 @@ public class Room implements Serializable
 
     }
 
+
     // Method: getRoomNumber() - returns the room number of the room object being called on in the method call (Room room = new Room(1); room.getRoomNumber();)
 
         /**
@@ -86,10 +87,12 @@ public class Room implements Serializable
          * Sets the room number
          * @param roomNumber the number that the room number will be set to
          */
+
     // Method: setRoomNumber() - sets the room number of the room object being called on in the method call (Room room = new Room(1); room.setRoomNumber(2);)
     public void setRoomNumber(String roomNumber) {
         this.roomNumber = roomNumber;
     }
+
 
         /**
          * Gets the room type
@@ -127,9 +130,10 @@ public class Room implements Serializable
         this.extraBed = extraBed;
     }
 
-    // Method: isAvailable() - returns true if the room is available, false if it is not.
-    public boolean isAvailable() {
-        return available;
+
+        // Method: getRoomType() - returns the room type of the room object being called on in the method call (Room room = new Room(1); room.getRoomType();)
+    public String getRoomType() {
+        return roomType;
     }
 
     // Method: setAvailable() - sets the room to available or not available.
@@ -142,30 +146,10 @@ public class Room implements Serializable
         return price;
     }
 
-    // Method: setPrice() - sets the price of the room.
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
     @Override
     public String toString() {
         return "Room Number: " + roomNumber  +"\n" + "Room Type: " + roomType +  "\n" +"Price: " + price;
     }
-
-    // Method: toString() - returns the room number, the room type, the room price, and the room status.
-//    @Override
-//    public boolean equals(Object o) {
-//        if (this == o) return true;
-//        if (o == null || getClass() != o.getClass()) return false;
-//
-//        Room room = (Room) o;
-//
-//        if (extraBed != room.extraBed) return false;
-//        if (available != room.available) return false;
-//        if (Double.compare(room.price, price) != 0) return false;
-//        if (roomNumber != null ? !roomNumber.equals(room.roomNumber) : room.roomNumber != null) return false;
-//        return roomType != null ? roomType.equals(room.roomType) : room.roomType == null;
-//    }
 
     public boolean equals(Object o) {
         if (!(o instanceof Room)) return false;

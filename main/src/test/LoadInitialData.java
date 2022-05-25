@@ -15,7 +15,7 @@ public class LoadInitialData
     ArrayList<Object> initialData= new ArrayList<>();
     RoomList allRooms = new RoomList();
     BookingList bookings = new BookingList();
-
+    GuestList trial = new GuestList();
     ArrayList<DateInterval> dates = new ArrayList<>();
     ArrayList<GuestList> allGuests = new ArrayList<>();
 
@@ -92,6 +92,7 @@ public class LoadInitialData
 
     initialData.add(allRooms);
     initialData.add(bookings);
+    initialData.add(trial);
 
 
     try

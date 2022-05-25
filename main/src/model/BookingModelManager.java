@@ -23,17 +23,17 @@ public class BookingModelManager implements Serializable
   public BookingList getAllBookings()
   {
     BookingList allBookings = new BookingList();
-
     try
     {
       Object[] temp = MyFileHandler.readArrayFromBinaryFile(fileName);
-      for (int i = 0; i < temp.length; i++) {
-        if (temp[i] instanceof BookingList) {
-          for (int j = 0; j < ((BookingList) temp[i]).size(); j++)
-            allBookings.addBooking(((BookingList) temp[i]).getBooking(j));
+      for (int i = 0; i < temp.length; i++)
+      {
+        if (temp[i] instanceof BookingList)
+        {
+          allBookings = (BookingList) temp[i];
+          break;
         }
       }
-
     }
     catch (FileNotFoundException e)
     {

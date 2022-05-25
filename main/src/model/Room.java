@@ -132,9 +132,6 @@ public class Room implements Serializable
 
 
         // Method: getRoomType() - returns the room type of the room object being called on in the method call (Room room = new Room(1); room.getRoomType();)
-    public String getRoomType() {
-        return roomType;
-    }
 
     // Method: setAvailable() - sets the room to available or not available.
     public void setAvailability(boolean available) {

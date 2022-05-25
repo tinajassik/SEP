@@ -68,22 +68,6 @@ public class EditBookingController
   {
     return  viewHandler.getManageBookingController().getSelectedBookingNew();
 
-//    Booking booking = null;
-//    try
-//    {
-//      booking = (Booking) fileHandler.readFromBinaryFile("selectedBooking.bin");
-//    }
-//    catch (IOException e)
-//    {
-//      e.printStackTrace();
-//    }
-//    catch (ClassNotFoundException e)
-//    {
-//      e.printStackTrace();
-//    }
-//
-//    return booking;
-
   }
 
   public void displayInitialData()
@@ -144,13 +128,10 @@ public class EditBookingController
       {
         if (firstNameField.getText() != null)
           bookingList.getBooking(i).getBookingGuest().setFirstName(firstNameField.getText());
-        System.out.println("1");
         if (lastNameField.getText() != null)
           bookingList.getBooking(i).getBookingGuest().setLastName(lastNameField.getText());
         if (nationalityField.getText() != null)
           bookingList.getBooking(i).getBookingGuest().setNationality(nationalityField.getText());
-        //        if(arrivalDate.getValue().getYear()!=null)booking.getDateInterval().setArrivalDate(arrivalDate.getValue().);
-        //        if(departureDate.getValue()!=null)booking.getDateInterval().setDepartureDate(departureDate.getValue());
 
         LocalDate arrival = arrivalDate.getValue();
         LocalDate departure = departureDate.getValue();
@@ -168,7 +149,6 @@ public class EditBookingController
           bookingList.getBooking(i).getBookingGuest().setAddress(addressField.getText());
         if (phoneNumberField.getText() != null)
           bookingList.getBooking(i).getBookingGuest().setPhoneNumber(phoneNumberField.getText());
-        // if(birthdayDate.getValue()!=null)booking.getBookingGuest().setBirthday(birthdayDate.getValue());
         if (roomNumberField.getText() != null)
           bookingList.getBooking(i).getBookedRoom().setRoomNumber(roomNumberField.getText());
 
@@ -192,7 +172,7 @@ public class EditBookingController
     modelManager.updateBookings(bookingList);
 
   }
-    public void deleteeBooking(ActionEvent e)
+    public void deleteBooking(ActionEvent e)
     {
       Booking booking = getSelectedBooking();
       BookingList bookingList = modelManager.getAllBookings();

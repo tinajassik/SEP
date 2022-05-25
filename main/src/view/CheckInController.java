@@ -44,11 +44,11 @@ private int count;
     this.modelManager = modelManager;
     this.root = root;
     this.viewHandler = viewHandler;
-    count = 0;
     reset();
   }
 
   public void reset() {
+    count = 0;
     displayInitialData();
   }
 
@@ -65,6 +65,17 @@ private int count;
   public void displayInitialData() {
     Booking booking = getSelectedBookingNew();
     if (booking != null) {
+      int day = booking.getDateInterval().getArrivalDate().getDay();
+      int month = booking.getDateInterval().getArrivalDate().getMonth();
+      int year = booking.getDateInterval().getArrivalDate().getYear();
+      if(LocalDate.now().getDayOfMonth() != day || LocalDate.now().getMonthValue() != month || LocalDate.now().getYear() != year)
+      {
+        BookingList allBookings = modelManager.getAllBookings();
+        allBookings.deleteBooking(booking);
+        booking.getDateInterval().setArrivalDate(new Date(LocalDate.now().getDayOfMonth(),LocalDate.now().getMonthValue(),LocalDate.now().getYear()));
+        allBookings.addBooking(booking);
+        modelManager.updateBookings(allBookings);
+      }
       roomNumberField.setText(booking.getBookedRoom().getRoomNumber());
       arrivalDate.setValue(LocalDate.of(booking.getDateInterval().getArrivalDate().getYear(), booking.getDateInterval().getArrivalDate().getMonth(),
           booking.getDateInterval().getArrivalDate().getDay()));
@@ -92,9 +103,11 @@ private int count;
     ArrayList<Object> allData = new ArrayList<>();
 
     // get all Data before manipulating with the file
+
     GuestList checkedGuests = modelManager.getAllGuests();
     BookingList allBookings = modelManager.getAllBookings();
     RoomList allRooms = modelManager.getAllRooms();
+    int start = checkedGuests.size();
 
 
       if(e.getSource() == buttonCheckInGuest) {
@@ -123,6 +136,12 @@ private int count;
        Booking booking = getSelectedBookingNew();
        allBookings.deleteBooking(booking);
        booking.checkedIn();
+
+       for (int i = start - 1; i < checkedGuests.size(); i++) {
+         booking.getGuests().addGuest(checkedGuests.getGuest(i));
+//         allGuests.addGuest(checkedGuests.getGuest(i));
+       }
+
        allBookings.addBooking(booking);
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION,

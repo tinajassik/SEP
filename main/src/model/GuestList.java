@@ -72,17 +72,30 @@ public class GuestList implements Serializable
    * @param lastName the last name of the Guest object
    * @return the Guest object with the given first name and last name if one exists, else null
    */
-  //getGuestByName() method that returns the guest with the matching name
-  public Guest getGuestByName(String firstName, String lastName)
-  {
-    for (int i = 0; i < guests.size() - 1; i++)
-    {
-      if (firstName.equals(guests.get(i).getFirstName()) && lastName.equals(
-          guests.get(i).getLastName()))
-        return guests.get(i);
+//  //getGuestByName() method that returns the guest with the matching name
+//  public Guest getGuestByName(String firstName, String lastName)
+//  {
+//    for (int i = 0; i < guests.size() - 1; i++)
+//    {
+//      if (firstName.equals(guests.get(i).getFirstName()) && lastName.equals(
+//          guests.get(i).getLastName()))
+//        return guests.get(i);
+//    }
+//    return null;
+//  }
+
+  /**
+   * Removes a guest from the list
+   * @param guest the Guest that is supposed to be removed
+   */
+  public void removeGuest(Guest guest) {
+    for (int i = 0; i < guests.size(); i++) {
+      if (guests.get(i).equals(guest)) {
+        guests.remove(guest);
+      }
     }
-    return null;
   }
+
 
   /**
    * Gets a list with all Guest objects
@@ -110,9 +123,9 @@ public class GuestList implements Serializable
   }
 
   /**
-   * Compares two
-   * @param obj
-   * @return
+   * Compares two GuestLists by comparing each Guest object
+   * @param obj the list to compare with
+   * @return true if given list contains objects that are equal to this list
    */
   //equals() method for checking if obj is the same object as GuestList
   public boolean equals(Object obj)

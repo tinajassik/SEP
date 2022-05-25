@@ -92,9 +92,11 @@ private int count;
     ArrayList<Object> allData = new ArrayList<>();
 
     // get all Data before manipulating with the file
+
     GuestList checkedGuests = modelManager.getAllGuests();
     BookingList allBookings = modelManager.getAllBookings();
     RoomList allRooms = modelManager.getAllRooms();
+    int start = checkedGuests.size();
 
 
       if(e.getSource() == buttonCheckInGuest) {
@@ -123,8 +125,10 @@ private int count;
        Booking booking = getSelectedBookingNew();
        allBookings.deleteBooking(booking);
        booking.checkedIn();
-       for (int i = 0; i < checkedGuests.size(); i++) {
+
+       for (int i = start - 1; i < checkedGuests.size(); i++) {
          booking.getGuests().addGuest(checkedGuests.getGuest(i));
+//         allGuests.addGuest(checkedGuests.getGuest(i));
        }
 
        allBookings.addBooking(booking);

@@ -65,6 +65,17 @@ private int count;
   public void displayInitialData() {
     Booking booking = getSelectedBookingNew();
     if (booking != null) {
+      int day = booking.getDateInterval().getArrivalDate().getDay();
+      int month = booking.getDateInterval().getArrivalDate().getMonth();
+      int year = booking.getDateInterval().getArrivalDate().getYear();
+      if(LocalDate.now().getDayOfMonth() != day || LocalDate.now().getMonthValue() != month || LocalDate.now().getYear() != year)
+      {
+        BookingList allBookings = modelManager.getAllBookings();
+        allBookings.deleteBooking(booking);
+        booking.getDateInterval().setArrivalDate(new Date(LocalDate.now().getDayOfMonth(),LocalDate.now().getMonthValue(),LocalDate.now().getYear()));
+        allBookings.addBooking(booking);
+        modelManager.updateBookings(allBookings);
+      }
       roomNumberField.setText(booking.getBookedRoom().getRoomNumber());
       arrivalDate.setValue(LocalDate.of(booking.getDateInterval().getArrivalDate().getYear(), booking.getDateInterval().getArrivalDate().getMonth(),
           booking.getDateInterval().getArrivalDate().getDay()));

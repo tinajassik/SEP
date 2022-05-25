@@ -104,6 +104,7 @@ public class CheckOutController
       }
 
     }
+
     if (e.getSource() == addFee)
     {
       if(fee.getText().equals(""))
@@ -121,8 +122,6 @@ public class CheckOutController
           price.setText(Double.toString(priceDouble));
         }
       }
-
-
     }
     if (e.getSource() == checkOut)
     {
@@ -139,6 +138,7 @@ public class CheckOutController
         {
           allGuests.removeGuest(booking.getGuests().getGuest(i));
         }
+
         allBookings.deleteBooking(booking);
         ArrayList<Object> allData = new ArrayList<>();
         allData.add(allBookings);

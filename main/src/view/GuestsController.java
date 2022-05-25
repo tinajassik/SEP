@@ -75,6 +75,8 @@ public class GuestsController
     BookingList bookings = modelManager.getAllBookings();
     GuestList guests = modelManager.getAllGuests();
     String s = "";
+    System.out.println(guests);
+    System.out.println(bookings);
 
     boolean found = false;
 
@@ -103,25 +105,39 @@ public class GuestsController
           alert.showAndWait();
 
       }
-      System.out.println("1");
+
       BookingList bookingList = new BookingList();
-      System.out.println("2");
-      System.out.println(bookings.getBookingsByFullName(firstName, lastName).size());
-      System.out.println("2.5");
+      Booking temp = null;
+      s = "";
+
+      for (int i = 0; i < bookings.size(); i++) {
+        GuestList guestsForThisBooking = bookings.getBooking(i).getGuests();
+
+        for (int j = 1; j < guestsForThisBooking.size(); j++ ) {
+
+          if (guestsForThisBooking.getGuest(j).getFirstName().equals(firstName) && guestsForThisBooking.getGuest(j).getLastName().equals(lastName)) {
+            temp = bookings.getBooking(i);
+          }
+        }
+      }
+
+      s +=  temp;
+
       for (int j = 0; j < bookings.getBookingsByFullName(firstName, lastName).size(); j++)
       {
-
 
         bookingList.addBooking(
             (Booking) bookings.getBookingsByFullName(firstName, lastName).get(j));
       }
-      s = "";
+
       for (int a = 0; a < bookingList.size(); a++)
       {
 
         s += "Booking number: " + (a + 1) + "\n";
-        s += bookings.getBooking(a) + "\n";
+        s += bookingList.getBooking(a) + "\n";
       }
+
+
 
     }
    textArea2.setText(s);

@@ -42,6 +42,10 @@ public class CheckOutController
 
   }
 
+  public Booking getSelectedBookingNew() {
+    return viewHandler.getManageBookingController().getSelectedBookingNew();
+  }
+
   public void reset() {
     displayInitialInfo();
   }
@@ -60,7 +64,7 @@ public class CheckOutController
 
     if (e.getSource() == normalPrice)
     {
-      Booking booking = displayInitialInfo();
+      Booking booking = getSelectedBookingNew();
       int day = booking.getDateInterval().getDepartureDate().getDay();
       int month = booking.getDateInterval().getDepartureDate().getMonth();
       int year = booking.getDateInterval().getDepartureDate().getYear();
@@ -73,7 +77,7 @@ public class CheckOutController
         modelManager.updateBookings(allBookings);
       }
 
-      price.setText(String.valueOf(modelManager.getPrice(booking)));
+      price.setText(Double.toString(modelManager.getPrice(booking)));
     }
 
     if (e.getSource() == discountPrice)
@@ -100,7 +104,7 @@ public class CheckOutController
 
           modelManager.updateBookings(allBookings);
         }
-         price.setText(String.valueOf(modelManager.priceWithDiscount(booking,discount)));
+         price.setText(Double.toString(modelManager.priceWithDiscount(booking,discount)));
       }
 
     }

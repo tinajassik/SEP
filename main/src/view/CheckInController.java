@@ -139,7 +139,6 @@ private int count;
 
        for (int i = start - 1; i < checkedGuests.size(); i++) {
          booking.getGuests().addGuest(checkedGuests.getGuest(i));
-//         allGuests.addGuest(checkedGuests.getGuest(i));
        }
 
        allBookings.addBooking(booking);

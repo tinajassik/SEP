@@ -23,7 +23,6 @@ public class BookingModelManager implements Serializable
   public BookingList getAllBookings()
   {
     BookingList allBookings = new BookingList();
-
     try
     {
       Object[] temp = MyFileHandler.readArrayFromBinaryFile(fileName);
@@ -31,7 +30,7 @@ public class BookingModelManager implements Serializable
       {
         if (temp[i] instanceof BookingList)
         {
-         allBookings = (BookingList) temp[i];
+          allBookings = (BookingList) temp[i];
           break;
         }
       }

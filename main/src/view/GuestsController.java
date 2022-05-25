@@ -109,6 +109,7 @@ public class GuestsController
       BookingList bookingList = new BookingList();
       Booking temp = null;
       s = "";
+      boolean bookingGuest = true; // to determine if the guest who is being searched is the one who created the booking or no
 
       for (int i = 0; i < bookings.size(); i++) {
         GuestList guestsForThisBooking = bookings.getBooking(i).getGuests();
@@ -117,11 +118,12 @@ public class GuestsController
 
           if (guestsForThisBooking.getGuest(j).getFirstName().equals(firstName) && guestsForThisBooking.getGuest(j).getLastName().equals(lastName)) {
             temp = bookings.getBooking(i);
+            bookingGuest = false;
           }
         }
       }
 
-      s +=  temp;
+
 
       for (int j = 0; j < bookings.getBookingsByFullName(firstName, lastName).size(); j++)
       {
@@ -130,13 +132,17 @@ public class GuestsController
             (Booking) bookings.getBookingsByFullName(firstName, lastName).get(j));
       }
 
-      for (int a = 0; a < bookingList.size(); a++)
-      {
 
-        s += "Booking number: " + (a + 1) + "\n";
-        s += bookingList.getBooking(a) + "\n";
-      }
 
+      if(bookingGuest) {
+        for (int a = 0; a < bookingList.size(); a++)
+        {
+
+          s += "Booking number: " + (a + 1) + "\n";
+          s += bookingList.getBooking(a) + "\n";
+        }
+
+      } else s +=  temp;
 
 
     }

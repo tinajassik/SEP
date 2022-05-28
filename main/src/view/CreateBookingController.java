@@ -176,6 +176,7 @@ public class CreateBookingController
       Date departureDate = new Date(day1, month1, year1);
       DateInterval datesToBeBooked = new DateInterval(arrivalDate,
           departureDate);
+
       if (!(checkDates(datesToBeBooked)))
       {
         Alert alert = new Alert(Alert.AlertType.WARNING,
@@ -234,23 +235,6 @@ public class CreateBookingController
       if (lateCheckInYES.isSelected())
         newBooking.willCheckInLate();
 
-      //      modelManager.createBooking(newGuest,roomToBeBooked,datesToBeBooked);
-
-      RoomList availableRooms = modelManager.getAvailableRoomsForASpecificPeriod(
-          datesToBeBooked);
-      boolean canBeBooked = false;
-
-      for (int i = 0; i < availableRooms.size(); i++)
-      {
-        if (roomToBeBooked.getRoomNumber()
-            .equals(availableRooms.getRoom(i).getRoomNumber()))
-        {
-          canBeBooked = true;
-        }
-      }
-
-      if (canBeBooked)
-      {
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
             "Please confirm that all the information inserted is correct and you wish to create the booking.");
@@ -287,18 +271,6 @@ public class CreateBookingController
             exception.printStackTrace();
           }
         }
-      }
-
-      else
-      {
-        this.arrivalDate.setValue(null);
-        this.departureDate.setValue(null);
-        Alert alert = new Alert(Alert.AlertType.WARNING,
-            "This Room is not available for the specified period");
-        alert.setTitle("Room not available");
-        alert.setHeaderText(null);
-        alert.showAndWait();
-      }
     }
     else
     {

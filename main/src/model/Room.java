@@ -122,8 +122,8 @@ public class Room implements Serializable
     }
 
         /**
-         * Sets the
-         * @param extraBed
+         * Sets the extra bed status depending on whether there should be one or not
+         * @param extraBed true if there should be an extra bed, else false
          */
     // Method: setExtraBed() - sets the extra bed status of the room object being called on in the method call (Room room = new Room(1); room.setExtraBed(true);)
     public void setExtraBed(boolean extraBed) {
@@ -133,21 +133,40 @@ public class Room implements Serializable
 
         // Method: getRoomType() - returns the room type of the room object being called on in the method call (Room room = new Room(1); room.getRoomType();)
 
+        /**
+         * Sets the availability of the room
+         * @param available true if the room is available, else false
+         */
     // Method: setAvailable() - sets the room to available or not available.
     public void setAvailability(boolean available) {
         this.available = available;
     }
 
+        /**
+         * Gets price of the room
+         * @return the price of the room
+         */
     // Method: getPrice() - returns the price of the room.
     public double getPrice() {
         return price;
     }
 
+        /**
+         * Returns a string representation of the room
+         * @return a string representation of the room in the format: "Room Number: roomNumber
+         *                                                             Room Type: roomType
+         *                                                             Price: price"
+         */
     @Override
     public String toString() {
         return "Room Number: " + roomNumber  +"\n" + "Room Type: " + roomType +  "\n" +"Price: " + price;
     }
 
+        /**
+         * Compares two Room objects
+         * @param o the object to compare with
+         * @return true if given object is equal to this room
+         */
     public boolean equals(Object o) {
         if (!(o instanceof Room)) return false;
 
@@ -155,6 +174,10 @@ public class Room implements Serializable
         return roomNumber.equals(other.roomNumber);
     }
 
+        /**
+         * Compares two idk
+         * @return
+         */
     // Method: hashCode() - returns the hashcode of the room. This is used to compare two rooms and determine if they are the same.
     @Override
     public int hashCode() {

@@ -10,9 +10,14 @@ import model.BookingModelManager;
 
 import java.io.IOException;
 
+
 public class BookingManagementGUI extends Application
 {
-
+  /**
+   * Starts up the window for graphical user interface.
+   * @param window the window for graphical user interface
+   * @throws IOException
+   */
   public void start(Stage window) throws IOException
   {
     BookingModelManager modelManager = new BookingModelManager("data.bin");

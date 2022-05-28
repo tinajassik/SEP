@@ -14,6 +14,9 @@ import java.time.LocalDate;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * A class
+ */
 public class CheckOutController
 {
   private BookingModelManager modelManager;
@@ -156,25 +159,15 @@ public class CheckOutController
 
   public Booking displayInitialInfo() {
     Booking booking = viewHandler.getManageBookingController().getSelectedBookingNew();
-//    try
-//    {
-//      booking = (Booking) fileHandler.readFromBinaryFile("selectedBooking.bin");
-//    }
-//    catch (IOException e)
-//    {
-//      e.printStackTrace();
-//    }
-//
-//    catch (ClassNotFoundException e)
-//    {
-//      e.printStackTrace();
-//    }
     if (booking != null)
     {
       fullName.setText(booking.getBookingGuest().getFirstName() + " " + booking.getBookingGuest().getLastName());
       arrivalDate.setText(booking.getDateInterval().getArrivalDate().toString());
       departureDate.setText(LocalDate.now().toString());
       roomPrice.setText(Double.toString(booking.getBookedRoom().getPrice()));
+      fee.clear();
+      discountText.clear();
+      price.clear();
       price.setEditable(false);
 
     }

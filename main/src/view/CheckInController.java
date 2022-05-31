@@ -70,11 +70,11 @@ private int count;
       int year = booking.getDateInterval().getArrivalDate().getYear();
       if(LocalDate.now().getDayOfMonth() != day || LocalDate.now().getMonthValue() != month || LocalDate.now().getYear() != year)
       {
-        BookingList allBookings = modelManager.getAllBookings();
-        allBookings.deleteBooking(booking);
+//        BookingList allBookings = modelManager.getAllBookings();
+//        allBookings.deleteBooking(booking);
         booking.getDateInterval().setArrivalDate(new Date(LocalDate.now().getDayOfMonth(),LocalDate.now().getMonthValue(),LocalDate.now().getYear()));
-        allBookings.addBooking(booking);
-        modelManager.updateBookings(allBookings);
+//        allBookings.addBooking(booking);
+//        modelManager.updateBookings(allBookings);
       }
       roomNumberField.setText(booking.getBookedRoom().getRoomNumber());
       arrivalDate.setValue(LocalDate.of(booking.getDateInterval().getArrivalDate().getYear(), booking.getDateInterval().getArrivalDate().getMonth(),
@@ -88,6 +88,7 @@ private int count;
         nationalityField.setText(booking.getBookingGuest().getNationality());
         addressField.setText(booking.getBookingGuest().getAddress());
         phoneNumberField.setText(booking.getBookingGuest().getPhoneNumber());
+        booking.getDateInterval().setArrivalDate(new Date(LocalDate.now().getDayOfMonth(),LocalDate.now().getMonthValue(),LocalDate.now().getYear()));
         Date birthday = booking.getBookingGuest().getBirthday();
         birthdayDate.setValue(LocalDate.of(birthday.getYear(), birthday.getMonth(),birthday.getDay()));
         count++;
@@ -124,6 +125,7 @@ private int count;
         Date birthdayGuest = new Date(day,month,year);
         Guest guest = new Guest(firstName,lastname,address,phoneNumber,nationality,birthdayGuest);
         checkedGuests.addGuest(guest);
+        System.out.println(checkedGuests);
 
         firstNameField.clear();
         lastNameField.clear();
@@ -137,6 +139,8 @@ private int count;
        allBookings.deleteBooking(booking);
        booking.checkedIn();
 
+       System.out.println(checkedGuests.size());
+
        for (int i = start - 1; i < checkedGuests.size(); i++) {
          booking.getGuests().addGuest(checkedGuests.getGuest(i));
        }
@@ -148,13 +152,15 @@ private int count;
         alert.setTitle("Check-In complete");
         alert.setHeaderText(null);
         alert.showAndWait();
-      }
 
+      }
     //update data.bin to add all new guests.txt;
     allData.add(checkedGuests); // now checkedGuests contains all the guests checkedIn before as well as the new ones
     allData.add(allBookings);
     allData.add(allRooms);
     modelManager.updateAllData(allData);
+
+
 
     }
 

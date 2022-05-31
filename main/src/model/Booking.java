@@ -57,6 +57,7 @@ public class Booking implements Serializable
     return dates;
   }
 
+
   public void addExtraBed() {
     extraBed = true;
   }

@@ -41,16 +41,7 @@ public class ManageBookingController
     reset();
   }
 
-//  public Booking getSelectedBooking() {
-//    Booking selectedBooking = (Booking) listView.getSelectionModel().getSelectedItem();
-//    try {
-//      fileHandler.writeToBinaryFile("selectedBooking.bin",selectedBooking);
-//    }
-//    catch (IOException e) {
-//      e.printStackTrace();
-//    }
-//    return  selectedBooking;
-//  }
+
 
   public Booking getSelectedBookingNew() {
     return (Booking) listView.getSelectionModel().getSelectedItem();
@@ -165,7 +156,7 @@ public class ManageBookingController
 
     }
   }
-  // maybe idk yet if it works
+
   public void updateBookings() {
     listView.getItems().clear();
     BookingList bookings = modelManager.getAllBookings();

@@ -25,6 +25,8 @@ public class DateInterval implements Serializable
     this.departureDate = departureDate.copy();
   }
 
+
+
   /**
    * Sets guest's arrival date
    * @param arrivalDate the date that the arrival date will be set to

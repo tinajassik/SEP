@@ -17,7 +17,6 @@ public class EditBookingController
   private Region root;
   private BookingModelManager modelManager;
   private ViewHandler viewHandler;
-  private MyFileHandler fileHandler;
 
   @FXML private Button buttonBack;
   @FXML private RadioButton lateCheckInYES;
@@ -223,7 +222,6 @@ public class EditBookingController
     extraBedNO.setSelected(false);
     lateCheckInNO.setSelected(false);
     lateCheckInYES.setSelected(false);
-
 
   }
 }

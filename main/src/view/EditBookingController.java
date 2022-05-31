@@ -1,10 +1,16 @@
 package view;
 
+import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
+import javafx.stage.Stage;
+import javafx.util.Duration;
 import model.*;
 import utilis.MyFileHandler;
 
@@ -94,7 +100,9 @@ public class EditBookingController
             else {lateCheckInNO.setSelected(true);}
             if (booking.hasExtraBed()) {extraBedYES.setSelected(true);}
             else {extraBedNO.setSelected(true);}
-            choiceBox.setValue(booking.getBookedRoom());
+          getAvailableRooms(booking.getDateInterval());
+            choiceBox.getItems().add(booking.getBookedRoom());
+          choiceBox.getSelectionModel().select(booking.getBookedRoom());
     }
   }
 
@@ -124,15 +132,31 @@ public class EditBookingController
     {
       viewHandler.openView("SearchBooking");
     }
-    if (e.getSource() == buttonSave)
+    if (e.getSource() == buttonSave && !(isFieldEmpty()))
     {
-      makeChanges();
+
       Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
           "Information will be changed.");
       alert.setTitle("Edit Booking Confirmation");
       alert.setHeaderText(null);
       alert.showAndWait();
+
+      // only if the OK button is pressed, the booking changed
+      if (alert.getResult() == ButtonType.OK)
+      {
+        makeChanges();
+      }
     }
+    if (e.getSource() == buttonSave && isFieldEmpty())
+    {
+      Alert alert = new Alert(Alert.AlertType.WARNING,
+          "You have not filled in all the necessary information. Try again please.");
+      alert.setTitle("Missing information");
+      alert.setHeaderText(null);
+      alert.showAndWait();
+    }
+
+
     if (e.getSource() == buttonApply)
     {
       LocalDate arrival = this.arrivalDate.getValue();
@@ -163,8 +187,48 @@ public class EditBookingController
         getAvailableRooms(datesToBeBooked);
 
     }
+
   }
 
+  public boolean isFieldEmpty()
+  {
+
+    boolean empty = false;
+
+    for (int i = 0; i < main.getChildren().size(); i++)
+    {
+
+      if (main.getChildren().get(i) instanceof TextField)
+      {
+        if (((TextField) main.getChildren().get(i)).getText().isEmpty())
+        {
+          empty = true;
+        }
+      }
+      else if (main.getChildren().get(i) instanceof DatePicker)
+      {
+        if (((DatePicker) main.getChildren().get(i)).getValue() == null)
+        {
+          empty = true;
+        }
+      }
+    }
+
+    if (!extraBedNO.isSelected() && !extraBedYES.isSelected())
+    {
+      empty = true;
+    }
+    if (!lateCheckInNO.isSelected() && !lateCheckInYES.isSelected())
+    {
+      empty = true;
+    }
+    if (choiceBox.getSelectionModel().isEmpty())
+    {
+      empty = true;
+    }
+
+    return empty;
+  }
   public void makeChanges()
   {
     Booking booking = getSelectedBooking(); // 1 for variable declaration, method getSelectedBooking() has a time complexity of O(1) ---> 2
@@ -244,6 +308,7 @@ public class EditBookingController
   // T(n) = O(n)
   // the method was chosen because it includes calls of other many methods
   // multiple manipulations with ArrayList objects
+
 
 
     public void deleteBooking(ActionEvent e)

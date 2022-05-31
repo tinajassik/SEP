@@ -6,6 +6,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 import javafx.util.converter.LocalDateStringConverter;
 import model.*;
@@ -36,7 +37,7 @@ public class CheckInController
   @FXML private DatePicker birthdayDate;
   @FXML private TextField phoneNumberField;
   @FXML private TextField roomNumberField;
-
+  @FXML private GridPane main;
   @FXML private Button buttonBack;
   @FXML private Button buttonCheckInGuest;
   @FXML private Button buttonCompleteCheckIn;
@@ -67,6 +68,37 @@ private int count;
     return root;
   }
 
+  public boolean checkDates(DateInterval dates)
+  {
+    return dates.compareDatesContinuity();
+  }
+
+  public boolean isFieldEmpty()
+  {
+
+    boolean empty = false;
+
+    for (int i = 0; i < main.getChildren().size(); i++)
+    {
+
+      if (main.getChildren().get(i) instanceof TextField)
+      {
+        if (((TextField) main.getChildren().get(i)).getText().isEmpty())
+        {
+          empty = true;
+        }
+      }
+      else if (main.getChildren().get(i) instanceof DatePicker)
+      {
+        if (((DatePicker) main.getChildren().get(i)).getValue() == null)
+        {
+          empty = true;
+        }
+      }
+    }
+
+    return empty;
+  }
 
   public Booking getSelectedBookingNew() {
     return viewHandler.getManageBookingController().getSelectedBookingNew();
@@ -80,12 +112,7 @@ private int count;
       int year = booking.getDateInterval().getArrivalDate().getYear();
       if(LocalDate.now().getDayOfMonth() != day || LocalDate.now().getMonthValue() != month || LocalDate.now().getYear() != year)
       {
-//        BookingList allBookings = modelManager.getAllBookings();
-//        allBookings.deleteBooking(booking);
         arrivalDate.setValue(LocalDate.now());
-//        booking.getDateInterval().setArrivalDate(new Date(LocalDate.now().getDayOfMonth(),LocalDate.now().getMonthValue(),LocalDate.now().getYear()));
-//        allBookings.addBooking(booking);
-//        modelManager.updateBookings(allBookings);
       }
       roomNumberField.setText(booking.getBookedRoom().getRoomNumber());
 //      arrivalDate.setValue(LocalDate.of(booking.getDateInterval().getArrivalDate().getYear(), booking.getDateInterval().getArrivalDate().getMonth(),
@@ -104,8 +131,6 @@ private int count;
         birthdayDate.setValue(LocalDate.of(birthday.getYear(), birthday.getMonth(),birthday.getDay()));
         count++;
       }
-
-
     }
   }
 
@@ -122,7 +147,7 @@ private int count;
     int start = checkedGuests.size();
 
 
-      if(e.getSource() == buttonCheckInGuest) {
+      if(e.getSource() == buttonCheckInGuest && !(isFieldEmpty())) {
 
         String firstName = firstNameField.getText();
         String lastname = lastNameField.getText();
@@ -143,7 +168,15 @@ private int count;
         phoneNumberField.clear();
         birthdayDate.setValue(null);
       }
-     if (e.getSource() == buttonCompleteCheckIn) {
+      else if(e.getSource() == buttonCheckInGuest && isFieldEmpty())
+      {
+        Alert alert = new Alert(Alert.AlertType.WARNING,
+            "You have not filled in all the necessary information. Try again please.");
+        alert.setTitle("Missing information");
+        alert.setHeaderText(null);
+        alert.showAndWait();
+      }
+        if (e.getSource() == buttonCompleteCheckIn) {
        Booking booking = getSelectedBookingNew();
        allBookings.deleteBooking(booking);
        booking.checkedIn();
@@ -161,14 +194,12 @@ private int count;
         alert.showAndWait();
 
       }
+
     //update data.bin to add all new guests.txt;
     allData.add(checkedGuests); // now checkedGuests contains all the guests checkedIn before as well as the new ones
     allData.add(allBookings);
     allData.add(allRooms);
     modelManager.updateAllData(allData);
-
-
-
     }
 
   public void handleActions(ActionEvent e)

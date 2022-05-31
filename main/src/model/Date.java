@@ -3,7 +3,7 @@ package model;
 import java.io.Serializable;
 
 /**
- * A class containing information about a Date object
+ * A class containing information about a Date object.
  *
  * @author Kevin Kluka
  * @version 1.3
@@ -16,10 +16,11 @@ public class Date implements Serializable
   private int year;
 
   /**
-   * Three- argument constructor.
-   * @param day The integer describes the day of the month
+   * Three-argument constructor.
+   *
+   * @param day   The integer describes the day of the month
    * @param month The integer describes the month
-   * @param year The integer describes the year
+   * @param year  The integer describes the year
    */
   public Date(int day, int month, int year)
   {
@@ -29,44 +30,40 @@ public class Date implements Serializable
   }
 
   /**
-   * Returns the value of the day variable
+   * Gets the value of the day variable.
    *
    * @return the value of the day variable
    */
-
   public int getDay()
   {
     return day;
   }
 
   /**
-   * Returns the value of the month variable
+   * Gets the value of the month variable.
    *
    * @return the value of the month variable
    */
-
   public int getMonth()
   {
     return month;
   }
 
   /**
-   * Returns the value of the year variable
+   * Gets the value of the year variable.
    *
    * @return the value of the year variable
    */
-
   public int getYear()
   {
     return year;
   }
 
   /**
-   * Creates a String containing all information about a Date object
+   * Creates a String containing all information about a Date object.
    *
-   * @return String message with three variables year,month and day or not valid date format message
+   * @return String message with three variables year,month and day or else not valid date format message
    */
-
   public String toString()
   {
     if (dateCheck())
@@ -77,23 +74,21 @@ public class Date implements Serializable
   }
 
   /**
-   * Creates a copy of a Date object
+   * Creates a copy of a Date object.
    *
    * @return Date object with the same values
    */
-
   public Date copy()
   {
     return new Date(day, month, year);
   }
 
   /**
-   * Compares a Date object to another object and determines whether they are same type and if their values are equal
+   * Compares a Date object to another object and determines whether they are same type and if their values are equal.
    *
    * @param obj the object that is compared to a Date object
    * @return true or false statement depending on the outcome of the comparison of the two objects
    */
-
   public boolean equals(Object obj)
   {
     //CHECKING IF obj  IS A OBJECT OF DATE CLASS
@@ -111,11 +106,10 @@ public class Date implements Serializable
   }
 
   /**
-   * Checks if a given year is a leap year
+   * Checks if a given year is a leap year.
    *
-   * @return true or false statement telling whether it is a leap year or not
+   * @return true if it is a leap year or false if it is not
    */
-
   public boolean isLeapYear()
   {
     return (year % 4 == 0 && year % 100 != 0) || year % 400 == 0;
@@ -168,9 +162,9 @@ public class Date implements Serializable
   }
 
   /**
-   * Checks if the date contains correct values
+   * Checks if the date contains correct values.
    *
-   * @return true statement if the date is correct and false if it is not
+   * @return true if the date is correct and false if it is not
    */
   public boolean dateCheck()
   {
@@ -208,15 +202,14 @@ public class Date implements Serializable
     }
     return false;
   }
-
   //IF DATE IS AFTER OTHER DATE METHOD WILL RETURN TRUE
   //IF DAY IS BEFORE OR EQUAL METHOD WILL RETURN FALSE
 
   /**
-   * Checks if a date is chronologically after another date
+   * Checks if a date is chronologically after another date.
    *
    * @param other the date that is supposed to be chronologically first
-   * @return true statement if the date is chronologically after the date in the other parameter and a false statement if it is before
+   * @return true if the date is chronologically after the date in the other parameter and a false if it is before
    */
   public boolean isAfter(Date other)
   {
@@ -250,10 +243,10 @@ public class Date implements Serializable
   //IF DATE IS AFTER OR EQUAL TO OTHER DATE METHOD RETURN FALSE
 
   /**
-   * Checks if a date is chronologically before another date
+   * Checks if a date is chronologically before another date.
    *
    * @param other the date that is supposed to be chronologically second
-   * @return true statement if the date is chronologically before the date in the other parameter and a false statement if it is after
+   * @return true if the date is chronologically before the date in the other parameter and a false if it is after
    */
   public boolean isBefore(Date other)
   {

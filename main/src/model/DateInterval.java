@@ -3,7 +3,7 @@ package model;
 import java.io.Serializable;
 
 /**
- * A class containing information about guest's arrival and departure
+ * A class containing information about guest's arrival and departure.
  *
  * @author Kevin Kluka
  * @version 1.2
@@ -15,9 +15,9 @@ public class DateInterval implements Serializable
   private Date departureDate;
 
   /**
-   * 2-argument constructor initializing the DateInterval object
+   * Two-argument constructor initializing the DateInterval object.
    *
-   * @param arrivalDate The variable with the data type Date, describes the arrival date constructed from the three integers of day, month and year
+   * @param arrivalDate   The variable with the data type Date, describes the arrival date constructed from the three integers of day, month and year
    * @param departureDate The variable with the data type Date, describes the departure date constructed from the three integers of day, month and year
    */
   public DateInterval(Date arrivalDate, Date departureDate)
@@ -27,53 +27,49 @@ public class DateInterval implements Serializable
   }
 
   /**
-   * Sets guest's arrival date
+   * Sets guest's arrival date.
    *
    * @param arrivalDate the date that the arrival date will be set to
    */
-
   public void setArrivalDate(Date arrivalDate)
   {
     this.arrivalDate = arrivalDate.copy();
   }
 
   /**
-   * Sets guest's departure date
+   * Sets guest's departure date.
    *
    * @param departureDate the date that the departure date will be set to
    */
-
   public void setDepartureDate(Date departureDate)
   {
     this.departureDate = departureDate.copy();
   }
 
   /**
-   * Returns guest's arrival date
+   * Gets guest's arrival date.
    *
    * @return the guest's arrival date
    */
-
   public Date getArrivalDate()
   {
     return arrivalDate.copy();
   }
 
   /**
-   * Returns guest's departure date
+   * Gets guest's departure date.
    *
    * @return the guest's departure date
    */
-
   public Date getDepartureDate()
   {
     return departureDate.copy();
   }
 
   /**
-   * Returns a string representation of the DateInterval
+   * Gets a string representation of the DateInterval.
    *
-   * @return a string representation od the DateInterval
+   * @return a string representation of the DateInterval
    */
   public String toString()
   {
@@ -105,7 +101,7 @@ public class DateInterval implements Serializable
   //ARRIVAL DATE HAS TO BE BEFORE DEPARTURE DATE
 
   /**
-   * Checks if the arrival date is before the departure date
+   * Checks if the arrival date is before the departure date.
    *
    * @return true if the arrival date is before the departure date
    */
@@ -119,7 +115,6 @@ public class DateInterval implements Serializable
    *
    * @return number of nights between guest's arrival and departure
    */
-
   public int getNumberOfNights()
   {
     //COUNTING VARIABLE
@@ -137,7 +132,7 @@ public class DateInterval implements Serializable
   }
 
   /**
-   * Checks if two booking periods overlap each other
+   * Checks if two booking periods overlap each other.
    *
    * @param other the date interval to compare with
    * @return true if the bookings do not overlap each other

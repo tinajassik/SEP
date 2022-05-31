@@ -88,10 +88,6 @@ private int count;
     return root;
   }
 
-  public boolean checkDates(DateInterval dates)
-  {
-    return dates.compareDatesContinuity();
-  }
 
   public boolean isFieldEmpty()
   {

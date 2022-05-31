@@ -66,23 +66,6 @@ public class GuestList implements Serializable
     return guests.size();
   }
 
-  /**
-   * Gets a Guest object with the given first name and last name form the list.
-   * @param firstName the first name of the Guest object
-   * @param lastName the last name of the Guest object
-   * @return the Guest object with the given first name and last name if one exists, else null
-   */
-//  //getGuestByName() method that returns the guest with the matching name
-//  public Guest getGuestByName(String firstName, String lastName)
-//  {
-//    for (int i = 0; i < guests.size() - 1; i++)
-//    {
-//      if (firstName.equals(guests.get(i).getFirstName()) && lastName.equals(
-//          guests.get(i).getLastName()))
-//        return guests.get(i);
-//    }
-//    return null;
-//  }
 
   /**
    * Removes a guest from the list
@@ -96,16 +79,6 @@ public class GuestList implements Serializable
     }
   }
 
-
-  /**
-   * Gets a list with all Guest objects
-   * @return a list with Guest objects
-   */
-  //getAllGuests() method that returns the ArrayList with all the guests
-  public ArrayList getAllGuests()
-  {
-    return guests;
-  }
 
   /**
    * Returns a string representation of the GuestList

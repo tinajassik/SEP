@@ -360,8 +360,4 @@ public class BookingModelManager implements Serializable
         }
         return filteredBookings;
     }
-
-
-
-
 }

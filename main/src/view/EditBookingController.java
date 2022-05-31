@@ -119,59 +119,85 @@ public class EditBookingController
   public void makeChanges()
   {
 
-    Booking booking = getSelectedBooking();
-    BookingList bookingList = modelManager.getAllBookings();
+    Booking booking = getSelectedBooking(); // 1 for variable declaration, method getSelectedBooking() has a time complexity of O(1) ---> 2
 
-    for (int i = 0; i < bookingList.size(); i++)
+    BookingList bookingList = modelManager.getAllBookings(); // 1 for variable declaration, method getAllBookings() has a time complexity of O(n) ---> 1 + n
+
+    for (int i = 0; i < bookingList.size(); i++) // 1 for declaration, 1 comparison, 1 for size(), 1 for incrementation
+      // the for loop runs n times (n = size of the bookingList) ---> 4n
     {
       if (booking.equals(bookingList.getBooking(i)))
+      //equals() takes 1 and getBooking() takes 1 as well because it is using a get(index) method of ArrayList which is a constant time operation ---> 2
       {
-        if (firstNameField.getText() != null)
+        if (firstNameField.getText() != null) //getText() takes 1 and 1 for "!=" ---> 2
           bookingList.getBooking(i).getBookingGuest().setFirstName(firstNameField.getText());
-        if (lastNameField.getText() != null)
+        //getBooking() takes 1, getBookingGuest() takes 1, setFirstName(), getText method takes O(1) as well ---> 4
+        if (lastNameField.getText() != null) //getText() takes 1 and 1 for "!=" ---> 2
           bookingList.getBooking(i).getBookingGuest().setLastName(lastNameField.getText());
-        if (nationalityField.getText() != null)
+        //4 constant methods, 3 get methods and 1 set method --->4
+        if (nationalityField.getText() != null) //getText() takes 1 and 1 for "!=" ---> 2
           bookingList.getBooking(i).getBookingGuest().setNationality(nationalityField.getText());
+        //4 constant methods, 3 get methods and 1 set method --->4
 
-        LocalDate arrival = arrivalDate.getValue();
-        LocalDate departure = departureDate.getValue();
-        LocalDate bday = birthdayDate.getValue();
+        LocalDate arrival = arrivalDate.getValue(); // 1 for variable declaration, getValue() method is a constant time operation, so takes O(1) ---> 2
+        LocalDate departure = departureDate.getValue(); // 1 for variable declaration, getValue() method is a constant time operation, so takes O(1) ---> 2
+        LocalDate bday = birthdayDate.getValue(); // 1 for variable declaration, getValue() method is a constant time operation, so takes O(1) ---> 2
 
         bookingList.getBooking(i).getDateInterval().setArrivalDate(
             new Date(arrival.getDayOfMonth(), arrival.getMonthValue(), arrival.getYear()));
+        //getBooking() takes 1, getDateInterval takes 1 and also setArrivaldate() takes 1 ---> 3
+        //getDayOfMonth(), getMonthValue(), getYear() are constant operations - get methods - that take O(1) ---> 3
         bookingList.getBooking(i).getDateInterval().setDepartureDate(
             new Date(departure.getDayOfMonth(), departure.getMonthValue(),
                 departure.getYear()));
+        // 5 get methods that take O(1), 1 set method that takes 1 ---> 6
         bookingList.getBooking(i).getBookingGuest().setBirthday(
             new Date(bday.getDayOfMonth(), bday.getMonthValue(), bday.getYear()));
+        // 5 get methods that take O(1), 1 set method that takes 1 ---> 6
 
-        if (addressField.getText() != null)
+        if (addressField.getText() != null) //getText() takes 1 and 1 for "!=" ---> 2
           bookingList.getBooking(i).getBookingGuest().setAddress(addressField.getText());
-        if (phoneNumberField.getText() != null)
+        //4 constant methods that take O(1) - 3 get methods and one set method ---> 5
+        if (phoneNumberField.getText() != null) //getText() takes 1 and 1 for "!=" ---> 2
           bookingList.getBooking(i).getBookingGuest().setPhoneNumber(phoneNumberField.getText());
-        if (roomNumberField.getText() != null)
+        //4 constant methods that take O(1) - 3 get methods and one set method ---> 5
+        if (roomNumberField.getText() != null) //getText() takes 1 and 1 for "!=" ---> 2
           bookingList.getBooking(i).getBookedRoom().setRoomNumber(roomNumberField.getText());
-
+        //4 constant methods that take O(1) - 3 get methods and one set method ---> 5
         if (extraBedNO.isSelected() || extraBedYES.isSelected())
+        //isSelected() takes O(1), so 2*1 and "||" takes 1 --->3
         {
           if (extraBedNO.isSelected())
-            bookingList.getBooking(i).removeExtraBed();
+            bookingList.getBooking(i).removeExtraBed(); // 3 constant methods that take O(1) ---> 3
+
           else
-            bookingList.getBooking(i).addExtraBed();
+            bookingList.getBooking(i).addExtraBed(); // 2 constant methods that take O(1) ---> 2
         }
 
         if (lateCheckInNO.isSelected() || lateCheckInYES.isSelected())
+        //isSelected() takes O(1), so 2*1 and "||" takes 1 --->3
         {
           if (lateCheckInNO.isSelected())
             bookingList.getBooking(i).willNotCheckInLate();
+            // 3 constant methods that take O(1) ---> 3
           else
             bookingList.getBooking(i).willCheckInLate();
+          // 2 constant methods that take O(1) ---> 2
         }
       }
     }
-    modelManager.updateBookings(bookingList);
-
+    modelManager.updateBookings(bookingList); //method that takes O(1)
   }
+
+  // there is no base case since the method is not recursive
+  // for loop runs O(n) times because of the incrementation in each iteration(n++)
+  // T(n) = 2+1+n+4n*(2+2+4+2+4+2+4+2+2+2+3+3+6+6+2+5+2+5+2+5+3+3+3+3)+1 ---> ignoring constants
+  // and coefficients we gwt
+  // T(n) = O(n)
+  // the method was chosen because it includes calls of other many methods
+  // multiple manipulations with ArrayList objects
+
+
     public void deleteBooking(ActionEvent e)
     {
       Booking booking = getSelectedBooking();

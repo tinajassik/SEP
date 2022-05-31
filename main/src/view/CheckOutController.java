@@ -145,7 +145,6 @@ public class CheckOutController
         {
           allGuests.removeGuest(booking.getGuests().getGuest(i));
         }
-
         allBookings.deleteBooking(booking);
         ArrayList<Object> allData = new ArrayList<>();
         allData.add(allBookings);

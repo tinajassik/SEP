@@ -15,6 +15,11 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+/**
+ * A class controlling the Check In window
+ * @author Andreea Asimine
+ * @version 1.4
+ */
 public class CheckInController
 {
   private BookingModelManager modelManager;
@@ -38,7 +43,12 @@ public class CheckInController
 
 private int count;
 
-
+  /**
+   * Initializes the Check In window
+   * @param viewHandler the view handler for Check In window
+   * @param modelManager
+   * @param root
+   */
   public void init(ViewHandler viewHandler, BookingModelManager modelManager, Region root)
   {
     this.modelManager = modelManager;
@@ -126,9 +136,6 @@ private int count;
         Date birthdayGuest = new Date(day,month,year);
         Guest guest = new Guest(firstName,lastname,address,phoneNumber,nationality,birthdayGuest);
         checkedGuests.addGuest(guest);
-
-        System.out.println(checkedGuests);
-
         firstNameField.clear();
         lastNameField.clear();
         nationalityField.clear();
@@ -138,12 +145,8 @@ private int count;
       }
      if (e.getSource() == buttonCompleteCheckIn) {
        Booking booking = getSelectedBookingNew();
-       System.out.println(booking);
-      allBookings.deleteBooking(booking);
+       allBookings.deleteBooking(booking);
        booking.checkedIn();
-       LocalDate arrival  = arrivalDate.getValue();
-       booking.getDateInterval().setArrivalDate(new Date(arrival.getDayOfMonth(), arrival.getMonthValue(),arrival.getYear()));
-       System.out.println(checkedGuests.size());
 
        for (int i = start - 1; i < checkedGuests.size(); i++) {
          booking.getGuests().addGuest(checkedGuests.getGuest(i));

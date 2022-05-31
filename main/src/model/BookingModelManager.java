@@ -355,7 +355,6 @@ public class BookingModelManager implements Serializable
     }
     write.println("</bookings>");
     write.close();
-    System.out.println("File is created");
   }
 
   /**

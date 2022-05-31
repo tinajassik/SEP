@@ -44,7 +44,6 @@ public class CheckOutController
     displayInitialInfo();
 
   }
-
   public Booking getSelectedBookingNew() {
     return viewHandler.getManageBookingController().getSelectedBookingNew();
   }
@@ -109,7 +108,6 @@ public class CheckOutController
         }
          price.setText(Double.toString(modelManager.priceWithDiscount(booking,discount)));
       }
-
     }
 
     if (e.getSource() == addFee)
@@ -145,7 +143,6 @@ public class CheckOutController
         {
           allGuests.removeGuest(booking.getGuests().getGuest(i));
         }
-
         allBookings.deleteBooking(booking);
         ArrayList<Object> allData = new ArrayList<>();
         allData.add(allBookings);
@@ -153,7 +150,7 @@ public class CheckOutController
         allData.add(modelManager.getAllRooms());
         modelManager.updateAllData(allData);
       }
-    }
+     }
     }
 
 

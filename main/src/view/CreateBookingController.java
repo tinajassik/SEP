@@ -46,6 +46,7 @@ public class CreateBookingController
   @FXML private Button buttonSave;
   @FXML private GridPane main;
 
+
   ToggleGroup checkInGroup = new ToggleGroup();
   ToggleGroup extraBedGroup = new ToggleGroup();
 

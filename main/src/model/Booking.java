@@ -69,6 +69,9 @@ public class Booking implements Serializable
     return room;
   }
 
+  public void setBookedRoom(Room room) {
+    this.room = room;
+  }
   /**
    * @return method returns if the guests.txt have checked in
    */

@@ -13,7 +13,6 @@ import java.util.List;
 public class Room implements Serializable
     {
     private String roomNumber, roomType;
-    private boolean extraBed, available;
     private double price;
 
 
@@ -29,7 +28,6 @@ public class Room implements Serializable
         this.roomNumber = roomNumber;
         this.roomType = roomType;
         this.price = price;
-        this.available = true;
     }
 
         /**
@@ -104,45 +102,6 @@ public class Room implements Serializable
     }
 
         /**
-         * Sets the room type
-         * @param roomType the type that the room type will be set to
-         */
-    // Method: setRoomType() - sets the room type of the room object being called on in the method call (Room room = new Room(1); room.setRoomType("Single");)
-    public void setRoomType(String roomType) {
-        this.roomType = roomType;
-    }
-
-        /**
-         * Checks if there should be an extra bed
-         * @return true if there should be an extra bed
-         */
-    // Method: isExtraBed() - returns the extra bed status of the room object being called on in the method call (Room room = new Room(1); room.isExtraBed();)
-    public boolean isExtraBed() {
-        return extraBed;
-    }
-
-        /**
-         * Sets the extra bed status depending on whether there should be one or not
-         * @param extraBed true if there should be an extra bed, else false
-         */
-    // Method: setExtraBed() - sets the extra bed status of the room object being called on in the method call (Room room = new Room(1); room.setExtraBed(true);)
-    public void setExtraBed(boolean extraBed) {
-        this.extraBed = extraBed;
-    }
-
-
-        // Method: getRoomType() - returns the room type of the room object being called on in the method call (Room room = new Room(1); room.getRoomType();)
-
-        /**
-         * Sets the availability of the room
-         * @param available true if the room is available, else false
-         */
-    // Method: setAvailable() - sets the room to available or not available.
-    public void setAvailability(boolean available) {
-        this.available = available;
-    }
-
-        /**
          * Gets price of the room
          * @return the price of the room
          */
@@ -185,8 +144,6 @@ public class Room implements Serializable
         long temp;
         result = roomNumber != null ? roomNumber.hashCode() : 0;
         result = 31 * result + (roomType != null ? roomType.hashCode() : 0);
-        result = 31 * result + (extraBed ? 1 : 0);
-        result = 31 * result + (available ? 1 : 0);
         temp = Double.doubleToLongBits(price);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         return result;

@@ -341,7 +341,7 @@ public class BookingModelManager implements Serializable
   /* updateXML() method updates the XML file with information about all bookings that is used on the Hotel's webpage */
   public void updateXML() throws FileNotFoundException
   {
-    FileOutputStream fileOut = new FileOutputStream("C:\\Users\\Ola\\WebstormProjects\\SEP1\\Web\\xml\\bookingList.xml");
+    FileOutputStream fileOut = new FileOutputStream("C:\\Users\\krist\\WebstormProjects\\SEP1\\Web\\xml\\bookingList.xml");
     PrintWriter write = new PrintWriter(fileOut);
     write.println("<?xml version=\"1.0\" encoding=\"UTF-8\"?> ");
     write.println("<bookings>");

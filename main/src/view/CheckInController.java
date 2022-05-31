@@ -2,10 +2,7 @@ package view;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.Region;
 import javafx.util.converter.LocalDateStringConverter;
 import model.*;
@@ -45,6 +42,26 @@ private int count;
     this.root = root;
     this.viewHandler = viewHandler;
     reset();
+
+    // disabling past days in DatePicker for arrival and departure taken from stackoverflow
+    arrivalDate.setDayCellFactory(picker -> new DateCell() {
+      public void updateItem(LocalDate date, boolean empty) {
+        super.updateItem(date, empty);
+        LocalDate today = LocalDate.now();
+
+        setDisable(empty || date.compareTo(today) < 0 );
+      }
+    });
+
+    departureDate.setDayCellFactory(picker -> new DateCell() {
+      public void updateItem(LocalDate date, boolean empty) {
+        super.updateItem(date, empty);
+        LocalDate today = LocalDate.now();
+
+        setDisable(empty || date.compareTo(today) < 0 );
+      }
+    });
+
   }
 
   public void reset() {
@@ -62,6 +79,11 @@ private int count;
     return viewHandler.getManageBookingController().getSelectedBookingNew();
   }
 
+  public boolean checkDates(DateInterval dates)
+  {
+    return dates.compareDatesContinuity();
+  }
+
   public void displayInitialData() {
     Booking booking = getSelectedBookingNew();
     if (booking != null) {
@@ -70,12 +92,7 @@ private int count;
       int year = booking.getDateInterval().getArrivalDate().getYear();
       if(LocalDate.now().getDayOfMonth() != day || LocalDate.now().getMonthValue() != month || LocalDate.now().getYear() != year)
       {
-//        BookingList allBookings = modelManager.getAllBookings();
-//        allBookings.deleteBooking(booking);
         arrivalDate.setValue(LocalDate.now());
-//        booking.getDateInterval().setArrivalDate(new Date(LocalDate.now().getDayOfMonth(),LocalDate.now().getMonthValue(),LocalDate.now().getYear()));
-//        allBookings.addBooking(booking);
-//        modelManager.updateBookings(allBookings);
       }
       roomNumberField.setText(booking.getBookedRoom().getRoomNumber());
 //      arrivalDate.setValue(LocalDate.of(booking.getDateInterval().getArrivalDate().getYear(), booking.getDateInterval().getArrivalDate().getMonth(),
@@ -114,12 +131,16 @@ private int count;
 
       if(e.getSource() == buttonCheckInGuest) {
 
+
+
         String firstName = firstNameField.getText();
         String lastname = lastNameField.getText();
         String nationality = nationalityField.getText();
         String address = addressField.getText();
         String phoneNumber = phoneNumberField.getText();
         LocalDate birthday = birthdayDate.getValue();
+
+
         int day = birthday.getDayOfMonth();
         int month = birthday.getMonthValue();
         int year = birthday.getYear();

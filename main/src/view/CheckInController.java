@@ -16,6 +16,11 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+/**
+ * A class controlling the Check In window
+ * @author Andreea Asimine
+ * @version 1.4
+ */
 public class CheckInController
 {
   private BookingModelManager modelManager;
@@ -39,7 +44,12 @@ public class CheckInController
 
 private int count;
 
-
+  /**
+   * Initializes the Check In window
+   * @param viewHandler the view handler for Check In window
+   * @param modelManager
+   * @param root
+   */
   public void init(ViewHandler viewHandler, BookingModelManager modelManager, Region root)
   {
     this.modelManager = modelManager;
@@ -102,11 +112,11 @@ private int count;
       int year = booking.getDateInterval().getArrivalDate().getYear();
       if(LocalDate.now().getDayOfMonth() != day || LocalDate.now().getMonthValue() != month || LocalDate.now().getYear() != year)
       {
-        booking.getDateInterval().setArrivalDate(new Date(LocalDate.now().getDayOfMonth(),LocalDate.now().getMonthValue(),LocalDate.now().getYear()));
+        arrivalDate.setValue(LocalDate.now());
       }
       roomNumberField.setText(booking.getBookedRoom().getRoomNumber());
-      arrivalDate.setValue(LocalDate.of(booking.getDateInterval().getArrivalDate().getYear(), booking.getDateInterval().getArrivalDate().getMonth(),
-          booking.getDateInterval().getArrivalDate().getDay()));
+//      arrivalDate.setValue(LocalDate.of(booking.getDateInterval().getArrivalDate().getYear(), booking.getDateInterval().getArrivalDate().getMonth(),
+//          booking.getDateInterval().getArrivalDate().getDay()));
       departureDate.setValue(LocalDate.of(booking.getDateInterval().getDepartureDate().getYear(), booking.getDateInterval().getDepartureDate().getMonth(),
           booking.getDateInterval().getDepartureDate().getDay()));
 
@@ -116,7 +126,7 @@ private int count;
         nationalityField.setText(booking.getBookingGuest().getNationality());
         addressField.setText(booking.getBookingGuest().getAddress());
         phoneNumberField.setText(booking.getBookingGuest().getPhoneNumber());
-        booking.getDateInterval().setArrivalDate(new Date(LocalDate.now().getDayOfMonth(),LocalDate.now().getMonthValue(),LocalDate.now().getYear()));
+//        booking.getDateInterval().setArrivalDate(new Date(LocalDate.now().getDayOfMonth(),LocalDate.now().getMonthValue(),LocalDate.now().getYear()));
         Date birthday = booking.getBookingGuest().getBirthday();
         birthdayDate.setValue(LocalDate.of(birthday.getYear(), birthday.getMonth(),birthday.getDay()));
         count++;
@@ -151,8 +161,6 @@ private int count;
         Date birthdayGuest = new Date(day,month,year);
         Guest guest = new Guest(firstName,lastname,address,phoneNumber,nationality,birthdayGuest);
         checkedGuests.addGuest(guest);
-        System.out.println(checkedGuests);
-
         firstNameField.clear();
         lastNameField.clear();
         nationalityField.clear();
@@ -172,8 +180,6 @@ private int count;
        Booking booking = getSelectedBookingNew();
        allBookings.deleteBooking(booking);
        booking.checkedIn();
-
-       System.out.println(checkedGuests.size());
 
        for (int i = start - 1; i < checkedGuests.size(); i++) {
          booking.getGuests().addGuest(checkedGuests.getGuest(i));

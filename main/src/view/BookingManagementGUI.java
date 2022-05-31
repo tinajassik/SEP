@@ -10,6 +10,11 @@ import model.BookingModelManager;
 
 import java.io.IOException;
 
+/**
+ * A class responsible for starting up the window for graphical user interface
+ * @author Kristina Jassova
+ * @version 1.0
+ */
 
 public class BookingManagementGUI extends Application
 {

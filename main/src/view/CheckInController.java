@@ -128,16 +128,8 @@ private int count;
   public void displayInitialData() {
     Booking booking = getSelectedBookingNew();
     if (booking != null) {
-      int day = booking.getDateInterval().getArrivalDate().getDay();
-      int month = booking.getDateInterval().getArrivalDate().getMonth();
-      int year = booking.getDateInterval().getArrivalDate().getYear();
-      if(LocalDate.now().getDayOfMonth() != day || LocalDate.now().getMonthValue() != month || LocalDate.now().getYear() != year)
-      {
-        arrivalDate.setValue(LocalDate.now());
-      }
+      arrivalDate.setValue(LocalDate.now());
       roomNumberField.setText(booking.getBookedRoom().getRoomNumber());
-//      arrivalDate.setValue(LocalDate.of(booking.getDateInterval().getArrivalDate().getYear(), booking.getDateInterval().getArrivalDate().getMonth(),
-//          booking.getDateInterval().getArrivalDate().getDay()));
       departureDate.setValue(LocalDate.of(booking.getDateInterval().getDepartureDate().getYear(), booking.getDateInterval().getDepartureDate().getMonth(),
           booking.getDateInterval().getDepartureDate().getDay()));
 

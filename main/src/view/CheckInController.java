@@ -205,8 +205,9 @@ private int count;
        Booking booking = getSelectedBookingNew();
        allBookings.deleteBooking(booking);
        booking.checkedIn();
+       booking.getDateInterval().setArrivalDate(new Date(arrivalDate.getValue().getDayOfMonth(),arrivalDate.getValue().getMonthValue(),arrivalDate.getValue().getYear()));
 
-       for (int i = start - 1; i < checkedGuests.size(); i++) {
+          for (int i = start - 1; i < checkedGuests.size(); i++) {
          booking.getGuests().addGuest(checkedGuests.getGuest(i));
        }
 

@@ -35,6 +35,8 @@ public class EditBookingController
   @FXML private Button buttonSave;
   @FXML private GridPane main;
   @FXML private Button removeBooking;
+  @FXML private ChoiceBox<Room> choiceBox;
+  @FXML private Button buttonApply;
 
   ToggleGroup checkInGroup = new ToggleGroup();
   ToggleGroup extraBedGroup = new ToggleGroup();
@@ -55,7 +57,6 @@ public class EditBookingController
   public void reset()
   {
     displayInitialData();
-
   }
 
   public Region getRoot()
@@ -66,7 +67,6 @@ public class EditBookingController
   public Booking getSelectedBooking()
   {
     return  viewHandler.getManageBookingController().getSelectedBookingNew();
-
   }
 
   public void displayInitialData()
@@ -94,7 +94,27 @@ public class EditBookingController
             else {lateCheckInNO.setSelected(true);}
             if (booking.hasExtraBed()) {extraBedYES.setSelected(true);}
             else {extraBedNO.setSelected(true);}
+            choiceBox.setValue(booking.getBookedRoom());
+    }
+  }
 
+  public boolean checkDates(DateInterval dates)
+  {
+    return dates.compareDatesContinuity();
+  }
+
+  public void getAvailableRooms(DateInterval dates)
+  {
+    choiceBox.getItems().clear();
+    RoomList available = modelManager.getAvailableRoomsForASpecificPeriod(
+        dates);
+    for (int i = 0; i < available.size(); i++)
+    {
+      choiceBox.getItems().add(available.getRoom(i));
+    }
+    if (available.size() > 0)
+    {
+      choiceBox.setValue(available.getRoom(0));
     }
   }
 
@@ -113,11 +133,40 @@ public class EditBookingController
       alert.setHeaderText(null);
       alert.showAndWait();
     }
+    if (e.getSource() == buttonApply)
+    {
+      LocalDate arrival = this.arrivalDate.getValue();
+      int day = arrival.getDayOfMonth();
+      int month = arrival.getMonthValue();
+      int year = arrival.getYear();
+      Date arrivalDate = new Date(day, month, year);
+      LocalDate departure = this.departureDate.getValue();
+      int day1 = departure.getDayOfMonth();
+      int month1 = departure.getMonthValue();
+      int year1 = departure.getYear();
+      Date departureDate = new Date(day1, month1, year1);
+      DateInterval datesToBeBooked = new DateInterval(arrivalDate,
+          departureDate);
+
+      if (!(checkDates(datesToBeBooked)))
+      {
+        Alert alert = new Alert(Alert.AlertType.WARNING,
+            "Arrival and departure dates are not valid!");
+        alert.setTitle("Dates Error");
+        alert.setHeaderText(null);
+        alert.showAndWait();
+        this.arrivalDate.setValue(null);
+        this.departureDate.setValue(null);
+
+      }
+      else
+        getAvailableRooms(datesToBeBooked);
+
+    }
   }
 
   public void makeChanges()
   {
-
     Booking booking = getSelectedBooking(); // 1 for variable declaration, method getSelectedBooking() has a time complexity of O(1) ---> 2
 
     BookingList bookingList = modelManager.getAllBookings(); // 1 for variable declaration, method getAllBookings() has a time complexity of O(n) ---> 1 + n
@@ -154,15 +203,15 @@ public class EditBookingController
             new Date(bday.getDayOfMonth(), bday.getMonthValue(), bday.getYear()));
         // 5 get methods that take O(1), 1 set method that takes 1 ---> 6
 
+        bookingList.getBooking(i).setBookedRoom(choiceBox.getSelectionModel().getSelectedItem());
+        //4 constant methods that take O(1) - 3 get methods and 1 set method ---> 4
+
         if (addressField.getText() != null) //getText() takes 1 and 1 for "!=" ---> 2
           bookingList.getBooking(i).getBookingGuest().setAddress(addressField.getText());
-        //4 constant methods that take O(1) - 3 get methods and one set method ---> 5
+        //4 constant methods that take O(1) - 3 get methods and one set method ---> 4
         if (phoneNumberField.getText() != null) //getText() takes 1 and 1 for "!=" ---> 2
           bookingList.getBooking(i).getBookingGuest().setPhoneNumber(phoneNumberField.getText());
-        //4 constant methods that take O(1) - 3 get methods and one set method ---> 5
-        if (roomNumberField.getText() != null) //getText() takes 1 and 1 for "!=" ---> 2
-          bookingList.getBooking(i).getBookedRoom().setRoomNumber(roomNumberField.getText());
-        //4 constant methods that take O(1) - 3 get methods and one set method ---> 5
+        //4 constant methods that take O(1) - 3 get methods and one set method ---> 4
         if (extraBedNO.isSelected() || extraBedYES.isSelected())
         //isSelected() takes O(1), so 2*1 and "||" takes 1 --->3
         {
@@ -172,7 +221,6 @@ public class EditBookingController
           else
             bookingList.getBooking(i).addExtraBed(); // 2 constant methods that take O(1) ---> 2
         }
-
         if (lateCheckInNO.isSelected() || lateCheckInYES.isSelected())
         //isSelected() takes O(1), so 2*1 and "||" takes 1 --->3
         {
@@ -185,13 +233,14 @@ public class EditBookingController
         }
       }
     }
-    modelManager.updateBookings(bookingList); //method that takes O(1)
+
+    modelManager.updateBookings(bookingList); //method that takes O(n)
   }
 
   // there is no base case since the method is not recursive
   // for loop runs O(n) times because of the incrementation in each iteration(n++)
-  // T(n) = 2+1+n+4n*(2+2+4+2+4+2+4+2+2+2+3+3+6+6+2+5+2+5+2+5+3+3+3+3)+1 ---> ignoring constants
-  // and coefficients we gwt
+  // T(n) = 2+1+n+4n*(2+2+4+2+4+2+4+2+2+2+3+3+6+6+4+2+4+2+4+3+3+3+3)+1 ---> ignoring constants
+  // and coefficients we get
   // T(n) = O(n)
   // the method was chosen because it includes calls of other many methods
   // multiple manipulations with ArrayList objects

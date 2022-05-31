@@ -48,7 +48,7 @@ public class BookingModelManager implements Serializable
     }
     catch (FileNotFoundException e)
     {
-      System.out.println("File not found");
+      System.out.println("File not found Bookings");
     }
     catch (IOException e)
     {
@@ -75,14 +75,17 @@ public class BookingModelManager implements Serializable
       Object[] temp = MyFileHandler.readArrayFromBinaryFile(fileName);
       for (int i = 0; i < temp.length; i++) {
         if (temp[i] instanceof GuestList) {
-          for (int j = 0; j < ((GuestList) temp[i]).size(); j++)
-            allGuests.addGuest(((GuestList) temp[i]).getGuest(j));
+          allGuests = (GuestList) temp[i];
+          break;
+
+//          for (int j = 0; j < ((GuestList) temp[i]).size(); j++)
+//            allGuests.addGuest(((GuestList) temp[i]).getGuest(j));
         }
       }
     }
     catch (FileNotFoundException e)
     {
-      System.out.println("File not found");
+      System.out.println("File not found Guests");
     }
     catch (IOException e)
     {
@@ -110,14 +113,17 @@ public class BookingModelManager implements Serializable
       Object[] temp = MyFileHandler.readArrayFromBinaryFile(fileName);
       for (int i = 0; i < temp.length; i++) {
         if (temp[i] instanceof RoomList) {
-          for (int j = 0; j < ((RoomList) temp[i]).size(); j++)
-            allRooms.addRoom(((RoomList) temp[i]).getRoom(j));
+
+          allRooms = (RoomList) temp[i];
+          break;
+//          for (int j = 0; j < ((RoomList) temp[i]).size(); j++)
+//            allRooms.addRoom(((RoomList) temp[i]).getRoom(j));
         }
       }
     }
     catch (FileNotFoundException e)
     {
-      System.out.println("File not found");
+      System.out.println("File not found Rooms");
     }
     catch (IOException e)
     {
@@ -138,23 +144,36 @@ public class BookingModelManager implements Serializable
    */
   public BookingList getExpectedArrivals()
   {
-    BookingList allBookings = getAllBookings();
-    BookingList expectedArrivals = new BookingList();
-    LocalDate currentDate = LocalDate.now();
-    Date temp = new Date(currentDate.getDayOfMonth(),
-        currentDate.getMonthValue(), currentDate.getYear());
+    BookingList allBookings = getAllBookings(); // 1 for variable declaration
+    // method getAllBookings() has a time complexity of O(n)-
+    BookingList expectedArrivals = new BookingList(); // variable initialization takes 1
 
-    for (int i = 0; i < allBookings.size() ; i++)
+    LocalDate currentDate = LocalDate.now(); // 1 for declaration, 1 for method now(), so 2
+    Date temp = new Date(currentDate.getDayOfMonth(),
+        currentDate.getMonthValue(), currentDate.getYear()); // 1 "=", 3 constant operations - get methods
+
+    for (int i = 0; i < allBookings.size() ; i++) // 1 for declaration, 1 comparison, 1 for size(), 1 for incrementation
+      // the loop will run n times (n - size of the bookinglist) --- > 4n
     {
-      Booking booking = allBookings.getBooking(i);
+      Booking booking = allBookings.getBooking(i); // for each iteration -> 1 "=" and 1 for getBooking(i)
+      // method getBooking(i) is using a get(index) method of ArrayList which is a constant time operation
 
       if(booking.getDateInterval().getArrivalDate().equals(temp) && !booking.isCheckIn())
+      // getDateInterval() takes 1, getArrivalDate() takes 1, equals() is a constant time operation as well O(1)
       {
-        expectedArrivals.addBooking(booking);
+        expectedArrivals.addBooking(booking); // addBooking is using an add method of ArrayList which is a constant time operation - O(1)
       }
-    }
-    return expectedArrivals;
+    } // time complexity of the complete for loop would be then 4n * 6 = 24n
+    return expectedArrivals; // return statement takes 1
   }
+
+  // there is no base case since the method is not recursive
+  // The for loop runs O(n) times because of n++ in each iteration
+  // T(n) = 1 + 1 + 2 + 4 + 24n + 1 ---> ignoring constants and
+  // coefficients we get
+  // T(n) = O(n)
+  // the method was chosen because it includes calls to many other methods as well as
+  // multiple manipulations with ArrayList object
 
   /**
    * Gets a BookingList containing all Booking objects that have current date as their departure date.
@@ -200,7 +219,7 @@ public class BookingModelManager implements Serializable
     }
     catch (FileNotFoundException e)
     {
-      System.out.println("File not found");
+      System.out.println("File not found Update Bookings");
     }
     catch (IOException e)
     {
@@ -212,7 +231,7 @@ public class BookingModelManager implements Serializable
     }
     catch (FileNotFoundException e)
     {
-      System.out.println("File not found");
+      System.out.println("File not found XML");
     }
 
 
@@ -230,7 +249,7 @@ public class BookingModelManager implements Serializable
     }
     catch (FileNotFoundException e)
     {
-      System.out.println("File not found");
+      System.out.println("File not found All data");
     }
     catch (IOException e)
     {
@@ -242,7 +261,7 @@ public class BookingModelManager implements Serializable
     }
     catch (FileNotFoundException e)
     {
-      System.out.println("File not found");
+      System.out.println("File not found XML in all Data");
     }
   }
 

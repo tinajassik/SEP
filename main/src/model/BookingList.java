@@ -48,7 +48,7 @@ public class BookingList implements Serializable
    */
   public void deleteBooking(Booking booking)
   {
-    bookings.remove(booking);
+   bookings.remove(booking);
   }
 
   /**

@@ -60,6 +60,25 @@ public class CreateBookingController
     lateCheckInNO.setToggleGroup(checkInGroup);
     extraBedNO.setToggleGroup(extraBedGroup);
     extraBedYES.setToggleGroup(extraBedGroup);
+
+    // disabling past days in DatePicker for arrival and departure taken from stackoverflow
+    arrivalDate.setDayCellFactory(picker -> new DateCell() {
+      public void updateItem(LocalDate date, boolean empty) {
+        super.updateItem(date, empty);
+        LocalDate today = LocalDate.now();
+
+        setDisable(empty || date.compareTo(today) < 0 );
+      }
+    });
+
+    departureDate.setDayCellFactory(picker -> new DateCell() {
+      public void updateItem(LocalDate date, boolean empty) {
+        super.updateItem(date, empty);
+        LocalDate today = LocalDate.now();
+
+        setDisable(empty || date.compareTo(today) < 0 );
+      }
+    });
   }
 
   public void reset()
@@ -265,7 +284,6 @@ public class CreateBookingController
             PauseTransition delay = new PauseTransition(Duration.seconds(1));
             delay.setOnFinished(event -> stage.close());
             delay.play();
-
           }
           catch (IOException exception)
           {

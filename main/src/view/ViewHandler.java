@@ -10,11 +10,11 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 /**
- * A class responsible for opening and changing views/windows.
- *
- * @author Allan Henriksen, Kristina Jassova
- * @version 1.0
- */
+* A class responsible for opening and changing views/windows.
+*
+* @author Allan Henriksen, Kristina Jassova
+* @version 1.0
+*/
 public class ViewHandler
 {
   private Scene scene;
@@ -30,16 +30,17 @@ public class ViewHandler
   private BookingModelManager modelManager;
 
   /**
-   * One-argument constructor for ViewHandler object.
-   *
-   * @param modelManager object of the BookingModelManager class
-   * @throws IOException is the exception that indicates the failure in writing to the binary file
-   */
+  * One-argument constructor for ViewHandler object.
+  *
+  * @param modelManager object of the BookingModelManager class
+  * @throws IOException is the exception that indicates the failure in writing to the binary file
+  */
   public ViewHandler(BookingModelManager modelManager)
   {
     this.modelManager = modelManager;
     scene = new Scene(new Region());
   }
+
 
   /**
    * Initialized the the application.

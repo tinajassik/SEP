@@ -18,6 +18,7 @@ import java.io.IOException;
  */
 public class BookingManagementGUI extends Application
 {
+
   /**
    * Starts up the window for graphical user interface.
    *

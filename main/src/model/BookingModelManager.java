@@ -249,7 +249,6 @@ public class BookingModelManager implements Serializable
     {
       System.out.println("File not found XML");
     }
-
   }
 
   /**

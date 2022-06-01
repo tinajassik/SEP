@@ -27,7 +27,7 @@
             </ImageView>
          </children>
       </FlowPane>
-      <GridPane hgap="10.0" prefHeight="217.0" prefWidth="533.0" styleClass="background" vgap="20.0">
+      <GridPane fx:id="main" hgap="10.0" prefHeight="217.0" prefWidth="533.0" styleClass="background" vgap="20.0">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="279.33331298828125" minWidth="10.0" prefWidth="174.33334350585938" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="469.3333435058594" minWidth="0.0" prefWidth="125.66668701171872" />

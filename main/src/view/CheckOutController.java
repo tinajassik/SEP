@@ -55,14 +55,13 @@ public class CheckOutController
     this.viewHandler = viewHandler;
     displayInitialInfo();
   }
-
+  
   /**
    * Gets selected item from the listView.
    *
    * @return the Booking object
    */
-  Booking getSelectedBookingNew()
-  {
+  public Booking getSelectedBookingNew() {
     return viewHandler.getManageBookingController().getSelectedBookingNew();
   }
 
@@ -150,7 +149,6 @@ public class CheckOutController
         price.setText(
             Double.toString(modelManager.priceWithDiscount(booking, discount)));
       }
-
     }
 
     if (e.getSource() == addFee)
@@ -195,8 +193,8 @@ public class CheckOutController
         allData.add(modelManager.getAllRooms());
         modelManager.updateAllData(allData);
       }
+     }
     }
-  }
 
   /**
    * Displays necessary data to the CheckOut window

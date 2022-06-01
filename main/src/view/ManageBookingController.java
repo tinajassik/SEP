@@ -70,6 +70,7 @@ public class ManageBookingController
   public void reset()
   {
     updateBookings();
+    fieldName.clear();
   }
 
   /**
@@ -129,11 +130,20 @@ public class ManageBookingController
           {
             listView.getItems().add(bookings.getBooking(i));
           }
+
+          if (listView.getItems().isEmpty()) {
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION,
+                    "Name was not found. Please try again.");
+            alert.setTitle("Guest not found");
+            alert.setHeaderText(null);
+            alert.showAndWait();
+          }
         }
         catch (IndexOutOfBoundsException exception)
         {
           Alert alert = new Alert(Alert.AlertType.WARNING,
-              "Name was not found. Please try again.");
+              "Invalid name. Try again.");
           alert.setTitle("Invalid name detected");
           alert.setHeaderText(null);
           alert.showAndWait();

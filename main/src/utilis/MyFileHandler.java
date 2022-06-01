@@ -5,17 +5,19 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- * A class responsible for reading and writing files
+ * A class responsible for reading and writing files.
+ *
  * @author Allan Henriksen
  */
 
 public class MyFileHandler
 {
   /**
-   * Reads all lines from the file with the given file name and returns it as a String[]
+   * Reads all lines from the file with the given file name and returns it as a String[].
+   *
    * @param fileName the name of the file that will be read
    * @return all lines from the file with the given file name as a String[]
-   * @throws FileNotFoundException
+   * @throws FileNotFoundException is the exception where the text file was not found
    */
   public static String[] readArrayFromTextFile(String fileName)
       throws FileNotFoundException
@@ -47,10 +49,11 @@ public class MyFileHandler
 
   /**
    * Writes the objects in the given array to a file with the given file name.
+   *
    * @param fileName the name of the file that will be written
    * @param objs the array of objects that will be written to a file
-   * @throws FileNotFoundException
-   * @throws IOException
+   * @throws FileNotFoundException is the exception where the binary file was not found
+   * @throws IOException is the exception that indicates the failure in writing to the binary file
    */
   public static void writeArrayToBinaryFile(String fileName, Object[] objs)
       throws FileNotFoundException, IOException
@@ -85,13 +88,13 @@ public class MyFileHandler
 
   /**
    * Reads all objects from the file with the given file name and returns it as an Object[].
+   *
    * @param fileName the name of the file that will be read
    * @return array of objects read from the file
-   * @throws FileNotFoundException
-   * @throws IOException
-   * @throws ClassNotFoundException
+   * @throws FileNotFoundException is the exception where the binary file was not found
+   * @throws IOException is the exception that indicates the failure in reading from the binary file
+   * @throws ClassNotFoundException is the exception that indicates mismatch of classes from the file and computer
    */
-
   public static Object[] readArrayFromBinaryFile(String fileName)
       throws FileNotFoundException, IOException, ClassNotFoundException
   {
@@ -128,7 +131,6 @@ public class MyFileHandler
         }
       }
     }
-
     return objs.toArray();
   }
 }

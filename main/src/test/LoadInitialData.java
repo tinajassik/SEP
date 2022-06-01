@@ -6,10 +6,18 @@ import utilis.MyFileHandler;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
-
+/**
+ * A class controlling loading of data.
+ *
+ * @author Kristina Jassova
+ * @version 1.0
+ */
 public class LoadInitialData
 {
-
+  /**
+   * ????????????????????????????????????????
+   * @param args
+   */
   public static void main(String[] args)
   {
     ArrayList<Object> initialData= new ArrayList<>();

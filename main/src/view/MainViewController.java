@@ -7,6 +7,12 @@ import javafx.scene.layout.Region;
 import model.BookingList;
 import model.BookingModelManager;
 
+/**
+* A class controlling the Main View window.
+*
+* @author Kristina Jassova
+* @version 1.0
+*/
 public class MainViewController
 {
 
@@ -22,27 +28,42 @@ public class MainViewController
   @FXML TextArea textAreaDepartures;
 
 
-//  @FXML MenuItem exitMenuItem;
-//  @FXML MenuItem aboutMenuItem;
-
-  public void init(ViewHandler viewHandler, BookingModelManager modelManager, Region root)
+  /**
+  * Initializes the MainView window.
+  *
+  * @param viewHandler  the view handler for Check In window
+  * @param modelManager object of the BookingModelManager class
+  * @param root         object of the Region class
+  */
+  public void init(ViewHandler viewHandler, BookingModelManager modelManager,
+      Region root)
   {
     this.modelManager = modelManager;
     this.root = root;
     this.viewHandler = viewHandler;
     displayArrivalsAndDepartures();
-
   }
 
+  /**
+  * Resets the MainView window.
+  */
   public void reset() {
     displayArrivalsAndDepartures();
   }
-
+  
+  /**
+  * Gets the root object of the Region.
+  *
+  * @return the root object
+  */
   public Region getRoot()
   {
     return root;
   }
-
+  
+  /**
+  * Displays arrival and departure dates.
+  */
   public void displayArrivalsAndDepartures() {
     BookingList arrivals = modelManager.getExpectedArrivals();
     BookingList departures = modelManager.getExpectedDepartures();
@@ -65,7 +86,6 @@ public class MainViewController
 
   public void handleActions(ActionEvent e)
   {
-
     if (e.getSource() == buttonNewBooking)
     {
       viewHandler.openView("CreateBooking");
@@ -79,35 +99,5 @@ public class MainViewController
     else if (e.getSource() == buttonGuests) {
       viewHandler.openView("Guests");
     }
-
-
-    //    else if (e.getSource() == exitMenuItem)
-    //    {
-    //      Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
-    //          "Do you really want to exit the program?",
-    //          ButtonType.YES, ButtonType.NO);
-    //      alert.setTitle("Exit");
-    //      alert.setHeaderText(null);
-    //
-    //      alert.showAndWait();
-    //
-    //      if (alert.getResult() == ButtonType.YES)
-    //      {
-    //        System.exit(0);
-    //      }
-    //    }
-    //    else if (e.getSource() == aboutMenuItem)
-    //    {
-    //      Alert alert = new Alert(Alert.AlertType.INFORMATION);
-    //      alert.setHeaderText(null);
-    //      alert.setTitle("About");
-    //      alert.setContentText("This is just a little program that demonstrates some of the GUI features in Java");
-    //      alert.showAndWait();
-    //    }
-    //  }
-
   }
-
-
-
 }

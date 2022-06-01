@@ -122,7 +122,7 @@ public class Date implements Serializable
   }
 
   /**
-   * Changes the date to the next day's date
+   * Changes the date to the next day's date.
    */
   //METHOD ADDING ONE DAY TO A DAY
   public void nextDay()

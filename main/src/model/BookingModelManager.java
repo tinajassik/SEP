@@ -10,7 +10,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 /**
- * A class containing methods responsible for managing the Booking System
+ * A class containing methods responsible for managing the Booking System.
  * @author Andreea Asimine, Aleksandra Adamczak
  */
 public class BookingModelManager implements Serializable
@@ -27,7 +27,7 @@ public class BookingModelManager implements Serializable
   }
 
   /**
-   * Gets a BookingList containing all Booking objects saved to the file
+   * Gets a BookingList containing all Booking objects saved to the file.
    * @return a BookingList containing all Booking objects saved to the file
    */
   // Use the MyFileHandler class to retrieve a BookingList object with all Bookings
@@ -77,9 +77,6 @@ public class BookingModelManager implements Serializable
         if (temp[i] instanceof GuestList) {
           allGuests = (GuestList) temp[i];
           break;
-
-//          for (int j = 0; j < ((GuestList) temp[i]).size(); j++)
-//            allGuests.addGuest(((GuestList) temp[i]).getGuest(j));
         }
       }
     }
@@ -98,12 +95,12 @@ public class BookingModelManager implements Serializable
     return allGuests;
   }
 
-  // Use the MyFileHandler class to retrieve a RoomList object with all Rooms
 
   /**
    * Gets a RoomList containing all Room objects saved to the file.
    * @return a RoomList containing all Room objects saved to the file
    */
+  // Use the MyFileHandler class to retrieve a RoomList object with all Rooms
   public RoomList getAllRooms()
   {
     RoomList allRooms = new RoomList();
@@ -116,8 +113,6 @@ public class BookingModelManager implements Serializable
 
           allRooms = (RoomList) temp[i];
           break;
-//          for (int j = 0; j < ((RoomList) temp[i]).size(); j++)
-//            allRooms.addRoom(((RoomList) temp[i]).getRoom(j));
         }
       }
     }
@@ -135,8 +130,6 @@ public class BookingModelManager implements Serializable
     }
     return allRooms;
   }
-
-  // Method that returns a booking list with the expected arrivals
 
   /**
    * Gets a BookingList containing all Booking objects that have current date as their arrival date.
@@ -264,11 +257,11 @@ public class BookingModelManager implements Serializable
   }
 
   /**
-   * Gets a RoomList containing rooms available in a given time period
+   * Gets a RoomList containing rooms available in a given time period.
+   *
    * @param dateInterval time period within which the availability of rooms will be checked
    * @return list of rooms which are available  in a given time period
    */
-  //Method that returns a room list will all available rooms from a specific period
   public RoomList getAvailableRoomsForASpecificPeriod(DateInterval dateInterval)
   {
     BookingList allBookings = getAllBookings();
@@ -333,7 +326,7 @@ public class BookingModelManager implements Serializable
   }
 
   /**
-   * Updates the XML file with information about bookings that is used on the Hotel's webpage
+   * Updates the XML file with information about bookings that is used on the Hotel's webpage.
    * @throws FileNotFoundException
    */
   /* updateXML() method updates the XML file with information about all bookings that is used on the Hotel's webpage */
@@ -356,7 +349,8 @@ public class BookingModelManager implements Serializable
   }
 
   /**
-   * Filters bookings by first and last name of person who has made the booking
+   * Filters bookings by first and last name of person who has made the booking.
+   *
    * @param firstName the first name by which the bookings will be filtered
    * @param lastName the last name by which the bookings will be filtered
    * @return the bookings which where made by a guest with the given first and last name

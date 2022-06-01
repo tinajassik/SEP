@@ -6,8 +6,15 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
+
 import java.io.IOException;
 
+/**
+* A class responsible for opening and changing views/windows.
+*
+* @author Allan Henriksen, Kristina Jassova
+* @version 1.0
+*/
 public class ViewHandler
 {
   private Scene scene;
@@ -20,15 +27,26 @@ public class ViewHandler
   private GuestsController guestsController;
   private CheckOutController checkOutController;
   private EditBookingController editBookingController;
-
   private BookingModelManager modelManager;
 
-  public ViewHandler(BookingModelManager modelManager) throws IOException
+  /**
+  * One-argument constructor for ViewHandler object.
+  *
+  * @param modelManager object of the BookingModelManager class
+  * @throws IOException is the exception that indicates the failure in writing to the binary file
+  */
+  public ViewHandler(BookingModelManager modelManager)
   {
     this.modelManager = modelManager;
     scene = new Scene(new Region());
   }
 
+
+  /**
+   * Initialized the the application.
+   *
+   * @param window the first window to be open when starting the GUI
+   */
   public void start(Stage window)
   {
     this.window = window;
@@ -42,9 +60,13 @@ public class ViewHandler
     loadViewGuests();
     loadViewCreateBooking();
 
-
   }
 
+  /**
+   * Opens the window based on the id given by the parameter.
+   *
+   * @param id is a specific id for each of the created windows
+   */
   public void openView(String id)
   {
     Region root = null;
@@ -78,7 +100,7 @@ public class ViewHandler
     scene.setRoot(root);
     String title = "";
 
-    if(root.getUserData() !=null)
+    if (root.getUserData() != null)
     {
       title += root.getUserData();
     }
@@ -92,7 +114,7 @@ public class ViewHandler
 
   private Region loadViewMain()
   {
-    if(mainViewController == null)
+    if (mainViewController == null)
     {
       try
       {
@@ -117,7 +139,7 @@ public class ViewHandler
 
   private Region loadViewCreateBooking()
   {
-    if(createBookingController == null)
+    if (createBookingController == null)
     {
       try
       {
@@ -142,7 +164,7 @@ public class ViewHandler
 
   private Region loadViewCheckIn()
   {
-    if(checkInController == null)
+    if (checkInController == null)
     {
       try
       {
@@ -167,7 +189,7 @@ public class ViewHandler
 
   private Region loadViewCheckOut()
   {
-    if(checkOutController == null)
+    if (checkOutController == null)
     {
       try
       {
@@ -192,7 +214,7 @@ public class ViewHandler
 
   private Region loadViewSearchBooking()
   {
-    if(manageBookingController == null)
+    if (manageBookingController == null)
     {
       try
       {
@@ -217,7 +239,7 @@ public class ViewHandler
 
   private Region loadViewRooms()
   {
-    if(roomsController == null)
+    if (roomsController == null)
     {
       try
       {
@@ -242,7 +264,7 @@ public class ViewHandler
 
   private Region loadViewGuests()
   {
-    if(guestsController == null)
+    if (guestsController == null)
     {
       try
       {
@@ -267,7 +289,7 @@ public class ViewHandler
 
   private Region loadViewEditBooking()
   {
-    if(editBookingController == null)
+    if (editBookingController == null)
     {
       try
       {
@@ -290,30 +312,13 @@ public class ViewHandler
     return editBookingController.getRoot();
   }
 
-  public ManageBookingController getManageBookingController() {
+  /**
+   * Gets ManageBooking controller.
+   *
+   * @return ManageBooking controller
+   */
+  public ManageBookingController getManageBookingController()
+  {
     return manageBookingController;
   }
-
-
-
-
-
-
-  /*
-    It's not necessary in this example, but sometimes it might be needed
-    for one controller to access/modify data in another controller's view.
-    That can be done by creating a get-method in this ViewHandler class for
-    the controller of the view that must be accessed. E.g.:
-
-     public AllStudentsViewController getAllStudentsViewController()
-     {
-       return allStudentsViewController;
-     }
-
-    It's then possible in e.g. the MainViewController to call this
-    get-method on its ViewHandler object, to get access to any methods
-    made in the AllStudentsViewController. E.g.:
-
-     viewHandler.getAllStudentsViewController().aSetMethod("New data to set");
-  */
 }

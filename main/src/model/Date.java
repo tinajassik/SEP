@@ -116,7 +116,7 @@ public class Date implements Serializable
   }
 
   /**
-   * Changes the date to the next day's date
+   * Changes the date to the next day's date.
    */
   public void nextDay()
   {

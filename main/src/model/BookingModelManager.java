@@ -282,12 +282,11 @@ public class BookingModelManager implements Serializable
   }
 
   /**
-   * Gets a RoomList containing rooms available in a given time period
+   * Gets a RoomList containing rooms available in a given time period.
    *
    * @param dateInterval time period within which the availability of rooms will be checked
    * @return list of rooms which are available  in a given time period
    */
-  //Method that returns a room list will all available rooms from a specific period
   public RoomList getAvailableRoomsForASpecificPeriod(DateInterval dateInterval)
   {
     BookingList allBookings = getAllBookings();
@@ -386,7 +385,7 @@ public class BookingModelManager implements Serializable
   }
 
   /**
-   * Filters bookings by first and last name of person who has made the booking
+   * Filters bookings by first and last name of person who has made the booking.
    *
    * @param firstName the first name by which the bookings will be filtered
    * @param lastName  the last name by which the bookings will be filtered

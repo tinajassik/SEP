@@ -53,7 +53,6 @@ public class RoomsController
 
     allRoomsArea.setEditable(false);
     availableRoomsArea.setEditable(false);
-
   }
 
   /**
@@ -62,7 +61,6 @@ public class RoomsController
   public void reset()
   {
     updateAvailableRoomsArea();
-
   }
 
   /**
@@ -114,5 +112,4 @@ public class RoomsController
     }
     availableRoomsArea.setText(str);
   }
-
 }

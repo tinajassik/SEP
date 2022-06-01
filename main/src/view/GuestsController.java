@@ -79,7 +79,6 @@ public class GuestsController
       textField1.clear();
       textField2.clear();
       text.clear();
-
     }
   }
 
@@ -96,7 +95,6 @@ public class GuestsController
       guestsListView.getItems().add(
           guests.getGuest(i).getFirstName() + " " + guests.getGuest(i)
               .getLastName());
-
     }
   }
 
@@ -139,7 +137,6 @@ public class GuestsController
         alert.setTitle("Missing guest");
         alert.setHeaderText(null);
         alert.showAndWait();
-
       }
 
       BookingList bookingList = new BookingList();
@@ -153,7 +150,6 @@ public class GuestsController
 
         for (int j = 1; j < guestsForThisBooking.size(); j++)
         {
-
           if (guestsForThisBooking.getGuest(j).getFirstName().equals(firstName)
               && guestsForThisBooking.getGuest(j).getLastName()
               .equals(lastName))
@@ -172,7 +168,6 @@ public class GuestsController
             (Booking) bookings.getBookingsByFullName(firstName, lastName)
                 .get(j));
       }
-
       if (bookingGuest)
       {
         for (int a = 0; a < bookingList.size(); a++)
@@ -181,11 +176,9 @@ public class GuestsController
           s += "Booking number: " + (a + 1) + "\n";
           s += bookingList.getBooking(a) + "\n";
         }
-
       }
       else
         s += temp;
-
     }
     textArea2.setText(s);
   }

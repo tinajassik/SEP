@@ -221,7 +221,6 @@ public class EditBookingController
       alert.showAndWait();
     }
 
-
     if (e.getSource() == buttonApply)
     {
       LocalDate arrival = this.arrivalDate.getValue();
@@ -250,9 +249,7 @@ public class EditBookingController
       }
       else
         getAvailableRooms(datesToBeBooked);
-
     }
-
   }
 
 
@@ -261,7 +258,6 @@ public class EditBookingController
    */
   public boolean isFieldEmpty()
   {
-
     boolean empty = false;
 
     for (int i = 0; i < main.getChildren().size(); i++)
@@ -383,7 +379,6 @@ public class EditBookingController
         }
       }
     }
-
     modelManager.updateBookings(bookingList); //method that takes O(n)
   }
 
@@ -402,6 +397,10 @@ public class EditBookingController
    */
     public void deleteBooking(ActionEvent e)
     {
+      Booking booking = getSelectedBooking();
+      BookingList bookingList = modelManager.getAllBookings();
+      if (e.getSource() == removeBooking)
+      {
       for (int i = 0; i < bookingList.size(); i++)
       {
         if (booking.equals(bookingList.getBooking(i)) && !(booking.isCheckIn()))
@@ -427,7 +426,6 @@ public class EditBookingController
           modelManager.updateBookings(bookingList);
         }
       }
-
     }
   }
 
@@ -448,11 +446,9 @@ public class EditBookingController
         ((DatePicker) main.getChildren().get(i)).setValue(null);
       }
     }
-
     extraBedYES.setSelected(false);
     extraBedNO.setSelected(false);
     lateCheckInNO.setSelected(false);
     lateCheckInYES.setSelected(false);
-
   }
 }

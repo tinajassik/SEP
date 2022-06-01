@@ -10,7 +10,6 @@ import java.util.Arrays;
  * @author Dragos Cotaga
  * @version 1.0
  */
-
 // Class: RoomList extends ArrayList and implements RoomListInterface and Serializable interfaces to store the list of rooms in the hotel
 public class RoomList implements Serializable
 {
@@ -30,7 +29,6 @@ public class RoomList implements Serializable
    *
    * @param room the room that will be added to the list
    */
-
   // Method: adds a room to the list of rooms if the room is not already in the list of rooms and returns true if the room is added successfully
   public void addRoom(Room room)
   {
@@ -48,14 +46,13 @@ public class RoomList implements Serializable
     rooms.remove(room);
   }
 
-  // Method: returns the list of rooms in the hotel as an array of rooms and returns null if the list of rooms is empty
-
   /**
    * Gets a Room object from the list.
    *
    * @param index the position in the list of the Room object
    * @return the Room object at position index
    */
+  // Method: returns the list of rooms in the hotel as an array of rooms and returns null if the list of rooms is empty
   public Room getRoom(int index)
   {
     return rooms.get(index);

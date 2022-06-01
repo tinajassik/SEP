@@ -113,7 +113,6 @@ public class CheckOutController
         allBookings.addBooking(booking);
         modelManager.updateBookings(allBookings);
       }
-
       price.setText(Double.toString(modelManager.getPrice(booking)));
     }
 
@@ -136,7 +135,6 @@ public class CheckOutController
             || LocalDate.now().getMonthValue() != month
             || LocalDate.now().getYear() != year)
         {
-
           BookingList allBookings = modelManager.getAllBookings();
           allBookings.deleteBooking(booking);
           booking.getDateInterval().setDepartureDate(
@@ -215,9 +213,7 @@ public class CheckOutController
       discountText.clear();
       price.clear();
       price.setEditable(false);
-
     }
-
     return booking;
   }
 

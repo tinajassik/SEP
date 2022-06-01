@@ -135,22 +135,6 @@ public class Room implements Serializable
     Room other = (Room) o;
     return roomNumber.equals(other.roomNumber);
   }
-
-  /**
-   * Compares two rooms and determine if they are the same
-   *
-   * @return the hashCode of the room
-   */
-  @Override public int hashCode()
-  {
-    int result;
-    long temp;
-    result = roomNumber != null ? roomNumber.hashCode() : 0;
-    result = 31 * result + (roomType != null ? roomType.hashCode() : 0);
-    temp = Double.doubleToLongBits(price);
-    result = 31 * result + (int) (temp ^ (temp >>> 32));
-    return result;
-  }
 }
 
 

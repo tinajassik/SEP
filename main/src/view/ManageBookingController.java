@@ -130,11 +130,11 @@ public class ManageBookingController
           {
             listView.getItems().add(bookings.getBooking(i));
           }
-
-          if (listView.getItems().isEmpty()) {
+          if (listView.getItems().isEmpty())
+          {
 
             Alert alert = new Alert(Alert.AlertType.INFORMATION,
-                    "Name was not found. Please try again.");
+                "Name was not found. Please try again.");
             alert.setTitle("Guest not found");
             alert.setHeaderText(null);
             alert.showAndWait();
@@ -169,7 +169,6 @@ public class ManageBookingController
       }
       else
         viewHandler.openView("EditBooking");
-
     }
     else if (e.getSource() == buttonCheckOut)
     {
@@ -180,7 +179,6 @@ public class ManageBookingController
         alert.setTitle("Missing information");
         alert.setHeaderText(null);
         alert.showAndWait();
-
       }
       else
       {

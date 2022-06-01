@@ -58,7 +58,6 @@ public class GuestList implements Serializable
     {
       return null;
     }
-
   }
 
   /**

@@ -98,8 +98,6 @@ public class DateInterval implements Serializable
     return false;
   }
 
-  //ARRIVAL DATE HAS TO BE BEFORE DEPARTURE DATE
-
   /**
    * Checks if the arrival date is before the departure date.
    *

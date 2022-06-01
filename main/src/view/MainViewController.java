@@ -27,9 +27,6 @@ public class MainViewController
   @FXML TextArea textAreaArrivals;
   @FXML TextArea textAreaDepartures;
 
-  //  @FXML MenuItem exitMenuItem;
-  //  @FXML MenuItem aboutMenuItem;
-
   /**
    * Initializes the MainView window.
    *
@@ -44,7 +41,6 @@ public class MainViewController
     this.root = root;
     this.viewHandler = viewHandler;
     displayArrivalsAndDepartures();
-
   }
 
   /**
@@ -100,7 +96,6 @@ public class MainViewController
    */
   public void handleActions(ActionEvent e)
   {
-
     if (e.getSource() == buttonNewBooking)
     {
       viewHandler.openView("CreateBooking");
@@ -117,32 +112,5 @@ public class MainViewController
     {
       viewHandler.openView("Guests");
     }
-
-    //    else if (e.getSource() == exitMenuItem)
-    //    {
-    //      Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
-    //          "Do you really want to exit the program?",
-    //          ButtonType.YES, ButtonType.NO);
-    //      alert.setTitle("Exit");
-    //      alert.setHeaderText(null);
-    //
-    //      alert.showAndWait();
-    //
-    //      if (alert.getResult() == ButtonType.YES)
-    //      {
-    //        System.exit(0);
-    //      }
-    //    }
-    //    else if (e.getSource() == aboutMenuItem)
-    //    {
-    //      Alert alert = new Alert(Alert.AlertType.INFORMATION);
-    //      alert.setHeaderText(null);
-    //      alert.setTitle("About");
-    //      alert.setContentText("This is just a little program that demonstrates some of the GUI features in Java");
-    //      alert.showAndWait();
-    //    }
-    //  }
-
   }
-
 }

@@ -9,7 +9,6 @@ import java.util.Scanner;
  *
  * @author Allan Henriksen
  */
-
 public class MyFileHandler
 {
   /**

@@ -195,7 +195,7 @@ public class Guest implements Serializable
     {
       return false;
     }
-    Guest other = (Guest) obj; //cast obj to the type Guest
+    Guest other = (Guest) obj; //cast obj to this type
 
     //check if the fields are the same
     return firstName.equals(other.firstName) &&

@@ -11,6 +11,7 @@ public class BookingList implements Serializable
 {
   // ArrayList for storing the Booking objects
   private ArrayList<Booking> bookings;
+
   //Constructor for initializing the ArrayList
 
   /**
@@ -67,6 +68,7 @@ public class BookingList implements Serializable
       && bookings.get(i).getBookingGuest().getLastName().equals(lastName))
         bookingsByFullName.add(bookings.get(i));
     }
+
     return bookingsByFullName;
   }
 

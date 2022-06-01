@@ -8,6 +8,7 @@ import java.util.Scanner;
  * A class responsible for reading and writing files
  * @author Allan Henriksen
  */
+
 public class MyFileHandler
 {
   /**

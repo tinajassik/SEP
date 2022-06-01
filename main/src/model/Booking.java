@@ -7,6 +7,7 @@ import java.io.Serializable;
  * @author Andreea Asimine Aleksandra Adamczak
  * @version 1.2
  */
+
 public class Booking implements Serializable
 {
   //creating fields/attributes for class Booking
@@ -136,4 +137,5 @@ public class Booking implements Serializable
     return guests.equals(other.guests) && room.equals(other.room)
         && dates.equals(other.dates);
   }
+
 }

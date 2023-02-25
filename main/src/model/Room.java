@@ -31,8 +31,9 @@ public class Room implements Serializable
     }
 
         /**
+         * One-argument construct for Room object.
          *
-         * @param roomNumber
+         * @param roomNumber is number of the room
          */
     public Room(String roomNumber)
     {
@@ -81,15 +82,8 @@ public class Room implements Serializable
         return roomNumber;
     }
 
-        /**
-         * Sets the room number
-         * @param roomNumber the number that the room number will be set to
-         */
 
-    // Method: setRoomNumber() - sets the room number of the room object being called on in the method call (Room room = new Room(1); room.setRoomNumber(2);)
-    public void setRoomNumber(String roomNumber) {
-        this.roomNumber = roomNumber;
-    }
+
 
 
         /**
@@ -111,10 +105,9 @@ public class Room implements Serializable
     }
 
         /**
-         * Returns a string representation of the room
-         * @return a string representation of the room in the format: "Room Number: roomNumber
-         *                                                             Room Type: roomType
-         *                                                             Price: price"
+         * Returns a string representation of the room.
+         *
+         * @return a string representation of the room
          */
     @Override
     public String toString() {
@@ -122,9 +115,10 @@ public class Room implements Serializable
     }
 
         /**
-         * Compares two Room objects
-         * @param o the object to compare with
-         * @return true if given object is equal to this room
+         * Compares the Room objects with other given object.
+         *
+         * @param o the object to compare
+         * @return true if given object is instance of Room class and is equal to Room object, else returns false
          */
     public boolean equals(Object o) {
         if (!(o instanceof Room)) return false;
@@ -133,21 +127,8 @@ public class Room implements Serializable
         return roomNumber.equals(other.roomNumber);
     }
 
-        /**
-         * Compares two idk
-         * @return
-         */
-    // Method: hashCode() - returns the hashcode of the room. This is used to compare two rooms and determine if they are the same.
-    @Override
-    public int hashCode() {
-        int result;
-        long temp;
-        result = roomNumber != null ? roomNumber.hashCode() : 0;
-        result = 31 * result + (roomType != null ? roomType.hashCode() : 0);
-        temp = Double.doubleToLongBits(price);
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
-        return result;
-    }
+
+
 }
 
 

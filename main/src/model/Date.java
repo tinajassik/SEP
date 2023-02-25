@@ -32,7 +32,6 @@ public class Date implements Serializable
    * Returns the value of the day variable
    * @return the value of the day variable
    */
-
   //GETTER FOR DAY
   public int getDay()
   {
@@ -43,7 +42,6 @@ public class Date implements Serializable
    * Returns the value of the month variable
    * @return the value of the month variable
    */
-
   //GETTER FOR MONTH
   public int getMonth()
   {
@@ -54,18 +52,18 @@ public class Date implements Serializable
    * Returns the value of the year variable
    * @return the value of the year variable
    */
-
   //GETTER FOR YEAR
   public int getYear()
   {
     return year;
   }
 
-  /**
-   * Creates a String containing all information about a Date object
-   * @return
-   */
 
+  /**
+   * Creates a String containing all information about a Date object.
+   *
+   * @return String message with three variables year,month and day or else not valid date format message
+   */
   //TO STRING METHOD INCLUDING IDENTIFICATION TEXT FOR EACH FIELD
   public String toString()
   {
@@ -80,7 +78,6 @@ public class Date implements Serializable
    * Creates a copy of a Date object
    * @return Date object with the same values
    */
-
   //COPY METHOD FOR MAINLY COMPOSITION
   public Date copy()
   {
@@ -114,7 +111,6 @@ public class Date implements Serializable
    * Checks if a given year is a leap year
    * @return true or false statement telling whether it is a leap year or not
    */
-
   //CHECKING IF GIVEN YEAR IS A LEAP YEAR
   public boolean isLeapYear()
   {

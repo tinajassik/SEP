@@ -18,7 +18,7 @@ import java.util.ArrayList;
 
 /**
  * A class controlling the Check In window
- * @author Andreea Asimine
+ * @author Kristina Jassova
  * @version 1.4
  */
 public class CheckInController
@@ -41,8 +41,7 @@ public class CheckInController
   @FXML private Button buttonBack;
   @FXML private Button buttonCheckInGuest;
   @FXML private Button buttonCompleteCheckIn;
-
-private int count;
+  private int count;
 
   /**
    * Initializes the Check In window
@@ -78,17 +77,29 @@ private int count;
 
   }
 
+  /**
+   * Resets the CheckIn window.
+   */
+
   public void reset() {
     count = 0;
     displayInitialData();
   }
-
+  /**
+   * Gets the root object of the Region.
+   *
+   * @return the root object
+   */
   public Region getRoot()
   {
     return root;
   }
 
-
+  /**
+   * Checks if one or more fields are not filled.
+   *
+   * @return the true if fields are epmty
+   */
   public boolean isFieldEmpty()
   {
 
@@ -116,15 +127,28 @@ private int count;
     return empty;
   }
 
+  /**
+   * Gets selected item from the listView.
+   *
+   * @return the Booking object
+   */
   public Booking getSelectedBookingNew() {
     return viewHandler.getManageBookingController().getSelectedBookingNew();
   }
 
+  /**
+   * Checks whether the date interval given by the argument is valid
+   *
+   * @return true or false
+   */
   public boolean checkDates(DateInterval dates)
   {
     return dates.compareDatesContinuity();
   }
 
+  /**
+   * Displays necessary data to the CheckIn window.
+   */
   public void displayInitialData() {
     Booking booking = getSelectedBookingNew();
     if (booking != null) {
@@ -139,7 +163,6 @@ private int count;
         nationalityField.setText(booking.getBookingGuest().getNationality());
         addressField.setText(booking.getBookingGuest().getAddress());
         phoneNumberField.setText(booking.getBookingGuest().getPhoneNumber());
-//        booking.getDateInterval().setArrivalDate(new Date(LocalDate.now().getDayOfMonth(),LocalDate.now().getMonthValue(),LocalDate.now().getYear()));
         Date birthday = booking.getBookingGuest().getBirthday();
         birthdayDate.setValue(LocalDate.of(birthday.getYear(), birthday.getMonth(),birthday.getDay()));
         count++;
@@ -147,7 +170,11 @@ private int count;
     }
   }
 
-
+  /**
+   * Checks in the guests.
+   *
+   * @param e constructs an ActionEvent object
+   */
   public void checkInGuests(ActionEvent e){
 
     ArrayList<Object> allData = new ArrayList<>();
@@ -159,9 +186,7 @@ private int count;
     RoomList allRooms = modelManager.getAllRooms();
     int start = checkedGuests.size();
 
-
       if(e.getSource() == buttonCheckInGuest && !(isFieldEmpty())) {
-
 
 
         String firstName = firstNameField.getText();
@@ -178,6 +203,7 @@ private int count;
         Date birthdayGuest = new Date(day,month,year);
         Guest guest = new Guest(firstName,lastname,address,phoneNumber,nationality,birthdayGuest);
         checkedGuests.addGuest(guest);
+        System.out.println(checkedGuests);
         firstNameField.clear();
         lastNameField.clear();
         nationalityField.clear();
@@ -185,6 +211,7 @@ private int count;
         phoneNumberField.clear();
         birthdayDate.setValue(null);
       }
+
       else if(e.getSource() == buttonCheckInGuest && isFieldEmpty())
       {
         Alert alert = new Alert(Alert.AlertType.WARNING,
@@ -193,33 +220,58 @@ private int count;
         alert.setHeaderText(null);
         alert.showAndWait();
       }
-        if (e.getSource() == buttonCompleteCheckIn) {
-       Booking booking = getSelectedBookingNew();
-       allBookings.deleteBooking(booking);
-       booking.checkedIn();
-       booking.getDateInterval().setArrivalDate(new Date(arrivalDate.getValue().getDayOfMonth(),arrivalDate.getValue().getMonthValue(),arrivalDate.getValue().getYear()));
+
+      if (e.getSource() == buttonCompleteCheckIn) {
+
+        DateInterval bookedDates = new DateInterval(new Date(arrivalDate.getValue().getDayOfMonth(),arrivalDate.getValue().getMonthValue(),
+                arrivalDate.getValue().getYear()), new Date(departureDate.getValue().getDayOfMonth(),departureDate.getValue().getMonthValue(),
+                departureDate.getValue().getYear()));
+
+        if (checkDates(bookedDates)) {
+
+          Booking booking = getSelectedBookingNew();
+          allBookings.deleteBooking(booking);
+          booking.checkedIn();
+          booking.getDateInterval().setArrivalDate(new Date(arrivalDate.getValue().getDayOfMonth(),arrivalDate.getValue().getMonthValue(),arrivalDate.getValue().getYear()));
 
           for (int i = start - 1; i < checkedGuests.size(); i++) {
-         booking.getGuests().addGuest(checkedGuests.getGuest(i));
-       }
+            booking.getGuests().addGuest(checkedGuests.getGuest(i));
+          }
 
-       allBookings.addBooking(booking);
+          allBookings.addBooking(booking);
 
-        Alert alert = new Alert(Alert.AlertType.INFORMATION,
-            "All guests were successfully checked in.");
-        alert.setTitle("Check-In complete");
-        alert.setHeaderText(null);
-        alert.showAndWait();
+          Alert alert = new Alert(Alert.AlertType.INFORMATION,
+                  "All guests were successfully checked in.");
+          alert.setTitle("Check-In complete");
+          alert.setHeaderText(null);
+          alert.showAndWait();
+
+        }
+        else {
+
+          Alert alert = new Alert(Alert.AlertType.WARNING,
+                  "Arrival date is after departure date or they are equal.");
+          alert.setTitle("Invalid Dates inserted");
+          alert.setHeaderText(null);
+          alert.showAndWait();
+
+        }
 
       }
-
     //update data.bin to add all new guests.txt;
     allData.add(checkedGuests); // now checkedGuests contains all the guests checkedIn before as well as the new ones
     allData.add(allBookings);
     allData.add(allRooms);
     modelManager.updateAllData(allData);
-    }
 
+  }
+
+
+  /**
+   * A semantic event which indicates that a component-defined action occurred, generated by a component.
+   *
+   * @param e constructs an ActionEvent object
+   */
   public void handleActions(ActionEvent e)
   {
     if (e.getSource() == buttonBack )

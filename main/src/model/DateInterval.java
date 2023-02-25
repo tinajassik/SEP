@@ -41,7 +41,6 @@ public class DateInterval implements Serializable
    * Sets guest's departure date
    * @param departureDate the date that the departure date will be set to
    */
-
   //SETTER FOR DEPARTURE DATE
   public void setDepartureDate(Date departureDate)
   {
@@ -52,7 +51,6 @@ public class DateInterval implements Serializable
    * Returns guest's arrival date
    * @return the guest's arrival date
    */
-
   //GETTER FOR ARRIVAL DATE
   public Date getArrivalDate()
   {
@@ -63,7 +61,6 @@ public class DateInterval implements Serializable
    * Returns guest's departure date
    * @return the guest's departure date
    */
-
   //GETTER FOR DEPARTURE DATE
   public Date getDepartureDate()
   {
@@ -71,7 +68,7 @@ public class DateInterval implements Serializable
   }
 
   /**
-   * Returns a string representation of the DateInterval
+   * Returns a string representation of the DateInterval.
    * @return a string representation od the DateInterval
    */
   //RETURNING TO STRING METHOD WITH ARRIVAL DATE AND DEPARTURE DATE

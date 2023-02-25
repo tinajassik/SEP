@@ -15,161 +15,183 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- * A class
+ * A class controlling the Check-Out window.
+ *
+ * @author Aleksandra Adamczak
+ * @version 1.0
  */
-public class CheckOutController
-{
-  private BookingModelManager modelManager;
-  private Region root;
-  private ViewHandler viewHandler;
-  private MyFileHandler fileHandler;
+public class CheckOutController {
+    private BookingModelManager modelManager;
+    private Region root;
+    private ViewHandler viewHandler;
 
-  @FXML private Text fullName;
-  @FXML private Text arrivalDate;
-  @FXML private Text departureDate;
-  @FXML private Text roomPrice;
-  @FXML private Button buttonBack;
-  @FXML private Button normalPrice;
-  @FXML private Button discountPrice;
-  @FXML private Button addFee;
-  @FXML private Button checkOut;
-  @FXML private TextField fee;
-  @FXML private TextField price;
-  @FXML private TextField discountText;
-  public void init(ViewHandler viewHandler, BookingModelManager modelManager, Region root)
-  {
-    this.modelManager = modelManager;
-    this.root = root;
-    this.viewHandler = viewHandler;
-    displayInitialInfo();
+    @FXML
+    private Text fullName;
+    @FXML
+    private Text arrivalDate;
+    @FXML
+    private Text departureDate;
+    @FXML
+    private Text roomPrice;
+    @FXML
+    private Button buttonBack;
+    @FXML
+    private Button normalPrice;
+    @FXML
+    private Button discountPrice;
+    @FXML
+    private Button addFee;
+    @FXML
+    private Button checkOut;
+    @FXML
+    private TextField fee;
+    @FXML
+    private TextField price;
+    @FXML
+    private TextField discountText;
 
-  }
-  public Booking getSelectedBookingNew() {
-    return viewHandler.getManageBookingController().getSelectedBookingNew();
-  }
+    /**
+     * Initializes the CheckOut window.
+     *
+     * @param viewHandler  the view handler for Check In window
+     * @param modelManager object of the BookingModelManager class
+     * @param root         object of the Region class
+     */
+    public void init(ViewHandler viewHandler, BookingModelManager modelManager, Region root) {
+        this.modelManager = modelManager;
+        this.root = root;
+        this.viewHandler = viewHandler;
+        displayInitialInfo();
 
-  public void reset() {
-    displayInitialInfo();
-  }
-
-  public Region getRoot()
-  {
-    return root;
-  }
-
-  public void handleActions(ActionEvent e)
-  {
-    if (e.getSource() == buttonBack )
-    {
-      viewHandler.openView("SearchBooking");
     }
 
-    if (e.getSource() == normalPrice)
-    {
-      Booking booking = getSelectedBookingNew();
-      int day = booking.getDateInterval().getDepartureDate().getDay();
-      int month = booking.getDateInterval().getDepartureDate().getMonth();
-      int year = booking.getDateInterval().getDepartureDate().getYear();
-      if(LocalDate.now().getDayOfMonth() != day || LocalDate.now().getMonthValue() != month || LocalDate.now().getYear() != year)
-      {
-        BookingList allBookings = modelManager.getAllBookings();
-        allBookings.deleteBooking(booking);
-        booking.getDateInterval().setDepartureDate(new Date(LocalDate.now().getDayOfMonth(),LocalDate.now().getMonthValue(),LocalDate.now().getYear()));
-        allBookings.addBooking(booking);
-        modelManager.updateBookings(allBookings);
-      }
-
-      price.setText(Double.toString(modelManager.getPrice(booking)));
+    /**
+     * Gets selected item from the listView.
+     *
+     * @return the Booking object
+     */
+    public Booking getSelectedBookingNew() {
+        return viewHandler.getManageBookingController().getSelectedBookingNew();
     }
 
-    if (e.getSource() == discountPrice)
-    {
-      if(discountText.getText().equals(""))
-      {
-        Alert alert = new Alert(Alert.AlertType.WARNING,"You have not entered the discount");
-        alert.showAndWait();
-      }
-      else
-      {
-        Booking booking = displayInitialInfo();
-        int day = booking.getDateInterval().getDepartureDate().getDay();
-        int month = booking.getDateInterval().getDepartureDate().getMonth();
-        int year = booking.getDateInterval().getDepartureDate().getYear();
-        double discount = Double.parseDouble(discountText.getText());
-        if(LocalDate.now().getDayOfMonth() != day || LocalDate.now().getMonthValue() != month || LocalDate.now().getYear() != year)
-        {
+    /**
+     * Resets the CheckOut window.
+     */
+    public void reset() {
+        displayInitialInfo();
+    }
 
-          BookingList allBookings = modelManager.getAllBookings();
-          allBookings.deleteBooking(booking);
-          booking.getDateInterval().setDepartureDate(new Date(LocalDate.now().getDayOfMonth(),LocalDate.now().getMonthValue(),LocalDate.now().getYear()));
-          allBookings.addBooking(booking);
+    /**
+     * Gets the root object of the Region.
+     *
+     * @return the root object
+     */
+    public Region getRoot() {
+        return root;
+    }
 
-          modelManager.updateBookings(allBookings);
+    /**
+     * A semantic event which indicates that a component-defined action occurred, generated by a component.
+     *
+     * @param e constructs an ActionEvent object
+     */
+    public void handleActions(ActionEvent e) {
+        if (e.getSource() == buttonBack) {
+            viewHandler.openView("SearchBooking");
         }
-         price.setText(Double.toString(modelManager.priceWithDiscount(booking,discount)));
-      }
-    }
 
-    if (e.getSource() == addFee)
-    {
-      if(fee.getText().equals(""))
-      {
-        Alert alert = new Alert(Alert.AlertType.WARNING,"You have not entered the fee");
-        alert.showAndWait();
-      }
-      else
-      {
-        double feeValue = Double.parseDouble(fee.getText());
+        if (e.getSource() == normalPrice) {
+            Booking booking = getSelectedBookingNew();
+            int day = booking.getDateInterval().getDepartureDate().getDay();
+            int month = booking.getDateInterval().getDepartureDate().getMonth();
+            int year = booking.getDateInterval().getDepartureDate().getYear();
+            if (LocalDate.now().getDayOfMonth() != day || LocalDate.now().getMonthValue() != month || LocalDate.now().getYear() != year) {
+                BookingList allBookings = modelManager.getAllBookings();
+                allBookings.deleteBooking(booking);
+                booking.getDateInterval().setDepartureDate(new Date(LocalDate.now().getDayOfMonth(), LocalDate.now().getMonthValue(), LocalDate.now().getYear()));
+                allBookings.addBooking(booking);
+                modelManager.updateBookings(allBookings);
+            }
 
-        if(!(price.getText().isEmpty()))
-        {
-          double priceDouble = Double.parseDouble(price.getText()) + feeValue;
-          price.setText(Double.toString(priceDouble));
+            price.setText(Double.toString(modelManager.getPrice(booking)));
         }
-      }
-    }
-    if (e.getSource() == checkOut)
-    {
-      Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Confirm the check out");
-      alert.setTitle(null);
-      alert.showAndWait();
-      if (alert.getResult() == ButtonType.OK)
-      {
-        Booking booking = displayInitialInfo();
-        BookingList allBookings = modelManager.getAllBookings();
-        GuestList allGuests = modelManager.getAllGuests();
 
-        for(int i = 0; i < booking.getGuests().size(); i++)
-        {
-          allGuests.removeGuest(booking.getGuests().getGuest(i));
+        if (e.getSource() == discountPrice) {
+            if (discountText.getText().equals("")) {
+                Alert alert = new Alert(Alert.AlertType.WARNING, "You have not entered the discount");
+                alert.showAndWait();
+            } else {
+                Booking booking = displayInitialInfo();
+                int day = booking.getDateInterval().getDepartureDate().getDay();
+                int month = booking.getDateInterval().getDepartureDate().getMonth();
+                int year = booking.getDateInterval().getDepartureDate().getYear();
+                double discount = Double.parseDouble(discountText.getText());
+                if (LocalDate.now().getDayOfMonth() != day || LocalDate.now().getMonthValue() != month || LocalDate.now().getYear() != year) {
+
+                    BookingList allBookings = modelManager.getAllBookings();
+                    allBookings.deleteBooking(booking);
+                    booking.getDateInterval().setDepartureDate(new Date(LocalDate.now().getDayOfMonth(), LocalDate.now().getMonthValue(), LocalDate.now().getYear()));
+                    allBookings.addBooking(booking);
+
+                    modelManager.updateBookings(allBookings);
+                }
+                price.setText(Double.toString(modelManager.priceWithDiscount(booking, discount)));
+            }
         }
-        allBookings.deleteBooking(booking);
-        ArrayList<Object> allData = new ArrayList<>();
-        allData.add(allBookings);
-        allData.add(allGuests);
-        allData.add(modelManager.getAllRooms());
-        modelManager.updateAllData(allData);
-      }
-     }
+
+        if (e.getSource() == addFee) {
+            if (fee.getText().equals("")) {
+                Alert alert = new Alert(Alert.AlertType.WARNING, "You have not entered the fee");
+                alert.showAndWait();
+            } else {
+                double feeValue = Double.parseDouble(fee.getText());
+
+                if (!(price.getText().isEmpty())) {
+                    double priceDouble = Double.parseDouble(price.getText()) + feeValue;
+                    price.setText(Double.toString(priceDouble));
+                }
+            }
+        }
+        if (e.getSource() == checkOut) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Confirm the check out");
+            alert.setTitle(null);
+            alert.showAndWait();
+            if (alert.getResult() == ButtonType.OK) {
+                Booking booking = displayInitialInfo();
+                BookingList allBookings = modelManager.getAllBookings();
+                GuestList allGuests = modelManager.getAllGuests();
+
+                for (int i = 0; i < booking.getGuests().size(); i++) {
+                    allGuests.removeGuest(booking.getGuests().getGuest(i));
+                }
+                allBookings.deleteBooking(booking);
+                ArrayList<Object> allData = new ArrayList<>();
+                allData.add(allBookings);
+                allData.add(allGuests);
+                allData.add(modelManager.getAllRooms());
+                modelManager.updateAllData(allData);
+            }
+        }
     }
 
+    /**
+     * Displays necessary data to the CheckOut window
+     */
+    public Booking displayInitialInfo() {
+        Booking booking = viewHandler.getManageBookingController().getSelectedBookingNew();
+        if (booking != null) {
+            fullName.setText(booking.getBookingGuest().getFirstName() + " " + booking.getBookingGuest().getLastName());
+            arrivalDate.setText(booking.getDateInterval().getArrivalDate().toString());
+            departureDate.setText(LocalDate.now().toString());
+            roomPrice.setText(Double.toString(booking.getBookedRoom().getPrice()));
+            fee.clear();
+            discountText.clear();
+            price.clear();
+            price.setEditable(false);
 
-  public Booking displayInitialInfo() {
-    Booking booking = viewHandler.getManageBookingController().getSelectedBookingNew();
-    if (booking != null)
-    {
-      fullName.setText(booking.getBookingGuest().getFirstName() + " " + booking.getBookingGuest().getLastName());
-      arrivalDate.setText(booking.getDateInterval().getArrivalDate().toString());
-      departureDate.setText(LocalDate.now().toString());
-      roomPrice.setText(Double.toString(booking.getBookedRoom().getPrice()));
-      fee.clear();
-      discountText.clear();
-      price.clear();
-      price.setEditable(false);
+        }
 
+        return booking;
     }
-
-    return booking;
-  }
 
 }

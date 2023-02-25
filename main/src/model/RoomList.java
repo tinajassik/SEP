@@ -57,7 +57,6 @@ public class RoomList implements Serializable
          * Returns how many Room objects are in the list.
          * @return the number of Room objects in the list
          */
-    //Method: returns the size of the ArrayList rooms
     public int size()
     {
         return rooms.size();
@@ -65,6 +64,7 @@ public class RoomList implements Serializable
 
         /**
          * Returns a String representation of the RoomList.
+         *
          * @return a String containing information about all Room objects in the list- each Room object followed by a new line character
          */
     @Override

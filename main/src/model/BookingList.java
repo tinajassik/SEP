@@ -73,6 +73,8 @@ public class BookingList implements Serializable
   }
 
   /**
+   * The method returns the size of the booking list.
+   *
    * @return the number of Booking objects in the list
    */
   // Return how many Booking objects are in the list
@@ -82,9 +84,10 @@ public class BookingList implements Serializable
   }
 
   /**
+   * The method returns a String representation of the BookingList.
+   *
    * @return a String containing information about all Booking objects in the BookingList array
    */
-
   //toString() method used to convert the ArrayList bookings into a string
   public String toString()
   {
@@ -100,11 +103,10 @@ public class BookingList implements Serializable
   }
 
   /**
-   * Compares two objects and determines whether they are of the same type and contain the same information
+   * Compares two objects and determines whether they are of the same type and contain the same information.
    * @param obj the  object that is compared to a BookingList object
    * @return a true or false statement depending on the outcome of the comparison of the two objects
    */
-
   //equals() method for checking if obj is the same object as BookingList
   public boolean equals(Object obj)
   {

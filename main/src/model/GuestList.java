@@ -3,7 +3,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
- * A class containing a list of Guest objects
+ * A class containing a list of Guest objects.
  * @author Andreea Asimine
  * @version 1.1
  */
@@ -15,7 +15,7 @@ public class GuestList implements Serializable
   /**
    * No-argument constructor initializing the GuestList class.
    */
-  //1 argument constructor
+
   public GuestList()
   {
     guests=new ArrayList<Guest>();
@@ -32,7 +32,7 @@ public class GuestList implements Serializable
   }
 
   /**
-   * Gets the guest who made the booking
+   * Gets the guest who made the booking.
    * @return the first guest on the list
    */
   //getFirstGuest() method that returns the first guest in the ArrayList(the person that booked the room)

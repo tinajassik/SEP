@@ -1,4 +1,4 @@
-# SEP
+# SEP1 - Semester Project 1
 
 Semester Project 1 - Single User System - Online Booking Management
 

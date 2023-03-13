@@ -1,6 +1,6 @@
 # SEP
 
-Semester Project 1 - Booking system for Overlook Hotel
+Semester Project 1 - Single User System - Online Booking Management
 
 <div style="justify-content:center">
 <div style="display: flex; justify-content: center;">
